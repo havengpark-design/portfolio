@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
+
 export default function JamsCard() {
   return (
-    <div className="w-full h-full rounded-[69px] relative flex items-center justify-center px-[45px]">
+    <Link href="/jams" className="w-full h-full rounded-[69px] relative flex items-center justify-center px-[45px] cursor-pointer">
       {/* Video background */}
       <video
         autoPlay
@@ -36,6 +38,6 @@ export default function JamsCard() {
           }}
         />
       </div>
-    </div>
+    </Link>
   );
 }
