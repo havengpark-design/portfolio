@@ -1,18 +1,10 @@
 import Link from "next/link";
+import Nav from "@/components/Nav";
 
 export default function JamsPage() {
   return (
     <main className="min-h-screen bg-white">
-      {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-[60px] h-[68px] bg-white/80 backdrop-blur-md border-b border-black/5">
-        <Link href="/" className="text-black text-[18px] font-normal hover:opacity-60 transition-opacity flex items-center gap-2">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 8H1M1 8L8 1M1 8L8 15" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          Back
-        </Link>
-        <span className="text-black text-[18px] font-normal">Haven Park</span>
-      </nav>
+      <Nav />
 
       <div className="w-[80%] mx-auto pt-[120px] pb-[120px]">
 
