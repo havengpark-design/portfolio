@@ -18,7 +18,7 @@ export default function Storytelling1Page() {
           <div className="flex gap-[48px] pt-[8px] text-[14px]">
             <div className="flex flex-col gap-1">
               <span className="text-[#9AA3AF] uppercase tracking-widest">Platform</span>
-              <span className="text-black">Instagram</span>
+              <span className="text-black">Instagram · TikTok</span>
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-[#9AA3AF] uppercase tracking-widest">Format</span>
@@ -52,18 +52,32 @@ export default function Storytelling1Page() {
 
         <hr className="border-black/8 mb-[80px]" />
 
-        {/* Instagram embed */}
+        {/* Video embeds — side by side */}
         <section className="mb-[96px]">
-          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">The Reel</h2>
-          <div className="flex justify-center">
-            <iframe
-              src="https://www.instagram.com/reel/DUjPR6vEsMt/embed/"
-              width="400"
-              height="710"
-              frameBorder="0"
-              scrolling="no"
-              style={{ borderRadius: "12px", overflow: "hidden" }}
-            />
+          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">The Videos</h2>
+          <div className="flex gap-[24px] justify-center">
+            <div className="flex flex-col items-center gap-[16px]">
+              <span className="text-[12px] uppercase tracking-widest text-[#9AA3AF]">Instagram</span>
+              <iframe
+                src="https://www.instagram.com/reel/DUjPR6vEsMt/embed/"
+                width="340"
+                height="600"
+                frameBorder="0"
+                scrolling="no"
+                style={{ borderRadius: "12px", overflow: "hidden" }}
+              />
+            </div>
+            <div className="flex flex-col items-center gap-[16px]">
+              <span className="text-[12px] uppercase tracking-widest text-[#9AA3AF]">TikTok</span>
+              <iframe
+                src="https://www.tiktok.com/embed/v2/7604993472734448910"
+                width="340"
+                height="600"
+                frameBorder="0"
+                scrolling="no"
+                style={{ borderRadius: "12px", overflow: "hidden" }}
+              />
+            </div>
           </div>
         </section>
 
@@ -73,10 +87,16 @@ export default function Storytelling1Page() {
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M15 8H1M1 8L8 1M1 8L8 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             Back to Portfolio
           </Link>
-          <a href="https://www.instagram.com/reel/DUjPR6vEsMt/" target="_blank" rel="noopener noreferrer" className="text-[#4583DA] text-[15px] hover:opacity-70 transition-opacity flex items-center gap-2">
-            View on Instagram
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </a>
+          <div className="flex gap-[24px]">
+            <a href="https://www.instagram.com/reel/DUjPR6vEsMt/" target="_blank" rel="noopener noreferrer" className="text-[#4583DA] text-[15px] hover:opacity-70 transition-opacity flex items-center gap-2">
+              Instagram
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@hvnpark/video/7604993472734448910" target="_blank" rel="noopener noreferrer" className="text-[#4583DA] text-[15px] hover:opacity-70 transition-opacity flex items-center gap-2">
+              TikTok
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </a>
+          </div>
         </div>
 
       </div>
