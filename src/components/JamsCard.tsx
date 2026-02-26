@@ -1,10 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 export default function JamsCard() {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <Link href="/jams" className="w-full h-full rounded-[69px] relative flex items-center justify-center px-[45px] cursor-pointer">
+    <Link
+      href="/jams"
+      className="w-full h-full rounded-[69px] relative flex items-center justify-center px-[45px] cursor-pointer"
+      onMouseEnter={() => {
+        setHovered(true);
+        const main = document.querySelector("main") as HTMLElement | null;
+        if (main) { main.style.transition = "background 0.4s ease"; main.style.background = "rgb(237, 244, 253)"; }
+      }}
+      onMouseLeave={() => {
+        setHovered(false);
+        const main = document.querySelector("main") as HTMLElement | null;
+        if (main) { main.style.background = ""; }
+      }}
+    >
       {/* Video background */}
       <video
         autoPlay
@@ -12,7 +28,7 @@ export default function JamsCard() {
         loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover rounded-[69px]"
-        src="/jams-thumbnail.mp4"
+        src="/Design/jams/jams%20thumbnail.mp4"
       />
       {/* Glass pill */}
       <div
@@ -30,7 +46,7 @@ export default function JamsCard() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/jams-logo.png"
+          src="/Design/jams/jams-logo.png"
           alt="JAMS"
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
           onError={(e) => {

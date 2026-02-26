@@ -1,36 +1,30 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 export default function PorticoCard() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleTimeUpdate = () => {
-      if (video.duration && video.currentTime > video.duration - 0.6) {
-        video.currentTime = 0;
-      }
-    };
-
-    video.addEventListener("timeupdate", handleTimeUpdate);
-    return () => video.removeEventListener("timeupdate", handleTimeUpdate);
-  }, []);
-
   return (
-    <div className="w-full h-full rounded-[69px] relative flex items-center justify-center px-[45px]">
+    <Link
+      href="/portico"
+      className="w-full h-full rounded-[69px] relative flex items-center justify-center px-[45px] cursor-pointer"
+      onMouseEnter={() => {
+        const main = document.querySelector("main") as HTMLElement | null;
+        if (main) { main.style.transition = "background 0.4s ease"; main.style.background = "rgb(250, 247, 243)"; }
+      }}
+      onMouseLeave={() => {
+        const main = document.querySelector("main") as HTMLElement | null;
+        if (main) { main.style.background = ""; }
+      }}
+    >
       {/* Video background */}
       <video
-        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover rounded-[69px]"
-        src="/portico-thumbnail.mp4"
+        src="/Design/portico/portico%20thumbnail.mp4"
       />
       {/* Glass pill */}
       <div
@@ -48,7 +42,7 @@ export default function PorticoCard() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/portico.png"
+          src="/Design/portico/portico.png"
           alt="Portico"
           style={{ width: "130%", height: "130%", objectFit: "contain" }}
           onError={(e) => {
@@ -56,6 +50,6 @@ export default function PorticoCard() {
           }}
         />
       </div>
-    </div>
+    </Link>
   );
 }

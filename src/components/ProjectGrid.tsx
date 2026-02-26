@@ -1,17 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFadeIn } from "@/hooks/useFadeIn";
 
 interface ProjectGridProps {
   title: string;
   subtitle: string;
   defaultOpen?: boolean;
+  sectionId?: string;
   cards?: (string | null)[];
   /** Optional custom React node to replace the first card slot */
   firstCard?: React.ReactNode;
   /** Optional custom React node to replace the second card slot */
   secondCard?: React.ReactNode;
+  /** Optional custom React node to replace the third card slot */
+  thirdCard?: React.ReactNode;
 }
 
 function ToggleIcon({ open }: { open: boolean }) {
@@ -97,12 +100,24 @@ export default function ProjectGrid({
   title,
   subtitle,
   defaultOpen = false,
+  sectionId,
   cards = [],
   firstCard,
   secondCard,
+  thirdCard,
 }: ProjectGridProps) {
   const [open, setOpen] = useState(defaultOpen);
   const { ref, visible } = useFadeIn();
+
+  useEffect(() => {
+    if (!sectionId) return;
+    const handler = (e: Event) => {
+      const { id } = (e as CustomEvent<{ id: string }>).detail;
+      if (id === sectionId) setOpen(true);
+    };
+    window.addEventListener("openSection", handler);
+    return () => window.removeEventListener("openSection", handler);
+  }, [sectionId]);
   const slots: (string | null)[] = Array.from({ length: 4 }, (_, i) => cards[i] ?? null);
 
   return (
@@ -163,8 +178,18 @@ export default function ProjectGrid({
           )}
         </div>
         <div className="flex gap-[35px]">
-          <PlaceholderCard src={slots[2]} delay={300} visible={visible} />
-          <PlaceholderCard src={slots[3]} delay={400} visible={visible} />
+          {thirdCard ? (
+            <CustomCardWrapper delay={300} visible={visible}>
+              {thirdCard}
+            </CustomCardWrapper>
+          ) : (
+            <PlaceholderCard src={slots[2]} delay={300} visible={visible} />
+          )}
+          {slots[3] ? (
+            <PlaceholderCard src={slots[3]} delay={400} visible={visible} />
+          ) : (
+            <div className="flex-1 aspect-square" />
+          )}
         </div>
       </div>
     </section>

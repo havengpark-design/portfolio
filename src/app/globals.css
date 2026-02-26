@@ -57,6 +57,15 @@ body {
   animation: fadeIn 0.5s ease both;
 }
 
+.animate-shimmer {
+  background: linear-gradient(90deg, #6E7784 0%, #A8B2BC 40%, #6E7784 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glassShimmer 4s linear infinite;
+}
+
 /* Scroll-reveal: hidden by default, JS adds .is-visible */
 .reveal {
   opacity: 0;
