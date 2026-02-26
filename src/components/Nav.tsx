@@ -68,7 +68,7 @@ export default function Nav() {
 
           if (link === "About") {
             return (
-              <button key={link} className={buttonClass} disabled>
+              <button key={link} className={buttonClass}>
                 {link}
               </button>
             );

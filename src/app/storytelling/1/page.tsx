@@ -11,9 +11,9 @@ export default function Storytelling1Page() {
         {/* Hero */}
         <div className="flex flex-col gap-[20px] mb-[72px]">
           <span className="text-[#4583DA] text-[13px] font-medium tracking-widest uppercase">Storytelling</span>
-          <h1 className="text-black text-[56px] font-normal leading-[1.05]">Title</h1>
+          <h1 className="text-black text-[56px] font-normal leading-[1.05]">Born Different</h1>
           <p className="text-[#6B7280] text-[19px] font-normal leading-relaxed">
-            Description of this piece — what it&apos;s about, why it matters.
+            A personal story about growing up with bilateral cleft lip and palate — the surgeries, the years of rebuilding, and what it means to exist in a body the world wasn&apos;t quite ready for.
           </p>
           <div className="flex gap-[48px] pt-[8px] text-[14px]">
             <div className="flex flex-col gap-1">
@@ -26,7 +26,7 @@ export default function Storytelling1Page() {
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-[#9AA3AF] uppercase tracking-widest">Theme</span>
-              <span className="text-black">Identity · Culture · Growth</span>
+              <span className="text-black">Identity · Resilience · Body</span>
             </div>
           </div>
         </div>
@@ -34,13 +34,19 @@ export default function Storytelling1Page() {
         {/* Hero image */}
         <div className="w-full rounded-[32px] overflow-hidden mb-[96px]" style={{ aspectRatio: "16/9", background: "#f5f5f5" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/Storytelling/Storytelling1.png" alt="Storytelling" className="w-full h-full object-cover" />
+          <img src="/Storytelling/Storytelling1.png" alt="Born Different" className="w-full h-full object-cover" />
         </div>
 
         {/* Context */}
         <section className="mb-[80px]">
-          <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[20px]">
-            Write about the context and story behind this piece here.
+          <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[24px]">
+            I was born with bilateral cleft lip and palate — that&apos;s when a baby&apos;s upper lip is split into two, along with the palate inside of their mouth. My childhood was spent going in and out of hospitals every single week: checkups, dental work, procedures. People with this condition need a lot of it.
+          </p>
+          <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[24px]">
+            I had braces for ten years. Most people have them for two or three — but when you can&apos;t really talk, can&apos;t eat well, can&apos;t do much of anything, surgery isn&apos;t optional. I had around ten surgeries before college, and two more once I got there.
+          </p>
+          <p className="text-[#4A5565] text-[17px] leading-[1.85]">
+            A lot of my time in college was spent rebuilding — structurally. People with my condition don&apos;t naturally have a cupid&apos;s bow, so mine was medically made. The nose too, because the condition leaves you without much structure there. Even now, I still wear tape just to hold everything together.
           </p>
         </section>
 
@@ -56,7 +62,6 @@ export default function Storytelling1Page() {
               height="710"
               frameBorder="0"
               scrolling="no"
-              allowTransparency={true}
               style={{ borderRadius: "12px", overflow: "hidden" }}
             />
           </div>
