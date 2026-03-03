@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Nav from "@/components/Nav";
+import LightboxImage from "@/components/LightboxImage";
 
 export default function JamsPage() {
   return (
@@ -136,7 +136,7 @@ export default function JamsPage() {
               <span className="text-black text-[15px]">Home Page</span>
             </div>
             <div className="rounded-[16px] overflow-hidden border border-black/[0.06] shadow-[0_2px_24px_rgba(0,0,0,0.06)]">
-              <img src="/Design/jams/Dashboard/Home%20-%20Original.png" alt="JAMS original home page" style={{ width: "100%", display: "block" }} />
+              <LightboxImage src="/Design/jams/Dashboard/Home%20-%20Original.png" alt="JAMS original home page" style={{ width: "100%", display: "block" }} />
             </div>
             <p className="text-[#9AA3AF] text-[13px] mt-[14px] leading-[1.7]">
               Users land on a near-empty page — no system status, no job health overview, no way to jump into work. A missed opportunity to orient operators the moment they open the app.
@@ -150,7 +150,7 @@ export default function JamsPage() {
               <span className="text-black text-[15px]">Monitor Page</span>
             </div>
             <div className="rounded-[16px] overflow-hidden border border-black/[0.06] shadow-[0_2px_24px_rgba(0,0,0,0.06)]">
-              <img src="/Design/jams/Monitor/Monitor%20-%20Original.png" alt="JAMS original monitor page" style={{ width: "100%", display: "block" }} />
+              <LightboxImage src="/Design/jams/Monitor/Monitor%20-%20Original.png" alt="JAMS original monitor page" style={{ width: "100%", display: "block" }} />
             </div>
             <p className="text-[#9AA3AF] text-[13px] mt-[14px] leading-[1.7]">
               A dense, unfiltered table with no summary context, no status-at-a-glance, and actions buried off-screen. Operators had to scroll, hunt, and guess.
@@ -202,7 +202,7 @@ export default function JamsPage() {
 
             {/* v3 — final, hero size */}
             <div className="rounded-[16px] overflow-hidden border border-black/[0.06] shadow-[0_2px_24px_rgba(0,0,0,0.06)] mb-[12px]">
-              <img src="/Design/jams/Dashboard/Home%20-%20Future.version3.png" alt="JAMS home redesign — final version" style={{ width: "100%", display: "block" }} />
+              <LightboxImage src="/Design/jams/Dashboard/Home%20-%20Future.version3.png" alt="JAMS home redesign — final version" style={{ width: "100%", display: "block" }} />
             </div>
             <div className="flex items-center gap-[10px] mb-[32px]">
               <span className="bg-[#EBF2FF] text-[#4583DA] text-[11px] uppercase tracking-widest px-[10px] py-[4px] rounded-full">After · v3</span>
@@ -213,7 +213,7 @@ export default function JamsPage() {
             <div className="grid grid-cols-2 gap-[16px]">
               <div>
                 <div className="rounded-[12px] overflow-hidden border border-black/[0.06]">
-                  <img src="/Design/jams/Dashboard/Home%20-%20Future.png" alt="JAMS home redesign v1" style={{ width: "100%", display: "block" }} />
+                  <LightboxImage src="/Design/jams/Dashboard/Home%20-%20Future.png" alt="JAMS home redesign v1" style={{ width: "100%", display: "block" }} />
                 </div>
                 <div className="flex items-center gap-[8px] mt-[10px]">
                   <span className="bg-[#F3F4F6] text-[#9AA3AF] text-[11px] uppercase tracking-widest px-[8px] py-[3px] rounded-full">v1</span>
@@ -222,7 +222,7 @@ export default function JamsPage() {
               </div>
               <div>
                 <div className="rounded-[12px] overflow-hidden border border-black/[0.06]">
-                  <img src="/Design/jams/Dashboard/Home%20-%20Future.version2.png" alt="JAMS home redesign v2" style={{ width: "100%", display: "block" }} />
+                  <LightboxImage src="/Design/jams/Dashboard/Home%20-%20Future.version2.png" alt="JAMS home redesign v2" style={{ width: "100%", display: "block" }} />
                 </div>
                 <div className="flex items-center gap-[8px] mt-[10px]">
                   <span className="bg-[#F3F4F6] text-[#9AA3AF] text-[11px] uppercase tracking-widest px-[8px] py-[3px] rounded-full">v2</span>
@@ -239,7 +239,7 @@ export default function JamsPage() {
             <div className="grid grid-cols-2 gap-[16px]">
               <div>
                 <div className="rounded-[12px] overflow-hidden border border-black/[0.06]">
-                  <img src="/Design/jams/Monitor/Monitor%20-%20Original.png" alt="Monitor original" style={{ width: "100%", display: "block" }} />
+                  <LightboxImage src="/Design/jams/Monitor/Monitor%20-%20Original.png" alt="Monitor original" style={{ width: "100%", display: "block" }} />
                 </div>
                 <div className="flex items-center gap-[8px] mt-[10px]">
                   <span className="bg-[#F3F4F6] text-[#6B7280] text-[11px] uppercase tracking-widest px-[8px] py-[3px] rounded-full">Before</span>
@@ -248,7 +248,7 @@ export default function JamsPage() {
               </div>
               <div>
                 <div className="rounded-[12px] overflow-hidden border border-black/[0.06]">
-                  <img src="/Design/jams/Monitor/Monitor%20-%20Future.png" alt="Monitor redesigned" style={{ width: "100%", display: "block" }} />
+                  <LightboxImage src="/Design/jams/Monitor/Monitor%20-%20Future.png" alt="Monitor redesigned" style={{ width: "100%", display: "block" }} />
                 </div>
                 <div className="flex items-center gap-[8px] mt-[10px]">
                   <span className="bg-[#EBF2FF] text-[#4583DA] text-[11px] uppercase tracking-widest px-[8px] py-[3px] rounded-full">After</span>
