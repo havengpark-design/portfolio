@@ -6,6 +6,7 @@ import PorticoCard from "@/components/PorticoCard";
 import MermoryCard from "@/components/MermoryCard";
 import Storytelling1Card from "@/components/Storytelling1Card";
 import HashSectionOpener from "@/components/HashSectionOpener";
+import ArtGallery from "@/components/ArtGallery";
 
 export default function Home() {
   return (
@@ -44,12 +45,7 @@ export default function Home() {
           </div>
 
           <div id="creating">
-            <ProjectGrid
-              title="Creating"
-              subtitle="Making art to feel."
-              defaultOpen={false}
-              sectionId="creating"
-            />
+            <ArtGallery />
           </div>
         </div>
       </div>

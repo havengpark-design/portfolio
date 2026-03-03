@@ -78,3 +78,13 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Animation-based reveal for art items — opacity-only so transform is
+   never animated here, leaving it free for hover with no conflicts */
+.art-reveal {
+  opacity: 0;
+}
+
+.art-reveal.is-visible {
+  animation: fadeIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
