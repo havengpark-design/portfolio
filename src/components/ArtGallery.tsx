@@ -103,8 +103,9 @@ export default function ArtGallery() {
           }}
         >
           {artPieces.map((piece, i) => (
-            // art-reveal uses CSS animation (not transition) for the reveal,
-            // so animationDelay only delays the keyframe — hover transitions are always instant
+            // Outer div: ONLY the fade-in animation + masonry props. No transition here.
+            // Inner div: ONLY hover transition. No animation or animationDelay here.
+            // Keeping them separate eliminates all animation/transition conflicts.
             <div
               key={i}
               className={`art-reveal ${visible ? "is-visible" : ""}`}
@@ -112,70 +113,75 @@ export default function ArtGallery() {
                 breakInside: "avoid",
                 marginBottom: "16px",
                 animationDelay: `${i * 70}ms`,
-                borderRadius: "20px",
-                overflow: "hidden",
-                position: "relative",
-                transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease",
-                cursor: "default",
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLDivElement;
-                el.style.transform = "translateY(-6px)";
-                el.style.boxShadow = "0 20px 44px rgba(0,0,0,0.22)";
-                const overlay = el.querySelector(".art-overlay") as HTMLElement;
-                if (overlay) overlay.style.opacity = "1";
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLDivElement;
-                el.style.transform = "translateY(0)";
-                el.style.boxShadow = "none";
-                const overlay = el.querySelector(".art-overlay") as HTMLElement;
-                if (overlay) overlay.style.opacity = "0";
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={piece.src}
-                alt={piece.title}
-                style={{ width: "100%", display: "block" }}
-              />
               <div
-                className="art-overlay"
                 style={{
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.28) 45%, transparent 72%)",
-                  opacity: 0,
-                  transition: "opacity 0.3s ease",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-end",
-                  padding: "20px",
+                  borderRadius: "20px",
+                  overflow: "hidden",
+                  position: "relative",
+                  transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease",
+                  cursor: "default",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLDivElement;
+                  el.style.transform = "translateY(-6px)";
+                  el.style.boxShadow = "0 20px 44px rgba(0,0,0,0.22)";
+                  const overlay = el.querySelector(".art-overlay") as HTMLElement;
+                  if (overlay) overlay.style.opacity = "1";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLDivElement;
+                  el.style.transform = "translateY(0)";
+                  el.style.boxShadow = "none";
+                  const overlay = el.querySelector(".art-overlay") as HTMLElement;
+                  if (overlay) overlay.style.opacity = "0";
                 }}
               >
-                <p
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={piece.src}
+                  alt={piece.title}
+                  style={{ width: "100%", display: "block" }}
+                />
+                <div
+                  className="art-overlay"
                   style={{
-                    color: "white",
-                    fontSize: "15px",
-                    fontWeight: 500,
-                    margin: 0,
-                    lineHeight: 1.3,
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.28) 45%, transparent 72%)",
+                    opacity: 0,
+                    transition: "opacity 0.3s ease",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-end",
+                    padding: "20px",
                   }}
                 >
-                  {piece.title}
-                </p>
-                <p
-                  style={{
-                    color: "rgba(255,255,255,0.7)",
-                    fontSize: "12px",
-                    margin: "5px 0 0 0",
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {piece.year} · {piece.medium}
-                  {piece.size ? ` · ${piece.size}` : ""}
-                </p>
+                  <p
+                    style={{
+                      color: "white",
+                      fontSize: "15px",
+                      fontWeight: 500,
+                      margin: 0,
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {piece.title}
+                  </p>
+                  <p
+                    style={{
+                      color: "rgba(255,255,255,0.7)",
+                      fontSize: "12px",
+                      margin: "5px 0 0 0",
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {piece.year} · {piece.medium}
+                    {piece.size ? ` · ${piece.size}` : ""}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
