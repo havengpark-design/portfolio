@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Nav from "@/components/Nav";
 
@@ -121,6 +122,44 @@ export default function JamsPage() {
 
         <hr className="border-black/8 mb-[80px]" />
 
+        {/* Starting Point — before screenshots */}
+        <section className="mb-[80px]">
+          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[8px]">Starting Point</h2>
+          <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[48px]">
+            The original web client — functional, but offering little visibility or guidance to the people who need it most.
+          </p>
+
+          {/* Home - Original */}
+          <div className="mb-[48px]">
+            <div className="flex items-center gap-[10px] mb-[16px]">
+              <span className="bg-[#F3F4F6] text-[#6B7280] text-[11px] uppercase tracking-widest px-[10px] py-[4px] rounded-full">Before</span>
+              <span className="text-black text-[15px]">Home Page</span>
+            </div>
+            <div className="rounded-[16px] overflow-hidden border border-black/[0.06] shadow-[0_2px_24px_rgba(0,0,0,0.06)]">
+              <img src="/Design/jams/Dashboard/Home%20-%20Original.png" alt="JAMS original home page" style={{ width: "100%", display: "block" }} />
+            </div>
+            <p className="text-[#9AA3AF] text-[13px] mt-[14px] leading-[1.7]">
+              Users land on a near-empty page — no system status, no job health overview, no way to jump into work. A missed opportunity to orient operators the moment they open the app.
+            </p>
+          </div>
+
+          {/* Monitor - Original */}
+          <div>
+            <div className="flex items-center gap-[10px] mb-[16px]">
+              <span className="bg-[#F3F4F6] text-[#6B7280] text-[11px] uppercase tracking-widest px-[10px] py-[4px] rounded-full">Before</span>
+              <span className="text-black text-[15px]">Monitor Page</span>
+            </div>
+            <div className="rounded-[16px] overflow-hidden border border-black/[0.06] shadow-[0_2px_24px_rgba(0,0,0,0.06)]">
+              <img src="/Design/jams/Monitor/Monitor%20-%20Original.png" alt="JAMS original monitor page" style={{ width: "100%", display: "block" }} />
+            </div>
+            <p className="text-[#9AA3AF] text-[13px] mt-[14px] leading-[1.7]">
+              A dense, unfiltered table with no summary context, no status-at-a-glance, and actions buried off-screen. Operators had to scroll, hunt, and guess.
+            </p>
+          </div>
+        </section>
+
+        <hr className="border-black/8 mb-[80px]" />
+
         {/* Recommendations */}
         <section className="mb-[96px]">
           <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">Design Recommendations</h2>
@@ -144,6 +183,79 @@ export default function JamsPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        <hr className="border-black/8 mb-[80px]" />
+
+        {/* The Redesign — after screenshots */}
+        <section className="mb-[96px]">
+          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[8px]">The Redesign</h2>
+          <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[56px]">
+            Three iterations of the home page, and a ground-up rethink of the monitor. Each pass tightened hierarchy and surfaced what operators actually need — without losing the power-user depth that enterprise teams depend on.
+          </p>
+
+          {/* Home — progression */}
+          <div className="mb-[64px]">
+            <p className="text-black text-[17px] mb-[6px]">Home Page</p>
+            <p className="text-[#6B7280] text-[15px] leading-[1.7] mb-[32px]">From a blank landing page to a real-time operations hub. Three versions, progressively simplifying the information architecture to reduce cognitive load.</p>
+
+            {/* v3 — final, hero size */}
+            <div className="rounded-[16px] overflow-hidden border border-black/[0.06] shadow-[0_2px_24px_rgba(0,0,0,0.06)] mb-[12px]">
+              <img src="/Design/jams/Dashboard/Home%20-%20Future.version3.png" alt="JAMS home redesign — final version" style={{ width: "100%", display: "block" }} />
+            </div>
+            <div className="flex items-center gap-[10px] mb-[32px]">
+              <span className="bg-[#EBF2FF] text-[#4583DA] text-[11px] uppercase tracking-widest px-[10px] py-[4px] rounded-full">After · v3</span>
+              <span className="text-[#6B7280] text-[13px]">Simplified to the essentials — quick actions and resources front-and-center, zero noise.</span>
+            </div>
+
+            {/* v1 + v2 — earlier iterations */}
+            <div className="grid grid-cols-2 gap-[16px]">
+              <div>
+                <div className="rounded-[12px] overflow-hidden border border-black/[0.06]">
+                  <img src="/Design/jams/Dashboard/Home%20-%20Future.png" alt="JAMS home redesign v1" style={{ width: "100%", display: "block" }} />
+                </div>
+                <div className="flex items-center gap-[8px] mt-[10px]">
+                  <span className="bg-[#F3F4F6] text-[#9AA3AF] text-[11px] uppercase tracking-widest px-[8px] py-[3px] rounded-full">v1</span>
+                  <span className="text-[#9AA3AF] text-[12px]">Full dashboard with live metrics and agent list</span>
+                </div>
+              </div>
+              <div>
+                <div className="rounded-[12px] overflow-hidden border border-black/[0.06]">
+                  <img src="/Design/jams/Dashboard/Home%20-%20Future.version2.png" alt="JAMS home redesign v2" style={{ width: "100%", display: "block" }} />
+                </div>
+                <div className="flex items-center gap-[8px] mt-[10px]">
+                  <span className="bg-[#F3F4F6] text-[#9AA3AF] text-[11px] uppercase tracking-widest px-[8px] py-[3px] rounded-full">v2</span>
+                  <span className="text-[#9AA3AF] text-[12px]">Tightened layout, improved status hierarchy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Monitor — before / after */}
+          <div>
+            <p className="text-black text-[17px] mb-[6px]">Monitor Page</p>
+            <p className="text-[#6B7280] text-[15px] leading-[1.7] mb-[32px]">Added a stats header for immediate situational awareness, smart filters to surface failures fast, and persistent pagination so operators don't lose their place.</p>
+            <div className="grid grid-cols-2 gap-[16px]">
+              <div>
+                <div className="rounded-[12px] overflow-hidden border border-black/[0.06]">
+                  <img src="/Design/jams/Monitor/Monitor%20-%20Original.png" alt="Monitor original" style={{ width: "100%", display: "block" }} />
+                </div>
+                <div className="flex items-center gap-[8px] mt-[10px]">
+                  <span className="bg-[#F3F4F6] text-[#6B7280] text-[11px] uppercase tracking-widest px-[8px] py-[3px] rounded-full">Before</span>
+                  <span className="text-[#9AA3AF] text-[12px]">Dense table, no context or quick filters</span>
+                </div>
+              </div>
+              <div>
+                <div className="rounded-[12px] overflow-hidden border border-black/[0.06]">
+                  <img src="/Design/jams/Monitor/Monitor%20-%20Future.png" alt="Monitor redesigned" style={{ width: "100%", display: "block" }} />
+                </div>
+                <div className="flex items-center gap-[8px] mt-[10px]">
+                  <span className="bg-[#EBF2FF] text-[#4583DA] text-[11px] uppercase tracking-widest px-[8px] py-[3px] rounded-full">After</span>
+                  <span className="text-[#9AA3AF] text-[12px]">Stats at a glance, smart filters, clear actions</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
