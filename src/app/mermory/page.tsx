@@ -111,7 +111,11 @@ export default function MermoryPage() {
           <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[48px]">
             The first session sets the tone. Onboarding was designed to establish identity — asking learners what they want to achieve before showing them anything to click. The result is a personalised path that feels chosen, not assigned.
           </p>
-          <div className="w-full rounded-[24px] bg-[#F5F5F5]" style={{ aspectRatio: "16/9" }} />
+          {/* Drop explore.png into /public/Design/mermory/ to fill this */}
+          <div className="w-full rounded-[24px] overflow-hidden bg-[#F5F5F5]" style={{ aspectRatio: "16/9" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/Design/mermory/explore.png" alt="Mermory Explore page" className="w-full h-full object-cover" />
+          </div>
         </section>
 
         {/* Section: Progress */}
@@ -120,10 +124,21 @@ export default function MermoryPage() {
           <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[48px]">
             Beyond core workflows, I used interface storytelling to guide learners through moments of progress, completion, and transition. Every state — loading, finishing a lesson, hitting a streak — was treated as an opportunity to reinforce motivation.
           </p>
+          {/* Drop study.png into /public/Design/mermory/ to fill this */}
+          <div className="w-full rounded-[24px] overflow-hidden bg-[#F5F5F5] mb-[24px]" style={{ aspectRatio: "16/9" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/Design/mermory/study.png" alt="Flashcard study session" className="w-full h-full object-cover" />
+          </div>
           <div className="flex gap-[24px]">
-            <div className="flex-1 rounded-[24px] overflow-hidden bg-[#F5F5F5]" style={{ aspectRatio: "3/4" }} />
-            <div className="flex-1 rounded-[24px] overflow-hidden bg-[#F5F5F5]" style={{ aspectRatio: "3/4" }} />
-            <div className="flex-1 rounded-[24px] overflow-hidden bg-[#F5F5F5]" style={{ aspectRatio: "3/4" }} />
+            {/* Drop library.png and congrats.png into /public/Design/mermory/ to fill these */}
+            <div className="flex-1 rounded-[24px] overflow-hidden bg-[#F5F5F5]" style={{ aspectRatio: "16/9" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Design/mermory/library.png" alt="Deck library" className="w-full h-full object-cover" />
+            </div>
+            <div className="flex-1 rounded-[24px] overflow-hidden bg-[#F5F5F5]" style={{ aspectRatio: "16/9" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Design/mermory/congrats.png" alt="Deck published celebration" className="w-full h-full object-cover" />
+            </div>
           </div>
         </section>
 
@@ -135,9 +150,8 @@ export default function MermoryPage() {
           <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[48px]">
             Building on these moments, I continued establishing Mermory&apos;s visual language across the product — a system of colour, motion, and type that makes the app feel alive without being distracting.
           </p>
-          <div className="flex gap-[24px]">
-            <div className="flex-1 rounded-[24px] overflow-hidden bg-[#F5F5F5]" style={{ aspectRatio: "1/1" }} />
-            <div className="flex-1 rounded-[24px] overflow-hidden bg-[#F5F5F5]" style={{ aspectRatio: "1/1" }} />
+          <div className="w-full rounded-[24px] overflow-hidden bg-[#0f0f0f]" style={{ aspectRatio: "16/9" }}>
+            <video autoPlay muted loop playsInline className="w-full h-full object-cover" src="/Design/mermory/mermory-demo.mp4" />
           </div>
         </section>
 
