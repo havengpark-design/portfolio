@@ -55,24 +55,35 @@ export default function Storytelling1Page() {
         {/* Video embeds — side by side */}
         <section className="mb-[96px]">
           <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">The Videos</h2>
-          <div className="flex gap-[24px] justify-center">
-            <div className="flex flex-col items-center gap-[16px]">
+          <div className="flex gap-[24px] justify-center overflow-x-auto pb-[8px]">
+            <div className="flex flex-col items-center gap-[16px] flex-shrink-0">
               <span className="text-[12px] uppercase tracking-widest text-[#9AA3AF]">Instagram</span>
               <iframe
                 src="https://www.instagram.com/reel/DUjPR6vEsMt/embed/"
-                width="340"
-                height="600"
+                width="300"
+                height="560"
                 frameBorder="0"
                 scrolling="no"
                 style={{ borderRadius: "12px", overflow: "hidden" }}
               />
             </div>
-            <div className="flex flex-col items-center gap-[16px]">
+            <div className="flex flex-col items-center gap-[16px] flex-shrink-0">
+              <span className="text-[12px] uppercase tracking-widest text-[#9AA3AF]">Instagram</span>
+              <iframe
+                src="https://www.instagram.com/reel/DRYe6fakb57/embed/"
+                width="300"
+                height="560"
+                frameBorder="0"
+                scrolling="no"
+                style={{ borderRadius: "12px", overflow: "hidden" }}
+              />
+            </div>
+            <div className="flex flex-col items-center gap-[16px] flex-shrink-0">
               <span className="text-[12px] uppercase tracking-widest text-[#9AA3AF]">TikTok</span>
               <iframe
                 src="https://www.tiktok.com/embed/v2/7604993472734448910"
-                width="340"
-                height="600"
+                width="300"
+                height="560"
                 frameBorder="0"
                 scrolling="no"
                 style={{ borderRadius: "12px", overflow: "hidden" }}
