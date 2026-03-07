@@ -146,6 +146,21 @@ export default function PorticoPage() {
           </div>
         </section>
 
+        <hr className="border-black/8 mb-[80px]" />
+
+        {/* Screens */}
+        <section className="mb-[96px]">
+          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">Screens</h2>
+          <div className="flex flex-col gap-[20px]">
+            <img src="/Design/portico/home.png" alt="Portico Home Screen" className="w-full rounded-[20px] object-cover" />
+            <div className="flex gap-[20px]">
+              <img src="/Design/portico/Skills.png" alt="Portico Skills Screen" className="flex-1 rounded-[20px] object-cover" />
+              <img src="/Design/portico/course.png" alt="Portico Course Screen" className="flex-1 rounded-[20px] object-cover" />
+            </div>
+            <img src="/Design/portico/portico.png" alt="Portico Screen" className="w-full rounded-[20px] object-cover" />
+          </div>
+        </section>
+
         {/* Footer nav */}
         <div className="flex justify-between items-center pt-[40px] border-t border-black/8">
           <Link href="/" className="text-[#6B7280] text-[15px] hover:text-black transition-colors flex items-center gap-2">

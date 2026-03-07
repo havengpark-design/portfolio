@@ -22,7 +22,7 @@ export default function Home() {
 
       {/* 80% container for everything below */}
       <div className="w-[80%] mx-auto">
-        <div className="flex flex-col pt-[80px] pb-[120px]">
+        <div className="flex flex-col pt-[80px]">
           <div id="design">
             <ProjectGrid
               title="Design"
