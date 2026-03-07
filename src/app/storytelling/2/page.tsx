@@ -11,9 +11,9 @@ export default function Storytelling2Page() {
         {/* Hero */}
         <div className="flex flex-col gap-[20px] mb-[72px]">
           <span className="text-[#4583DA] text-[13px] font-medium tracking-widest uppercase">Storytelling</span>
-          <h1 className="text-black text-[56px] font-normal leading-[1.05]">Choosing</h1>
+          <h1 className="text-black text-[56px] font-normal leading-[1.05]">Choosing to Love</h1>
           <p className="text-[#6B7280] text-[19px] font-normal leading-relaxed">
-            A short-form story about the quiet weight of decision — and what it means to choose yourself.
+            On choosing love — not as something that happens to you, but as something you decide, again and again, despite it all.
           </p>
           <div className="flex gap-[48px] pt-[8px] text-[14px]">
             <div className="flex flex-col gap-1">
@@ -26,7 +26,7 @@ export default function Storytelling2Page() {
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-[#9AA3AF] uppercase tracking-widest">Theme</span>
-              <span className="text-black">Choice · Self · Growth</span>
+              <span className="text-black">Love · Choice · Resilience</span>
             </div>
           </div>
         </div>

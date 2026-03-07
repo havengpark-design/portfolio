@@ -26,7 +26,7 @@ export default function Storytelling2Card() {
         onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
       >
         <span className="text-white/40 text-[12px] uppercase tracking-widest mb-[8px]">Storytelling</span>
-        <h3 className="text-white text-[28px] font-normal leading-[1.1]">Choosing</h3>
+        <h3 className="text-white text-[28px] font-normal leading-[1.1]">Choosing to Love</h3>
       </div>
     </Link>
   );
