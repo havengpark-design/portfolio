@@ -60,30 +60,19 @@ export default function Storytelling1Page() {
               <span className="text-[12px] uppercase tracking-widest text-[#9AA3AF]">Instagram</span>
               <iframe
                 src="https://www.instagram.com/reel/DUjPR6vEsMt/embed/"
-                width="300"
-                height="560"
+                width="340"
+                height="600"
                 frameBorder="0"
                 scrolling="no"
                 style={{ borderRadius: "12px", overflow: "hidden" }}
               />
             </div>
-            <div className="flex flex-col items-center gap-[16px] flex-shrink-0">
-              <span className="text-[12px] uppercase tracking-widest text-[#9AA3AF]">Instagram</span>
-              <iframe
-                src="https://www.instagram.com/reel/DRYe6fakb57/embed/"
-                width="300"
-                height="560"
-                frameBorder="0"
-                scrolling="no"
-                style={{ borderRadius: "12px", overflow: "hidden" }}
-              />
-            </div>
-            <div className="flex flex-col items-center gap-[16px] flex-shrink-0">
+<div className="flex flex-col items-center gap-[16px] flex-shrink-0">
               <span className="text-[12px] uppercase tracking-widest text-[#9AA3AF]">TikTok</span>
               <iframe
                 src="https://www.tiktok.com/embed/v2/7604993472734448910"
-                width="300"
-                height="560"
+                width="340"
+                height="600"
                 frameBorder="0"
                 scrolling="no"
                 style={{ borderRadius: "12px", overflow: "hidden" }}
