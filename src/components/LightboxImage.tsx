@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 
 interface Props {
   src: string;
@@ -48,7 +49,7 @@ export default function LightboxImage({ src, alt, style, className }: Props) {
         onClick={openLightbox}
       />
 
-      {open && (
+      {open && createPortal(
         <div
           onClick={closeLightbox}
           style={{
@@ -83,7 +84,8 @@ export default function LightboxImage({ src, alt, style, className }: Props) {
               transition: "transform 0.28s cubic-bezier(0.22, 1, 0.36, 1)",
             }}
           />
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
