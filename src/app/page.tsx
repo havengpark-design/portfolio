@@ -5,6 +5,7 @@ import JamsCard from "@/components/JamsCard";
 import PorticoCard from "@/components/PorticoCard";
 import MermoryCard from "@/components/MermoryCard";
 import Storytelling1Card from "@/components/Storytelling1Card";
+import Storytelling2Card from "@/components/Storytelling2Card";
 import HashSectionOpener from "@/components/HashSectionOpener";
 import ArtGallery from "@/components/ArtGallery";
 
@@ -41,6 +42,7 @@ export default function Home() {
               defaultOpen={false}
               sectionId="storytelling"
               firstCard={<Storytelling1Card />}
+              secondCard={<Storytelling2Card />}
             />
           </div>
 
