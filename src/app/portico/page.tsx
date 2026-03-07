@@ -32,9 +32,14 @@ export default function PorticoPage() {
           </div>
         </div>
 
-        {/* Video */}
-        <div className="w-full rounded-[32px] overflow-hidden mb-[96px]" style={{ aspectRatio: "16/9", background: "#0D2240" }}>
-          <video autoPlay muted loop playsInline className="w-full h-full object-cover" src="/Design/portico/portico%20thumbnail.mp4" />
+        {/* Hero visual */}
+        <div className="w-full rounded-[32px] overflow-hidden mb-[96px] flex items-center justify-center" style={{ aspectRatio: "16/9", background: "#F9E0D0" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/Design/portico/porticovisual.png"
+            alt="Portico visual"
+            style={{ animation: "porticoFloat 5s ease-in-out infinite", maxHeight: "80%", maxWidth: "80%", objectFit: "contain" }}
+          />
         </div>
 
         {/* Overview */}

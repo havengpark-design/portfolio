@@ -44,6 +44,11 @@ body {
   100% { background-position: -200% center; }
 }
 
+@keyframes porticoFloat {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-10px) scale(1.012); }
+}
+
 /* ── Utility classes ── */
 .animate-blink {
   animation: blink 0.8s step-start infinite;
