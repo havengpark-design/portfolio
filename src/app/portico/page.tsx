@@ -33,13 +33,15 @@ export default function PorticoPage() {
         </div>
 
         {/* Hero visual */}
-        <div className="w-full rounded-[32px] mb-[96px] flex items-center justify-center p-[48px]" style={{ aspectRatio: "16/9", background: "#F9E0D0" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/Design/portico/porticovisual.png"
-            alt="Portico visual"
-            style={{ animation: "porticoFloat 5s ease-in-out infinite", maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}
-          />
+        <div className="w-full rounded-[32px] overflow-hidden mb-[96px]" style={{ aspectRatio: "16/9", background: "#F9E0D0" }}>
+          <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", padding: "48px", boxSizing: "border-box" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/Design/portico/porticovisual.png"
+              alt="Portico visual"
+              style={{ animation: "porticoFloat 5s ease-in-out infinite", maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}
+            />
+          </div>
         </div>
 
         {/* Overview */}
