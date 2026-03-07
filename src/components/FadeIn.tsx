@@ -15,6 +15,7 @@ export default function FadeIn({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [settled, setSettled] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -36,13 +37,21 @@ export default function FadeIn({
     <div
       ref={ref}
       className={className}
-      style={{
-        ...style,
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0px)" : "translateY(22px)",
-        transition: `opacity 0.65s cubic-bezier(0.4,0,0.2,1) ${delay}ms, transform 0.65s cubic-bezier(0.4,0,0.2,1) ${delay}ms`,
-        willChange: "opacity, transform",
-      }}
+      // Once transition completes, remove all transform/opacity overrides so this
+      // element no longer creates a stacking context — this prevents any child
+      // position:fixed overlays (e.g. lightbox) from being trapped inside it.
+      onTransitionEnd={() => { if (visible) setSettled(true); }}
+      style={
+        settled
+          ? { ...style }
+          : {
+              ...style,
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0px)" : "translateY(22px)",
+              transition: `opacity 0.65s cubic-bezier(0.4,0,0.2,1) ${delay}ms, transform 0.65s cubic-bezier(0.4,0,0.2,1) ${delay}ms`,
+              willChange: "opacity, transform",
+            }
+      }
     >
       {children}
     </div>
