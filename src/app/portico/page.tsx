@@ -157,10 +157,10 @@ export default function PorticoPage() {
           </p>
 
           {/* Home screen */}
-          <div className="mb-[64px]">
-            <LightboxImage src="/Design/portico/home.png" alt="Portico Home Screen" className="max-h-[80vh] w-auto mx-auto block rounded-[20px] mb-[20px]" />
-            <div className="flex gap-[20px]">
-              <span className="text-[#1A9E89] text-[13px] shrink-0 mt-[3px]">01</span>
+          <div className="flex gap-[40px] items-start mb-[64px]">
+            <LightboxImage src="/Design/portico/home.png" alt="Portico Home Screen" className="max-h-[80vh] w-auto block rounded-[20px] shrink-0" />
+            <div className="flex gap-[20px] pt-[4px]">
+              <span className="text-[#1A9E89] text-[13px] shrink-0 mt-[2px]">01</span>
               <div>
                 <p className="text-black text-[15px] mb-[4px]">A unified home surface</p>
                 <p className="text-[#6B7280] text-[15px] leading-[1.7]">Attendance, updates, payments, and quick actions consolidated into a single home screen — replacing the need to switch between 4 portals. Progress is visible at a glance from day one.</p>
@@ -169,21 +169,21 @@ export default function PorticoPage() {
           </div>
 
           {/* Skills + Course screens side by side */}
-          <div className="flex gap-[20px]">
-            <div className="flex-1 flex flex-col gap-[20px]">
-              <LightboxImage src="/Design/portico/Skills.png" alt="Portico Skills Screen" className="max-h-[75vh] w-auto mx-auto block rounded-[20px]" />
-              <div className="flex gap-[20px]">
-                <span className="text-[#1A9E89] text-[13px] shrink-0 mt-[3px]">02</span>
+          <div className="flex gap-[40px]">
+            <div className="flex-1 flex gap-[24px] items-start">
+              <LightboxImage src="/Design/portico/Skills.png" alt="Portico Skills Screen" className="max-h-[75vh] w-auto block rounded-[20px] shrink-0" />
+              <div className="flex gap-[20px] pt-[4px]">
+                <span className="text-[#1A9E89] text-[13px] shrink-0 mt-[2px]">02</span>
                 <div>
                   <p className="text-black text-[15px] mb-[4px]">Skills made visible</p>
                   <p className="text-[#6B7280] text-[15px] leading-[1.7]">Skill submissions, review statuses, and instructor feedback brought into the core app — addressing the complete absence of skill logging in the existing mobile experience.</p>
                 </div>
               </div>
             </div>
-            <div className="flex-1 flex flex-col gap-[20px]">
-              <LightboxImage src="/Design/portico/course.png" alt="Portico Course Screen" className="max-h-[75vh] w-auto mx-auto block rounded-[20px]" />
-              <div className="flex gap-[20px]">
-                <span className="text-[#1A9E89] text-[13px] shrink-0 mt-[3px]">03</span>
+            <div className="flex-1 flex gap-[24px] items-start">
+              <LightboxImage src="/Design/portico/course.png" alt="Portico Course Screen" className="max-h-[75vh] w-auto block rounded-[20px] shrink-0" />
+              <div className="flex gap-[20px] pt-[4px]">
+                <span className="text-[#1A9E89] text-[13px] shrink-0 mt-[2px]">03</span>
                 <div>
                   <p className="text-black text-[15px] mb-[4px]">Course detail with records and tools</p>
                   <p className="text-[#6B7280] text-[15px] leading-[1.7]">Attendance records, grades, and in-context tools surfaced within a single course view — reducing reliance on separate portals for each service entity.</p>
