@@ -105,41 +105,37 @@ export default function MermoryPage() {
 
       <div className="w-[60%] mx-auto pt-[96px] pb-[120px]">
 
-        {/* Section: Onboarding */}
+        {/* Section: Discovery */}
         <section className="mb-[96px]">
-          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">Onboarding</h2>
+          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">Discovery</h2>
           <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[48px]">
-            The first session sets the tone. Onboarding was designed to establish identity — asking learners what they want to achieve before showing them anything to click. The result is a personalised path that feels chosen, not assigned.
+            Learners arrive with a goal — studying for an exam, picking up a language, reviewing coursework. The Explore page was designed as their first meaningful moment of orientation: browse curated categories, search for decks, or skip the library entirely with Import AI, which turns any uploaded document into a ready-to-study deck in seconds.
           </p>
-          {/* Drop explore.png into /public/Design/mermory/ to fill this */}
-          <div className="w-full rounded-[24px] overflow-hidden bg-[#F5F5F5]" style={{ aspectRatio: "16/9" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Design/mermory/explore.png" alt="Mermory Explore page" className="w-full h-full object-cover" />
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/Design/mermory/explore.png" alt="Mermory Explore page" className="w-full rounded-[24px]" style={{ display: "block" }} />
         </section>
 
-        {/* Section: Progress */}
+        {/* Section: The Study Loop */}
         <section className="mb-[96px]">
-          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">Progress & Completion</h2>
+          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">The Study Loop</h2>
           <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[48px]">
-            Beyond core workflows, I used interface storytelling to guide learners through moments of progress, completion, and transition. Every state — loading, finishing a lesson, hitting a streak — was treated as an opportunity to reinforce motivation.
+            The study session is where the product earns its keep. Each card sits inside a gradient-bordered canvas — a deliberate visual cue that this is a moment of active focus. FSRS schedules every card at the optimal interval; XP rewards and a live progress bar make sure each session feels like forward motion, not just repetition.
           </p>
-          {/* Drop study.png into /public/Design/mermory/ to fill this */}
-          <div className="w-full rounded-[24px] overflow-hidden bg-[#F5F5F5] mb-[24px]" style={{ aspectRatio: "16/9" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Design/mermory/study.png" alt="Flashcard study session" className="w-full h-full object-cover" />
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/Design/mermory/study.png" alt="Flashcard study session" className="w-full rounded-[24px] mb-[24px]" style={{ display: "block" }} />
           <div className="flex gap-[24px]">
-            {/* Drop library.png and congrats.png into /public/Design/mermory/ to fill these */}
-            <div className="flex-1 rounded-[24px] overflow-hidden bg-[#F5F5F5]" style={{ aspectRatio: "16/9" }}>
+            <div className="flex-1 rounded-[24px] overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Design/mermory/library.png" alt="Deck library" className="w-full h-full object-cover" />
+              <img src="/Design/mermory/library.png" alt="Deck library with progress tracking" className="w-full" style={{ display: "block" }} />
             </div>
-            <div className="flex-1 rounded-[24px] overflow-hidden bg-[#F5F5F5]" style={{ aspectRatio: "16/9" }}>
+            <div className="flex-1 rounded-[24px] overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Design/mermory/congrats.png" alt="Deck published celebration" className="w-full h-full object-cover" />
+              <img src="/Design/mermory/congrats.png" alt="Deck published celebration modal" className="w-full" style={{ display: "block" }} />
             </div>
           </div>
+          <p className="text-[#9AA3AF] text-[14px] leading-[1.7] mt-[20px]">
+            The Library tracks deck-level progress at a glance. Every publish moment is marked with a confetti modal — a small, intentional celebration that reinforces the learner&apos;s identity as someone who creates, not just consumes.
+          </p>
         </section>
 
         <hr className="border-black/8 mb-[96px]" />
@@ -148,7 +144,7 @@ export default function MermoryPage() {
         <section className="mb-[96px]">
           <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">Visual Language</h2>
           <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[48px]">
-            Building on these moments, I continued establishing Mermory&apos;s visual language across the product — a system of colour, motion, and type that makes the app feel alive without being distracting.
+            The gradient system, the koala mascot, the card animations — every visual decision was made to feel warm and alive without being distracting. This recording shows the design language in motion across the full product.
           </p>
           <div className="w-full rounded-[24px] overflow-hidden bg-[#0f0f0f]" style={{ aspectRatio: "16/9" }}>
             <video autoPlay muted loop playsInline className="w-full h-full object-cover" src="/Design/mermory/mermory-demo.mp4" />
