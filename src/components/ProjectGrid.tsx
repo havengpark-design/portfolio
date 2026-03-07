@@ -158,7 +158,7 @@ export default function ProjectGrid({
           opacity: open ? 1 : 0,
           visibility: open ? "visible" : "hidden",
           height: open ? "auto" : 0,
-          overflow: "visible",
+          overflow: open ? "visible" : "hidden",
         }}
       >
         <div className="flex gap-[35px]">
