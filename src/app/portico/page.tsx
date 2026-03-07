@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Nav from "@/components/Nav";
+import LightboxImage from "@/components/LightboxImage";
 
 export default function PorticoPage() {
   return (
@@ -157,7 +158,7 @@ export default function PorticoPage() {
 
           {/* Home screen */}
           <div className="mb-[64px]">
-            <img src="/Design/portico/home.png" alt="Portico Home Screen" className="w-full rounded-[20px] mb-[20px]" />
+            <LightboxImage src="/Design/portico/home.png" alt="Portico Home Screen" className="max-h-[80vh] w-auto mx-auto block rounded-[20px] mb-[20px]" />
             <div className="flex gap-[20px]">
               <span className="text-[#1A9E89] text-[13px] shrink-0 mt-[3px]">01</span>
               <div>
@@ -170,7 +171,7 @@ export default function PorticoPage() {
           {/* Skills + Course screens side by side */}
           <div className="flex gap-[20px]">
             <div className="flex-1 flex flex-col gap-[20px]">
-              <img src="/Design/portico/Skills.png" alt="Portico Skills Screen" className="w-full rounded-[20px]" />
+              <LightboxImage src="/Design/portico/Skills.png" alt="Portico Skills Screen" className="max-h-[75vh] w-auto mx-auto block rounded-[20px]" />
               <div className="flex gap-[20px]">
                 <span className="text-[#1A9E89] text-[13px] shrink-0 mt-[3px]">02</span>
                 <div>
@@ -180,7 +181,7 @@ export default function PorticoPage() {
               </div>
             </div>
             <div className="flex-1 flex flex-col gap-[20px]">
-              <img src="/Design/portico/course.png" alt="Portico Course Screen" className="w-full rounded-[20px]" />
+              <LightboxImage src="/Design/portico/course.png" alt="Portico Course Screen" className="max-h-[75vh] w-auto mx-auto block rounded-[20px]" />
               <div className="flex gap-[20px]">
                 <span className="text-[#1A9E89] text-[13px] shrink-0 mt-[3px]">03</span>
                 <div>
