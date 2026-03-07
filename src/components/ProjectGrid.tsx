@@ -177,20 +177,22 @@ export default function ProjectGrid({
             <PlaceholderCard src={slots[1]} delay={200} visible={visible} />
           )}
         </div>
-        <div className="flex gap-[35px]">
-          {thirdCard ? (
-            <CustomCardWrapper delay={300} visible={visible}>
-              {thirdCard}
-            </CustomCardWrapper>
-          ) : (
-            <PlaceholderCard src={slots[2]} delay={300} visible={visible} />
-          )}
-          {slots[3] ? (
-            <PlaceholderCard src={slots[3]} delay={400} visible={visible} />
-          ) : (
-            <div className="flex-1 aspect-square" />
-          )}
-        </div>
+        {(thirdCard || slots[2] || slots[3]) && (
+          <div className="flex gap-[35px]">
+            {thirdCard ? (
+              <CustomCardWrapper delay={300} visible={visible}>
+                {thirdCard}
+              </CustomCardWrapper>
+            ) : (
+              <PlaceholderCard src={slots[2]} delay={300} visible={visible} />
+            )}
+            {slots[3] ? (
+              <PlaceholderCard src={slots[3]} delay={400} visible={visible} />
+            ) : (
+              <div className="flex-1 aspect-square" />
+            )}
+          </div>
+        )}
       </div>
     </section>
   );
