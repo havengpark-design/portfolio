@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+body {
+  background: #FFFFF8;
+  color: #262421;
+  font-family: -apple-system, "SF Pro Display", BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}

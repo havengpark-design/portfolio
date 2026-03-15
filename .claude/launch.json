@@ -2,9 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "dev",
+      "name": "portfolio",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
+      "cwd": "/Users/hvnpark/Library/Mobile Documents/com~apple~CloudDocs/portfolio code/untitled folder",
       "port": 3000
     }
   ]
