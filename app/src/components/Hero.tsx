@@ -48,7 +48,7 @@ export default function Hero() {
             style={{
               fontSize: 64,
               fontWeight: 590,
-              color: "#471516",
+              color: "#262421",
               letterSpacing: "-0.64px",
               lineHeight: "150%",
               margin: 0,

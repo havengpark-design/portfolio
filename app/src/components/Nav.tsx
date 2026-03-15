@@ -44,7 +44,7 @@ export default function Nav() {
         style={{
           fontSize: 17,
           fontWeight: 400,
-          color: "#471516",
+          color: "#262421",
         }}
       >
         Haven Park
