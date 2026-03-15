@@ -71,7 +71,7 @@ export default function Home() {
           <SectionHeader title="Product Design" />
         </div>
         <div className="scroll-x" style={{ paddingLeft: L }}>
-        <div style={{ display: "inline-flex", gap: 50 }}>
+        <div style={{ display: "inline-flex", gap: 50, paddingRight: 50 }}>
           {designProjects.map(({ href, img, name, tags }) => (
             <div
               key={name}
@@ -146,7 +146,7 @@ export default function Home() {
           <SectionHeader title="Art" />
         </div>
         <div className="scroll-x" style={{ paddingLeft: L }}>
-        <div style={{ display: "inline-flex", gap: 50 }}>
+        <div style={{ display: "inline-flex", gap: 50, paddingRight: 50 }}>
           {[0, 1, 2].map((i) => (
             <div
               key={i}
