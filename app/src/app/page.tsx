@@ -66,8 +66,11 @@ export default function Home() {
       <Hero />
 
       {/* ── Product Design ── */}
-      <section style={{ paddingLeft: L, marginTop: 80 }}>
-        <SectionHeader title="Product Design" />
+      <section style={{ marginTop: 80 }}>
+        <div style={{ paddingLeft: L }}>
+          <SectionHeader title="Product Design" />
+        </div>
+        <div className="scroll-x" style={{ paddingLeft: L }}>
         <div style={{ display: "inline-flex", gap: 50 }}>
           {designProjects.map(({ href, img, name, tags }) => (
             <div
@@ -110,11 +113,15 @@ export default function Home() {
             </div>
           ))}
         </div>
+        </div>
       </section>
 
       {/* ── Storytelling ── */}
-      <section style={{ paddingLeft: L, marginTop: 80 }}>
-        <SectionHeader title="Storytelling" />
+      <section style={{ marginTop: 80 }}>
+        <div style={{ paddingLeft: L }}>
+          <SectionHeader title="Storytelling" />
+        </div>
+        <div className="scroll-x" style={{ paddingLeft: L }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 40 }}>
           {["Instagram", "TikTok", "Youtube"].map((platform) => (
             <span
@@ -130,11 +137,15 @@ export default function Home() {
             </span>
           ))}
         </div>
+        </div>
       </section>
 
       {/* ── Art ── */}
-      <section style={{ paddingLeft: L, marginTop: 80 }}>
-        <SectionHeader title="Art" />
+      <section style={{ marginTop: 80 }}>
+        <div style={{ paddingLeft: L }}>
+          <SectionHeader title="Art" />
+        </div>
+        <div className="scroll-x" style={{ paddingLeft: L }}>
         <div style={{ display: "inline-flex", gap: 50 }}>
           {[0, 1, 2].map((i) => (
             <div
@@ -147,6 +158,7 @@ export default function Home() {
               }}
             />
           ))}
+        </div>
         </div>
       </section>
 

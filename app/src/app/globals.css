@@ -6,3 +6,14 @@ body {
   font-family: -apple-system, "SF Pro Display", BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
 }
+
+.scroll-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scroll-x::-webkit-scrollbar {
+  display: none;
+}
