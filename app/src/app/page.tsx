@@ -88,6 +88,7 @@ export default function Home() {
                 <img
                   src={img}
                   alt={name}
+                  className="thumbnail"
                   style={{
                     width: "100%",
                     height: 644,
@@ -151,6 +152,7 @@ export default function Home() {
           {[0, 1, 2].map((i) => (
             <div
               key={i}
+              className="thumbnail"
               style={{
                 width: 470,
                 height: 644,
