@@ -94,6 +94,7 @@ export default function Home() {
                     objectFit: "cover",
                     borderRadius: 24,
                     display: "block",
+                    boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)",
                   }}
                 />
               </Link>
@@ -155,6 +156,7 @@ export default function Home() {
                 height: 644,
                 borderRadius: 24,
                 background: "#D9D9D9",
+                boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)",
               }}
             />
           ))}
