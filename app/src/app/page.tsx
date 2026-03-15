@@ -39,7 +39,7 @@ function SectionHeader({ title }: { title: string }) {
         style={{
           fontSize: 24,
           fontWeight: 400,
-          color: "#333333",
+          color: "#471516",
           letterSpacing: "-0.24px",
         }}
       >
