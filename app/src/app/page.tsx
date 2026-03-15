@@ -19,7 +19,7 @@ const designProjects = [
   },
   {
     href: "/portico",
-    img: "/Design/portico/thumbnailsv2.png",
+    img: "/Design/portico/thumbnails.png",
     name: "Portico",
     tags: "Product Design · Enterprise job automation platform",
   },
