@@ -181,7 +181,7 @@ function PeekPanel({
         </div>
 
         {/* Content */}
-        <div style={{ paddingLeft: 48, paddingRight: 48, paddingTop: 52 }}>
+        <div style={{ paddingLeft: 48, paddingRight: 48, paddingTop: 52, display: "flex", flexDirection: "column", alignItems: "center" }}>
 
           {/* Case study view */}
           {openProject === "mermory" && <MermoryContent />}
@@ -190,7 +190,7 @@ function PeekPanel({
 
           {/* Section: Design grid */}
           {!openProject && section === "design" && (
-            <div style={{ paddingLeft: 82 }}>
+            <div style={{ width: "100%" }}>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "50px 50px" }}>
                 {designProjects.map(({ key, img, name, tags }) => (
                   <div key={name} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -224,7 +224,7 @@ function PeekPanel({
 
           {/* Section: Art */}
           {!openProject && section === "art" && (
-            <div style={{ paddingLeft: 82 }}>
+            <div style={{ width: "100%" }}>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "50px 50px" }}>
                 {[0,1,2].map((i) => (
                   <div key={i} className="thumbnail" style={{ width: "100%", aspectRatio: "470 / 644", borderRadius: 20, background: "#D9D9D9", boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)" }} />
