@@ -1,181 +1,101 @@
-import Link from "next/link";
 import Nav from "@/components/Nav";
-import FadeIn from "@/components/FadeIn";
-import ReadingProgress from "@/components/ReadingProgress";
-
-const ACCENT = "#4583DA";
 
 export default function MermoryPage() {
   return (
-    <main className="min-h-screen bg-white">
-      <ReadingProgress color={ACCENT} />
-      <Nav />
+    <main style={{ background: "#FFFFF8", minHeight: "100vh" }}>
+      <Nav breadcrumb="Product Design" />
 
-      <div className="w-[60%] mx-auto pt-[120px] pb-[120px]">
+      <div style={{ paddingLeft: 150, paddingRight: 150, paddingTop: 64, paddingBottom: 120 }}>
 
-        {/* Hero */}
-        <FadeIn className="flex flex-col gap-[20px] mb-[72px]">
-          <span className="text-[#4583DA] text-[13px] font-medium tracking-widest uppercase">Case Study</span>
-          <h1 className="text-black text-[56px] font-normal leading-[1.05]">Mermory</h1>
-          <p className="text-[#6B7280] text-[19px] font-normal leading-relaxed">
-            Designing a mobile learning platform that guides learners through progress, completion, and transition — human first.
+        {/* Header */}
+        <div style={{ marginBottom: 48 }}>
+          <p style={{ fontSize: 13, color: "rgba(38,36,33,0.4)", marginBottom: 18, letterSpacing: "0.01em" }}>
+            Product Design · 12 months (2025)
           </p>
-          <div className="flex gap-[48px] pt-[8px] text-[14px]">
-            <div className="flex flex-col gap-1">
-              <span className="text-[#9AA3AF] uppercase tracking-widest">Role</span>
-              <span className="text-black">Product Designer</span>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-[#9AA3AF] uppercase tracking-widest">Type</span>
-              <span className="text-black">End-to-End Design</span>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-[#9AA3AF] uppercase tracking-widest">Focus</span>
-              <span className="text-black">Onboarding · Learning · Progress</span>
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* Video */}
-        <FadeIn delay={80} className="w-full rounded-[32px] overflow-hidden mb-[96px]" style={{ aspectRatio: "16/9", background: "#0f0f0f" }}>
-          <video autoPlay muted loop playsInline className="w-full h-full object-cover" src="/Design/mermory/mermory.mp4" />
-        </FadeIn>
-
-        {/* What is Mermory */}
-        <FadeIn className="mb-[80px]">
-          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">What is Mermory?</h2>
-          <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[20px]">
-            Mermory is a mobile learning platform built around the idea that learning should feel like progress, not pressure. It combines structured lessons with moments of celebration — rewarding learners at every step of their journey.
+          <h1 style={{ fontSize: 72, fontWeight: 700, color: "#262421", letterSpacing: "-2px", lineHeight: 1, marginBottom: 14 }}>
+            Mermory
+          </h1>
+          <p style={{ fontSize: 18, color: "rgba(38,36,33,0.5)" }}>
+            AI-powered study app
           </p>
-          <p className="text-[#4A5565] text-[17px] leading-[1.85]">
-            My role spanned the full product — from defining the core learning experience to establishing a visual language that could scale across the entire app.
+        </div>
+
+        {/* Metadata */}
+        <div style={{ display: "flex", gap: 80, paddingTop: 24, paddingBottom: 24, borderTop: "1px solid rgba(38,36,33,0.08)", borderBottom: "1px solid rgba(38,36,33,0.08)", marginBottom: 64 }}>
+          {[
+            { label: "Role", value: "Product Designer" },
+            { label: "Timeline", value: "12 months (2025)" },
+            { label: "Tools", value: "Figma, Rive" },
+          ].map(({ label, value }) => (
+            <div key={label}>
+              <p style={{ fontSize: 12, color: "rgba(38,36,33,0.35)", marginBottom: 6, letterSpacing: "0.02em" }}>{label}</p>
+              <p style={{ fontSize: 15, color: "#262421" }}>{value}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Hero image */}
+        <div style={{ background: "#F0EEE8", borderRadius: 24, padding: "40px 60px", marginBottom: 80 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/Design/mermory/laptopmock.png"
+            alt="Mermory app mockup"
+            style={{ width: "100%", display: "block", borderRadius: 12 }}
+          />
+        </div>
+
+        {/* Overview */}
+        <div style={{ marginBottom: 56 }}>
+          <h2 style={{ fontSize: 28, fontWeight: 600, color: "#262421", marginBottom: 20 }}>Overview</h2>
+          <p style={{ fontSize: 16, lineHeight: 1.8, color: "rgba(38,36,33,0.6)" }}>
+            Mermory is an AI-powered flashcard platform that gave students creative autonomy over how they study. Unlike Quizlet or Anki, Mermory let users personalize their cards with stickers, themes, and design elements through a Creator Studio—while maintaining industry-standard learning science through FSRS spaced repetition. The challenge was building frictionless import flows and quick-add tools that felt approachable, not technical.
           </p>
-        </FadeIn>
+        </div>
 
-        <FadeIn><hr className="border-black/8 mb-[80px]" /></FadeIn>
+        {/* Problem */}
+        <div style={{ marginBottom: 56 }}>
+          <h2 style={{ fontSize: 28, fontWeight: 600, color: "#262421", marginBottom: 20 }}>Problem</h2>
+          <p style={{ fontSize: 16, lineHeight: 1.8, color: "rgba(38,36,33,0.6)" }}>
+            Existing study platforms felt rigid and utilitarian. Students using Quizlet, Anki, and other competitors often encountered three friction points: onboarding required rebuilding entire decks from scratch when switching platforms, card creation was time-consuming and repetitive, and there was no way to express personal style or motivation through design. Users wanted learning tools that felt less like homework and more like spaces they wanted to return to.
+          </p>
+        </div>
 
-        {/* Problem & Solution */}
-        <FadeIn className="mb-[80px]">
-          <div className="flex gap-[48px]">
-            <div className="flex-1 rounded-[12px] px-[20px] py-[18px] -mx-[20px] hover:bg-[#F8F9FF] transition-colors duration-200 cursor-default">
-              <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[24px]">Problem</h2>
-              <p className="text-[#4A5565] text-[15px] leading-[1.8]">
-                Learning apps often front-load complexity and fail to emotionally engage learners. Drop-off rates are high because users never feel a sense of momentum — there&apos;s no signal that they&apos;re making progress.
-              </p>
-            </div>
-            <div className="flex-1 rounded-[12px] px-[20px] py-[18px] -mx-[20px] hover:bg-[#F8F9FF] transition-colors duration-200 cursor-default">
-              <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[24px]">Solution</h2>
-              <p className="text-[#4A5565] text-[15px] leading-[1.8]">
-                Design an experience where every interaction — from completing a lesson to earning a streak — reinforces the learner&apos;s identity as someone who is growing. Empathy at every touchpoint.
-              </p>
-            </div>
-          </div>
-        </FadeIn>
+        {/* Solution */}
+        <div style={{ marginBottom: 56 }}>
+          <h2 style={{ fontSize: 28, fontWeight: 600, color: "#262421", marginBottom: 20 }}>Solution</h2>
+          <p style={{ fontSize: 16, lineHeight: 1.8, color: "rgba(38,36,33,0.6)" }}>
+            We designed an end-to-end creative learning platform that combined three core pillars: one-click AI import from competitors and study materials, a template-based quick-add system that reduced deck creation time by 41%, and a Creator Studio where students could personalize cards with themes, stickers, and gradient borders. Behind the scenes, the FSRS algorithm powered spaced repetition, while fill-in-the-blank and other dynamic test modes gave users flexibility in how they practiced. Beta feedback drove continuous iteration on import error handling and feature discovery, increasing new user adoption by 39%.
+          </p>
+        </div>
 
-        <FadeIn><hr className="border-black/8 mb-[80px]" /></FadeIn>
-
-        {/* Goals */}
-        <FadeIn className="mb-[80px]">
-          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">Goals</h2>
-          <div className="flex flex-col gap-[8px]">
+        {/* Process */}
+        <div style={{ marginBottom: 80 }}>
+          <h2 style={{ fontSize: 28, fontWeight: 600, color: "#262421", marginBottom: 32 }}>Process</h2>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
             {[
-              { title: "Guide learners through momentum", desc: "Use interface storytelling to make progress visible and meaningful — not just a number, but a feeling." },
-              { title: "Reduce friction at critical drop-off points", desc: "Identify where learners abandon sessions and design micro-interactions that pull them forward." },
-              { title: "Establish a scalable visual language", desc: "Build a design system that could grow with the product — consistent, warm, and human." },
-            ].map((item, i) => (
-              <div key={item.title} className="flex gap-[20px] rounded-[10px] px-[14px] py-[12px] -mx-[14px] hover:bg-[#F8F9FF] transition-colors duration-200 cursor-default">
-                <span className="text-[#4583DA] text-[13px] shrink-0 mt-[3px]">0{i + 1}</span>
-                <div>
-                  <p className="text-black text-[17px] mb-[6px]">{item.title}</p>
-                  <p className="text-[#6B7280] text-[15px] leading-[1.7]">{item.desc}</p>
+              { n: 1, title: "Research & Discovery", desc: "Conducted 20+ interviews with students and educators to understand pain points in current study methods. Created user journey maps and identified key intervention points." },
+              { n: 2, title: "Ideation & Wireframing", desc: "Explored multiple interaction models for AI-assisted learning. Tested low-fidelity prototypes with target users to validate core concepts." },
+              { n: 3, title: "Visual Design", desc: "Developed a warm, approachable design system that balances playfulness with functionality. Created a comprehensive component library for consistency." },
+              { n: 4, title: "Prototyping & Testing", desc: "Built high-fidelity prototypes with micro-interactions. Conducted usability testing sessions and iterated based on feedback." },
+            ].map(({ n, title, desc }) => (
+              <div key={n} style={{ padding: "28px", borderRadius: 16, border: "1px solid rgba(38,36,33,0.08)" }}>
+                <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#262421", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
+                  <span style={{ fontSize: 12, color: "#FFFFF8", fontWeight: 500 }}>{n}</span>
                 </div>
+                <h3 style={{ fontSize: 16, fontWeight: 500, color: "#262421", marginBottom: 10 }}>{title}</h3>
+                <p style={{ fontSize: 14, lineHeight: 1.75, color: "rgba(38,36,33,0.55)" }}>{desc}</p>
               </div>
             ))}
           </div>
-        </FadeIn>
-
-        <FadeIn><hr className="border-black/8 mb-[80px]" /></FadeIn>
-
-      </div>
-
-      {/* Full-width callout */}
-      <FadeIn>
-        <div className="w-full bg-[#0f0f0f] py-[96px]">
-          <div className="w-[60%] mx-auto">
-            <p className="text-white text-[40px] font-light leading-[1.25]">
-              Here&apos;s how those decisions come together<br />
-              across the learning experience.
-            </p>
-          </div>
         </div>
-      </FadeIn>
 
-      <div className="w-[60%] mx-auto pt-[96px] pb-[120px]">
-
-        {/* Section: Discovery */}
-        <FadeIn className="mb-[96px]">
-          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">Discovery</h2>
-          <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[48px]">
-            Learners arrive with a goal — studying for an exam, picking up a language, reviewing coursework. The Explore page was designed as their first meaningful moment of orientation: browse curated categories, search for decks, or skip the library entirely with Import AI, which turns any uploaded document into a ready-to-study deck in seconds.
-          </p>
-          <div className="transition-all duration-300 hover:-translate-y-[2px] rounded-[24px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Design/mermory/explore.png" alt="Mermory Explore page" className="w-full rounded-[24px] transition-shadow duration-300 hover:shadow-[0_12px_48px_rgba(0,0,0,0.10)]" style={{ display: "block" }} />
-          </div>
-        </FadeIn>
-
-        {/* Section: The Study Loop */}
-        <FadeIn className="mb-[96px]">
-          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">The Study Loop</h2>
-          <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[48px]">
-            The study session is where the product earns its keep. Each card sits inside a gradient-bordered canvas — a deliberate visual cue that this is a moment of active focus. FSRS schedules every card at the optimal interval; XP rewards and a live progress bar make sure each session feels like forward motion, not just repetition.
-          </p>
-          <div className="transition-all duration-300 hover:-translate-y-[2px] rounded-[24px] mb-[24px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Design/mermory/study.png" alt="Flashcard study session" className="w-full rounded-[24px] transition-shadow duration-300 hover:shadow-[0_12px_48px_rgba(0,0,0,0.10)]" style={{ display: "block" }} />
-          </div>
-          <div className="flex gap-[24px]">
-            <div className="flex-1 transition-all duration-300 hover:-translate-y-[2px] rounded-[24px] overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Design/mermory/library.png" alt="Deck library with progress tracking" className="w-full transition-shadow duration-300 hover:shadow-[0_12px_48px_rgba(0,0,0,0.10)]" style={{ display: "block" }} />
-            </div>
-            <div className="flex-1 transition-all duration-300 hover:-translate-y-[2px] rounded-[24px] overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/Design/mermory/congrats.png" alt="Deck published celebration modal" className="w-full transition-shadow duration-300 hover:shadow-[0_12px_48px_rgba(0,0,0,0.10)]" style={{ display: "block" }} />
-            </div>
-          </div>
-          <p className="text-[#9AA3AF] text-[14px] leading-[1.7] mt-[20px]">
-            The Library tracks deck-level progress at a glance. Every publish moment is marked with a confetti modal — a small, intentional celebration that reinforces the learner&apos;s identity as someone who creates, not just consumes.
-          </p>
-        </FadeIn>
-
-        <FadeIn><hr className="border-black/8 mb-[96px]" /></FadeIn>
-
-        {/* Section: Visual Language */}
-        <FadeIn className="mb-[96px]">
-          <h2 className="text-[13px] uppercase tracking-widest text-[#9AA3AF] mb-[32px]">Visual Language</h2>
-          <p className="text-[#4A5565] text-[17px] leading-[1.85] mb-[48px]">
-            The gradient system, the koala mascot, the card animations — every visual decision was made to feel warm and alive without being distracting. This recording shows the design language in motion across the full product.
-          </p>
-          <div className="w-full rounded-[24px] overflow-hidden bg-[#0f0f0f] transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_12px_48px_rgba(0,0,0,0.15)]" style={{ aspectRatio: "16/9" }}>
-            <video autoPlay muted loop playsInline className="w-full h-full object-cover" src="/Design/mermory/mermory-demo.mp4" />
-          </div>
-        </FadeIn>
-
-        {/* Footer nav */}
-        <FadeIn>
-          <div className="flex justify-between items-center pt-[40px] border-t border-black/8">
-            <Link href="/" className="text-[#6B7280] text-[15px] hover:text-black transition-colors flex items-center gap-2">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M15 8H1M1 8L8 1M1 8L8 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              Back to Portfolio
-            </Link>
-            <a href="https://mermory.app" target="_blank" rel="noopener noreferrer" className="text-[#4583DA] text-[15px] hover:opacity-70 transition-opacity flex items-center gap-2">
-              View Mermory Live
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </a>
-          </div>
-        </FadeIn>
-
+        {/* Bottom screenshots */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/Design/mermory/laptopmockv2.png"
+          alt="Mermory interface detail"
+          style={{ width: "100%", borderRadius: 24, display: "block" }}
+        />
       </div>
     </main>
   );
