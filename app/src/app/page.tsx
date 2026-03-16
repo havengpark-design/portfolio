@@ -50,7 +50,7 @@ function PeekPanel({ open, onClose, section }: { open: boolean; onClose: () => v
       <div
         style={{
           position: "fixed",
-          top: 0, right: 0, left: 200,
+          top: 0, right: 0, left: 190,
           height: "100vh",
           background: "#FFFFF8",
           boxShadow: "-24px 0 80px rgba(0,0,0,0.18)",
