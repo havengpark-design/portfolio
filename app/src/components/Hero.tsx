@@ -9,7 +9,7 @@ export default function Hero() {
           style={{
             position: "absolute",
             left: 0,
-            top: 0,
+            top: -20,
             width: 193,
             height: 196,
             borderRadius: "50%",
