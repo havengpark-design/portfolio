@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Nav() {
+export default function Nav({ breadcrumb }: { breadcrumb?: string } = {}) {
   return (
     <nav
       style={{
@@ -57,6 +57,13 @@ export default function Nav() {
           Haven Park
         </span>
       </Link>
+
+      {breadcrumb && (
+        <span style={{ fontSize: 17, fontWeight: 400, color: "rgba(38,36,33,0.45)", display: "flex", alignItems: "center", gap: 12 }}>
+          <span>/</span>
+          <span style={{ color: "#262421" }}>{breadcrumb}</span>
+        </span>
+      )}
     </nav>
   );
 }
