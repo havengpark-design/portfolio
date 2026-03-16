@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 
@@ -266,12 +265,12 @@ export default function Home() {
         </div>
         <div className="scroll-x" style={{ paddingLeft: L }}>
           <div style={{ display: "inline-flex", gap: 50, paddingRight: 50 }}>
-            {designProjects.map(({ href, img, name, tags }) => (
+            {designProjects.map(({ key, img, name, tags }) => (
               <div key={name} style={{ width: 470, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 29 }}>
-                <Link href={href} style={{ display: "block", width: "100%" }}>
+                <div onClick={() => { setOpenSection("design"); setOpenProject(key); }} style={{ display: "block", width: "100%", cursor: "pointer" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={img} alt={name} className="thumbnail" style={{ width: "100%", height: 644, objectFit: "cover", borderRadius: 24, display: "block", boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)" }} />
-                </Link>
+                </div>
                 <p style={{ margin: 0, fontSize: 14, color: "rgba(38,36,33,0.55)", lineHeight: 1.5 }}>
                   <span style={{ color: "#262421" }}>{name}</span>{" · "}{tags}
                 </p>
