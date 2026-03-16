@@ -67,12 +67,6 @@ function PeekPanel({ open, onClose, section }: { open: boolean; onClose: () => v
           <span style={{ fontSize: 17, fontWeight: 400, color: "#262421" }}>{breadcrumb}</span>
         </div>
 
-        {/* Decorative avatar circle */}
-        <div style={{ position: "absolute", left: -60, top: 110, width: 193, height: 193, borderRadius: "50%", overflow: "hidden", pointerEvents: "none" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", mixBlendMode: "multiply", opacity: 0.20 }} />
-        </div>
-
         {/* Panel content */}
         <div style={{ paddingLeft: 130, paddingRight: 48, paddingTop: 60, paddingBottom: 80 }}>
           {section === "design" && (
