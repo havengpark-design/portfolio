@@ -2,8 +2,13 @@ export default function Nav() {
   return (
     <nav
       style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        background: "#FFFFF8",
         paddingLeft: 48,
         paddingTop: 46,
+        paddingBottom: 12,
         display: "flex",
         alignItems: "center",
         gap: 12,
