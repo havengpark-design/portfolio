@@ -25,37 +25,39 @@ const designProjects = [
   },
 ];
 
-function SectionHeader({ title }: { title: string }) {
+function SectionHeader({ title, href }: { title: string; href: string }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 11,
-        marginBottom: 32,
-      }}
-    >
-      <span
+    <Link href={href} style={{ textDecoration: "none", display: "inline-block" }}>
+      <div
         style={{
-          fontSize: 24,
-          fontWeight: 400,
-          color: "#333333",
-          letterSpacing: "-0.24px",
+          display: "flex",
+          alignItems: "center",
+          gap: 11,
+          marginBottom: 32,
         }}
       >
-        {title}
-      </span>
-      {/* Chevron arrow */}
-      <svg width="8" height="13" viewBox="0 0 8 13" fill="none">
-        <path
-          d="M1 1L7 6.5L1 12"
-          stroke="#333333"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </div>
+        <span
+          style={{
+            fontSize: 24,
+            fontWeight: 400,
+            color: "#333333",
+            letterSpacing: "-0.24px",
+          }}
+        >
+          {title}
+        </span>
+        {/* Chevron arrow */}
+        <svg width="8" height="13" viewBox="0 0 8 13" fill="none">
+          <path
+            d="M1 1L7 6.5L1 12"
+            stroke="#333333"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+    </Link>
   );
 }
 
@@ -68,7 +70,7 @@ export default function Home() {
       {/* ── Product Design ── */}
       <section style={{ marginTop: 80 }}>
         <div style={{ paddingLeft: L }}>
-          <SectionHeader title="Product Design" />
+          <SectionHeader title="Product Design" href="/design" />
         </div>
         <div className="scroll-x" style={{ paddingLeft: L }}>
         <div style={{ display: "inline-flex", gap: 50, paddingRight: 50 }}>
@@ -121,7 +123,7 @@ export default function Home() {
       {/* ── Storytelling ── */}
       <section style={{ marginTop: 80 }}>
         <div style={{ paddingLeft: L }}>
-          <SectionHeader title="Storytelling" />
+          <SectionHeader title="Storytelling" href="/storytelling" />
         </div>
         <div className="scroll-x" style={{ paddingLeft: L }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 40 }}>
@@ -145,7 +147,7 @@ export default function Home() {
       {/* ── Art ── */}
       <section style={{ marginTop: 80 }}>
         <div style={{ paddingLeft: L }}>
-          <SectionHeader title="Art" />
+          <SectionHeader title="Art" href="/art" />
         </div>
         <div className="scroll-x" style={{ paddingLeft: L }}>
         <div style={{ display: "inline-flex", gap: 50, paddingRight: 50 }}>
