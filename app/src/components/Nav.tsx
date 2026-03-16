@@ -1,6 +1,7 @@
 import Link from "next/link";
+import React from "react";
 
-export default function Nav({ breadcrumb }: { breadcrumb?: string } = {}) {
+export default function Nav({ breadcrumb, logoRef }: { breadcrumb?: string; logoRef?: React.RefObject<HTMLAnchorElement> } = {}) {
   return (
     <nav
       style={{
@@ -15,7 +16,7 @@ export default function Nav({ breadcrumb }: { breadcrumb?: string } = {}) {
         gap: 12,
       }}
     >
-      <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
+      <Link ref={logoRef} href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
         {/* Avatar circle */}
         <div
           style={{

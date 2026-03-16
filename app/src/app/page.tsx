@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 
@@ -149,7 +149,7 @@ function PeekPanel({
       <div
         style={{
           position: "fixed",
-          top: 0, right: 0, left: 190,
+          top: 0, right: 0, left: panelLeft,
           height: "100vh",
           background: "#FFFFF8",
           boxShadow: "-24px 0 80px rgba(0,0,0,0.18)",
@@ -241,6 +241,20 @@ function PeekPanel({
 
 export default function Home() {
   const [openSection, setOpenSection] = useState<Section>(null);
+  const navLogoRef = useRef<HTMLAnchorElement>(null);
+  const [panelLeft, setPanelLeft] = useState(210);
+
+  useEffect(() => {
+    const measure = () => {
+      if (navLogoRef.current) {
+        const rect = navLogoRef.current.getBoundingClientRect();
+        setPanelLeft(rect.right + 20);
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
   const [openProject, setOpenProject] = useState<string | null>(null);
 
   const toggle = (section: Section) => {
@@ -255,7 +269,7 @@ export default function Home() {
 
   return (
     <main style={{ background: "#FFFFF8", minHeight: "100vh" }}>
-      <Nav />
+      <Nav logoRef={navLogoRef} />
       <Hero />
 
       {/* ── Product Design ── */}
