@@ -46,12 +46,11 @@ function PeekPanel({ open, onClose, section }: { open: boolean; onClose: () => v
           transition: "background 0.45s ease",
         }}
       />
-      {/* Panel — full height, own nav inside */}
+      {/* Panel — full height, stretches from beside nav logo to right edge */}
       <div
         style={{
           position: "fixed",
-          top: 0, right: 0,
-          width: 860,
+          top: 0, right: 0, left: 200,
           height: "100vh",
           background: "#FFFFF8",
           boxShadow: "-24px 0 80px rgba(0,0,0,0.18)",
