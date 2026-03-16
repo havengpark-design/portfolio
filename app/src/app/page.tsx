@@ -116,13 +116,14 @@ function PorticoContent() {
 /* ── Peek Panel ── */
 
 function PeekPanel({
-  open, onClose, section, openProject, setOpenProject,
+  open, onClose, section, openProject, setOpenProject, panelLeft,
 }: {
   open: boolean;
   onClose: () => void;
   section: Section;
   openProject: string | null;
   setOpenProject: (p: string | null) => void;
+  panelLeft: number;
 }) {
   const sectionLabel =
     section === "design" ? "Product Design"
@@ -334,6 +335,7 @@ export default function Home() {
         section={openSection}
         openProject={openProject}
         setOpenProject={setOpenProject}
+        panelLeft={panelLeft}
       />
     </main>
   );
