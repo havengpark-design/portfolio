@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Nav() {
   return (
     <nav
@@ -13,46 +15,48 @@ export default function Nav() {
         gap: 12,
       }}
     >
-      {/* Avatar circle */}
-      <div
-        style={{
-          width: 40,
-          height: 40,
-          borderRadius: "50%",
-          overflow: "hidden",
-          flexShrink: 0,
-          position: "relative",
-        }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/logo.png"
-          alt="Haven Park"
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center top",
-          }}
-        />
+      <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
+        {/* Avatar circle */}
         <div
           style={{
-            position: "absolute",
-            inset: 0,
-            background: "rgba(38, 36, 33, 0.18)",
+            width: 40,
+            height: 40,
+            borderRadius: "50%",
+            overflow: "hidden",
+            flexShrink: 0,
+            position: "relative",
           }}
-        />
-      </div>
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo.png"
+            alt="Haven Park"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center top",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "rgba(38, 36, 33, 0.18)",
+            }}
+          />
+        </div>
 
-      <span
-        style={{
-          fontSize: 17,
-          fontWeight: 400,
-          color: "#262421",
-        }}
-      >
-        Haven Park
-      </span>
+        <span
+          style={{
+            fontSize: 17,
+            fontWeight: 400,
+            color: "#262421",
+          }}
+        >
+          Haven Park
+        </span>
+      </Link>
     </nav>
   );
 }
