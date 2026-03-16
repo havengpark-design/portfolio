@@ -5,7 +5,6 @@ export default function Nav() {
         position: "sticky",
         top: 0,
         zIndex: 50,
-        background: "#FFFFF8",
         paddingLeft: 48,
         paddingTop: 46,
         paddingBottom: 12,
