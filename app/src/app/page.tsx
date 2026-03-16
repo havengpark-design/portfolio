@@ -28,61 +28,45 @@ function SectionHeader({ title, onClick }: { title: string; onClick: () => void 
   );
 }
 
-function PeekPanel({ open, onClose, section }: { open: boolean; onClose: () => void; section: Section }) {
-  const breadcrumb =
-    section === "design" ? "Product Design"
-    : section === "storytelling" ? "Storytelling"
-    : section === "art" ? "Art"
-    : "";
+const NAV_H = 98;
 
+function PeekPanel({ open, onClose, section }: { open: boolean; onClose: () => void; section: Section }) {
   return (
     <>
-      {/* Backdrop */}
+      {/* Backdrop — dims page content, sits below sticky nav */}
       <div
         onClick={onClose}
         style={{
-          position: "fixed", inset: 0, zIndex: 90,
+          position: "fixed", inset: 0, zIndex: 40,
           pointerEvents: open ? "auto" : "none",
-          background: "transparent",
+          background: open ? "rgba(38,36,33,0.25)" : "transparent",
+          transition: "background 0.45s ease",
         }}
       />
-      {/* Panel */}
+      {/* Panel — starts below sticky nav */}
       <div
         style={{
           position: "fixed",
-          top: 0, right: 0,
+          top: NAV_H, right: 0,
           width: 860,
-          height: "100vh",
+          height: `calc(100vh - ${NAV_H}px)`,
           background: "#FFFFF8",
           boxShadow: "-24px 0 80px rgba(0,0,0,0.18)",
           transform: open ? "translateX(0)" : "translateX(100%)",
           transition: "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          zIndex: 100,
+          zIndex: 45,
           overflowY: "auto",
           overflowX: "hidden",
         }}
       >
-        {/* Mini nav */}
-        <div style={{ display: "flex", alignItems: "center", gap: 12, paddingLeft: 48, paddingTop: 46 }}>
-          <Link href="/" onClick={onClose} style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
-            <div style={{ width: 40, height: 40, borderRadius: "50%", overflow: "hidden", flexShrink: 0, position: "relative" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo.png" alt="Haven Park" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", mixBlendMode: "multiply", opacity: 0.20 }} />
-            </div>
-            <span style={{ fontSize: 17, fontWeight: 400, color: "#262421" }}>Haven Park</span>
-          </Link>
-          <span style={{ fontSize: 17, fontWeight: 400, color: "rgba(38,36,33,0.4)" }}>/</span>
-          <span style={{ fontSize: 17, fontWeight: 400, color: "#262421" }}>{breadcrumb}</span>
-        </div>
-
         {/* Decorative avatar circle */}
-        <div style={{ position: "absolute", left: -60, top: 110, width: 193, height: 193, borderRadius: "50%", overflow: "hidden", pointerEvents: "none" }}>
+        <div style={{ position: "absolute", left: -60, top: 30, width: 193, height: 193, borderRadius: "50%", overflow: "hidden", pointerEvents: "none" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", mixBlendMode: "multiply", opacity: 0.20 }} />
         </div>
 
         {/* Panel content */}
-        <div style={{ paddingLeft: 130, paddingRight: 48, paddingTop: 60, paddingBottom: 80 }}>
+        <div style={{ paddingLeft: 130, paddingRight: 48, paddingTop: 48, paddingBottom: 80 }}>
           {section === "design" && (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "50px 50px" }}>
               {designProjects.map(({ href, img, name, tags }) => (
