@@ -79,7 +79,7 @@ function PeekPanel({ open, onClose, section }: { open: boolean; onClose: () => v
                       src={img}
                       alt={name}
                       className="thumbnail"
-                      style={{ width: "100%", height: 380, objectFit: "cover", borderRadius: 20, display: "block", boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)" }}
+                      style={{ width: "100%", aspectRatio: "470 / 644", objectFit: "cover", borderRadius: 20, display: "block", boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)" }}
                     />
                   </Link>
                   <p style={{ margin: 0, fontSize: 14, fontWeight: 400, color: "rgba(38,36,33,0.55)", lineHeight: 1.5 }}>
@@ -103,7 +103,7 @@ function PeekPanel({ open, onClose, section }: { open: boolean; onClose: () => v
           {section === "art" && (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "50px 50px" }}>
               {[0, 1, 2].map((i) => (
-                <div key={i} className="thumbnail" style={{ width: "100%", height: 380, borderRadius: 20, background: "#D9D9D9", boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)" }} />
+                <div key={i} className="thumbnail" style={{ width: "100%", aspectRatio: "470 / 644", borderRadius: 20, background: "#D9D9D9", boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)" }} />
               ))}
             </div>
           )}
