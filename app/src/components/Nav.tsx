@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-export default function Nav({ breadcrumb, logoRef }: { breadcrumb?: string; logoRef?: React.RefObject<HTMLAnchorElement> } = {}) {
+export default function Nav({ breadcrumb, logoRef }: { breadcrumb?: string; logoRef?: React.RefObject<HTMLAnchorElement | null> } = {}) {
   return (
     <nav
       style={{
