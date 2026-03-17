@@ -162,7 +162,7 @@ function PeekPanel({
         }}
       >
         {/* Breadcrumb */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, paddingLeft: 48, paddingTop: 53, paddingBottom: 12 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, paddingLeft: 24, paddingTop: 53, paddingBottom: 12 }}>
           <span style={{ fontSize: 17, color: "rgba(38,36,33,0.4)" }}>/</span>
           {projectLabel ? (
             <>
@@ -181,7 +181,7 @@ function PeekPanel({
         </div>
 
         {/* Content */}
-        <div style={{ paddingLeft: 48, paddingRight: 48, paddingTop: 52, display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ paddingLeft: 48, paddingRight: 48, paddingTop: 80, display: "flex", flexDirection: "column", alignItems: "center" }}>
 
           {/* Case study view */}
           {openProject === "mermory" && <MermoryContent />}
