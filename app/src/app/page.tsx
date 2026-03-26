@@ -6,6 +6,22 @@ import Hero from "@/components/Hero";
 
 const L = 297;
 
+const artPieces = [
+  { src: "/Art/01-gray-cut-blood.png", title: "Gray Cut Blood", year: "2024", medium: "Graphite on paper" },
+  { src: "/Art/02-where-are-you.png", title: "where are you", year: "2025", medium: "Oil on canvas" },
+  { src: "/Art/03-its-time.png", title: "It's Time", year: "2024", medium: "Oil on canvas" },
+  { src: "/Art/04-fleshgreen.png", title: "fleshgreen", year: "2025", medium: "Oil on canvas" },
+  { src: "/Art/05-untitled.png", title: "Untitled", year: "2024", medium: "Oil on canvas" },
+  { src: "/Art/06-bloom.png", title: "Bloom", year: "2021", medium: "Oil on canvas" },
+  { src: "/Art/07-come-again.png", title: "Come again", year: "2021", medium: "Oil on canvas" },
+  { src: "/Art/08-umma.png", title: "umma", year: "2024", medium: "Oil on canvas" },
+  { src: "/Art/09-na.png", title: "na", year: "2024", medium: "Oil on canvas" },
+  { src: "/Art/10-appa.png", title: "appa", year: "2024", medium: "Oil on canvas" },
+  { src: "/Art/11-in-threes.png", title: "In threes", year: "2023", medium: "Photo" },
+  { src: "/Art/12-blue-mirror.png", title: "Blue mirror", year: "2023", medium: "Photo" },
+  { src: "/Art/13-last-hour.png", title: "last hour", year: "2023", medium: "Photo" },
+];
+
 const designProjects = [
   { key: "mermory", href: "/mermory", img: "/Design/mermory/poster.png", name: "Mermory", tags: "Product Design · AI-powered study app" },
   { key: "jams",    href: "/jams",    img: "/Design/jams/poster.png",    name: "Jams",    tags: "Product Design · Enterprise job automation platform" },
@@ -224,12 +240,20 @@ function PeekPanel({
 
           {/* Section: Art */}
           {!openProject && section === "art" && (
-            <div style={{ width: "100%" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "50px 50px" }}>
-                {[0,1,2].map((i) => (
-                  <div key={i} className="thumbnail" style={{ width: "100%", aspectRatio: "470 / 644", borderRadius: 20, background: "#D9D9D9", boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)" }} />
-                ))}
-              </div>
+            <div style={{ width: "100%", columnCount: 2, columnGap: 24 }}>
+              {artPieces.map(({ src, title, year, medium }) => (
+                <div key={src} style={{ breakInside: "avoid", marginBottom: 24 }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={src}
+                    alt={title}
+                    style={{ width: "100%", display: "block", borderRadius: 16, boxShadow: "0px 4px 20px rgba(0,0,0,0.14)" }}
+                  />
+                  <p style={{ margin: "8px 0 0 4px", fontSize: 13, color: "rgba(38,36,33,0.55)" }}>
+                    <span style={{ color: "#262421" }}>{title}</span>{" · "}{year} · {medium}
+                  </p>
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -267,6 +291,12 @@ export default function Home() {
       setOpenProject(null);
     }
   };
+
+  return (
+    <main style={{ background: "#000000", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <p style={{ color: "#ffffff", fontSize: 13, fontWeight: 400 }}>in progress</p>
+    </main>
+  );
 
   return (
     <main style={{ background: "#FFFFF8", minHeight: "100vh" }}>
@@ -316,8 +346,16 @@ export default function Home() {
         </div>
         <div className="scroll-x" style={{ paddingLeft: L }}>
           <div style={{ display: "inline-flex", gap: 50, paddingRight: 50 }}>
-            {[0,1,2].map((i) => (
-              <div key={i} className="thumbnail" style={{ width: 470, height: 644, borderRadius: 24, background: "#D9D9D9", boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)" }} />
+            {artPieces.map(({ src, title }) => (
+              <div key={src} onClick={() => toggle("art")} style={{ width: 470, flexShrink: 0, cursor: "pointer" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={src}
+                  alt={title}
+                  className="thumbnail"
+                  style={{ width: "100%", height: 644, objectFit: "cover", borderRadius: 24, display: "block", boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)" }}
+                />
+              </div>
             ))}
           </div>
         </div>
