@@ -446,7 +446,7 @@ export default function Home() {
         <img
           src="/logo.png"
           alt="Haven Park"
-          style={{ width: 59, height: 60, borderRadius: 4, objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: 18 }}
+          style={{ width: 59, height: 60, borderRadius: 4, objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: 18, filter: "grayscale(100%)" }}
         />
         {/* Name — ref used to position peek panel */}
         <span
