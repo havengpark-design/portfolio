@@ -479,10 +479,7 @@ export default function Home() {
             {/* Gray background behind Mermory card */}
             <div style={{
               position: "absolute",
-              top: -41,
-              left: -45,
-              right: -43,
-              height: 910 + 41 + 34,
+              inset: -41,
               background: "#f3f3f3",
               borderRadius: 22,
               zIndex: 0,
