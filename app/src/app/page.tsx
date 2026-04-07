@@ -317,7 +317,7 @@ function PeekPanel({
           position: "fixed",
           top: 0, right: 0, left: panelLeft,
           height: "100vh",
-          background: "#FFFFF8",
+          background: "#FFFFFF",
           boxShadow: "-24px 0 80px rgba(0,0,0,0.18)",
           transform: open ? "translateX(0)" : "translateX(100%)",
           transition: "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
@@ -439,7 +439,7 @@ export default function Home() {
   };
 
   return (
-    <main style={{ background: "#FFFFF8", minHeight: "100vh" }}>
+    <main style={{ background: "#FFFFFF", minHeight: "100vh" }}>
       <Nav logoRef={navLogoRef} />
 
       {/* Identity area */}

@@ -2,7 +2,7 @@ import Nav from "@/components/Nav";
 
 export default function MermoryPage() {
   return (
-    <main style={{ background: "#FFFFF8", minHeight: "100vh" }}>
+    <main style={{ background: "#FFFFFF", minHeight: "100vh" }}>
       <Nav breadcrumb="Product Design" />
 
       <div style={{ paddingLeft: 150, paddingRight: 150, paddingTop: 64, paddingBottom: 120 }}>

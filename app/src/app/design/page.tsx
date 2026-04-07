@@ -24,7 +24,7 @@ const designProjects = [
 
 export default function DesignPage() {
   return (
-    <main style={{ background: "#FFFFF8", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
+    <main style={{ background: "#FFFFFF", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
       <Nav breadcrumb="Product Design" />
 
       {/* Decorative avatar circle — partially off left edge */}
