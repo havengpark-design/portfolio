@@ -2,9 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
-
-const L = 297;
 
 const artPieces = [
   { src: "/Art/01-gray-cut-blood.png", title: "Gray Cut Blood", year: "2024", medium: "Graphite on paper" },
@@ -23,20 +20,172 @@ const artPieces = [
 ];
 
 const designProjects = [
-  { key: "mermory", href: "/mermory", img: "/Design/mermory/poster.png", name: "Mermory", tags: "Product Design · AI-powered study app" },
-  { key: "jams",    href: "/jams",    img: "/Design/jams/poster.png",    name: "Jams",    tags: "Product Design · Enterprise job automation platform" },
-  { key: "portico", href: "/portico", img: "/Design/portico/thumbnails.png", name: "Portico", tags: "Product Design · Enterprise job automation platform" },
+  { key: "mermory", name: "Mermory", tags: "Product Design · AI-powered study app" },
+  { key: "jams",    name: "Jams",    tags: "Product Design · Enterprise job automation platform" },
+  { key: "portico", name: "Portico", tags: "Product Design · Career platform" },
 ];
 
 type Section = "design" | "storytelling" | "art" | null;
 
-function SectionHeader({ title, onClick }: { title: string; onClick: () => void }) {
+/* ── Checkmark SVG ── */
+const CHECKMARK_PATH = "M4.99324 8.4882L3.33633 6.83247C3.24705 6.74325 3.12596 6.69313 2.99969 6.69313C2.87343 6.69313 2.75234 6.74325 2.66306 6.83247C2.57378 6.92169 2.52362 7.04269 2.52362 7.16886C2.52362 7.23134 2.53593 7.2932 2.55986 7.35092C2.58378 7.40864 2.61885 7.46108 2.66306 7.50526L4.65899 9.49977C4.84522 9.68586 5.14604 9.68586 5.33226 9.49977L10.3842 4.45146C10.4735 4.36225 10.5236 4.24124 10.5236 4.11507C10.5236 3.9889 10.4735 3.86789 10.3842 3.77867C10.2949 3.68946 10.1738 3.63934 10.0475 3.63934C9.92128 3.63934 9.80019 3.68946 9.71091 3.77867L4.99324 8.4882Z";
+
+function CheckboxRow({ checked, label }: { checked: boolean; label: string }) {
   return (
-    <div onClick={onClick} style={{ cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 11, marginBottom: 32 }}>
-      <span style={{ fontSize: 24, fontWeight: 400, color: "#333333", letterSpacing: "-0.24px" }}>{title}</span>
-      <svg width="8" height="13" viewBox="0 0 8 13" fill="none">
-        <path d="M1 1L7 6.5L1 12" stroke="#333333" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
+    <div style={{ display: "flex", gap: 9, alignItems: "center" }}>
+      <div style={{ width: 13, height: 13, flexShrink: 0 }}>
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+          <rect x="0.75" y="0.75" width="11.5" height="11.5" rx="1.25" stroke="#707070" strokeWidth="1.5" />
+          {checked && <path d={CHECKMARK_PATH} fill="#707070" />}
+        </svg>
+      </div>
+      <span style={{ fontFamily: "'SF Pro Display', sans-serif", fontSize: 15, color: "#707070", lineHeight: 1.196, whiteSpace: "nowrap" }}>
+        {label}
+      </span>
+    </div>
+  );
+}
+
+/* ── Project cards ── */
+
+const CARD_SHADOW = "0px 4px 20.4px 3px rgba(0,0,0,0.06)";
+
+function PlaceholderCard() {
+  return (
+    <div style={{
+      background: "white",
+      borderRadius: 17,
+      boxShadow: CARD_SHADOW,
+      width: 677,
+      height: 878,
+      flexShrink: 0,
+      position: "relative",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 26,
+    }}>
+      {[0, 1, 2].map((i) => (
+        <div key={i} style={{ width: 22, height: 22, borderRadius: "50%", background: "#D9D9D9" }} />
+      ))}
+    </div>
+  );
+}
+
+function MermoryCard({ onClick }: { onClick: () => void }) {
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        background: "white",
+        borderRadius: 17,
+        boxShadow: CARD_SHADOW,
+        width: 677,
+        height: 878,
+        flexShrink: 0,
+        position: "relative",
+        overflow: "hidden",
+        cursor: "pointer",
+      }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/Design/mermory/laptopmockv2.png"
+        alt="Mermory"
+        style={{
+          position: "absolute",
+          left: 112,
+          top: 198,
+          width: 961,
+          height: 601,
+          maxWidth: "none",
+          objectFit: "cover",
+          pointerEvents: "none",
+        }}
+      />
+    </div>
+  );
+}
+
+function JamsCard({ onClick }: { onClick: () => void }) {
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        background: "white",
+        borderRadius: 17,
+        boxShadow: CARD_SHADOW,
+        width: 677,
+        height: 910,
+        flexShrink: 0,
+        position: "relative",
+        overflow: "hidden",
+        cursor: "pointer",
+      }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/Design/jams/Dashboard/Home - Future.png"
+        alt="Jams dashboard"
+        style={{
+          position: "absolute",
+          left: 52,
+          top: 60,
+          width: 466,
+          height: 440,
+          borderRadius: 9,
+          objectFit: "cover",
+          pointerEvents: "none",
+        }}
+      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/Design/jams/Create a new job - AI Prompt 2@4x.png"
+        alt="Jams AI prompt"
+        style={{
+          position: "absolute",
+          left: 398,
+          top: 190,
+          width: 240,
+          height: 620,
+          objectFit: "cover",
+          pointerEvents: "none",
+        }}
+      />
+    </div>
+  );
+}
+
+function PorticoCard({ onClick }: { onClick: () => void }) {
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        background: "white",
+        borderRadius: 17,
+        boxShadow: CARD_SHADOW,
+        width: 677,
+        height: 910,
+        flexShrink: 0,
+        position: "relative",
+        overflow: "hidden",
+        cursor: "pointer",
+      }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/Design/portico/porticovisual.png"
+        alt="Portico"
+        style={{
+          position: "absolute",
+          left: -101,
+          top: 396,
+          width: 624,
+          height: 590,
+          objectFit: "cover",
+          pointerEvents: "none",
+        }}
+      />
     </div>
   );
 }
@@ -120,7 +269,7 @@ function PorticoContent() {
     <div style={{ maxWidth: 800, paddingBottom: 80 }}>
       <p style={{ fontSize: 13, color: "rgba(38,36,33,0.4)", marginBottom: 18 }}>Product Design · Career Platform</p>
       <h1 style={{ fontSize: 64, fontWeight: 700, color: "#262421", letterSpacing: "-2px", lineHeight: 1, marginBottom: 14 }}>Portico</h1>
-      <p style={{ fontSize: 18, color: "rgba(38,36,33,0.5)", marginBottom: 40 }}>Enterprise job automation platform</p>
+      <p style={{ fontSize: 18, color: "rgba(38,36,33,0.5)", marginBottom: 40 }}>Career platform</p>
       <div style={{ background: "#F0EEE8", borderRadius: 20, padding: "32px 48px", marginBottom: 48 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/Design/portico/thumbnails.png" alt="Portico mockup" style={{ width: "100%", borderRadius: 10, display: "block" }} />
@@ -208,7 +357,7 @@ function PeekPanel({
           {!openProject && section === "design" && (
             <div style={{ width: "100%" }}>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "50px 50px" }}>
-                {designProjects.map(({ key, img, name, tags }) => (
+                {designProjects.map(({ key, name, tags }) => (
                   <div key={name} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                     <div
                       onClick={(e) => { e.stopPropagation(); setOpenProject(key); }}
@@ -216,7 +365,9 @@ function PeekPanel({
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={img} alt={name} className="thumbnail"
+                        src={key === "mermory" ? "/Design/mermory/poster.png" : key === "jams" ? "/Design/jams/poster.png" : "/Design/portico/thumbnails.png"}
+                        alt={name}
+                        className="thumbnail"
                         style={{ width: "100%", aspectRatio: "470 / 644", objectFit: "cover", borderRadius: 20, display: "block", boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)" }}
                       />
                     </div>
@@ -268,6 +419,7 @@ export default function Home() {
   const [openSection, setOpenSection] = useState<Section>(null);
   const navLogoRef = useRef<HTMLAnchorElement>(null);
   const [panelLeft, setPanelLeft] = useState(210);
+  const [openProject, setOpenProject] = useState<string | null>(null);
 
   useEffect(() => {
     const measure = () => {
@@ -280,93 +432,60 @@ export default function Home() {
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
   }, []);
-  const [openProject, setOpenProject] = useState<string | null>(null);
 
-  const toggle = (section: Section) => {
-    if (openSection === section) {
-      setOpenSection(null);
-      setOpenProject(null);
-    } else {
-      setOpenSection(section);
-      setOpenProject(null);
-    }
+  const openDesignProject = (key: string) => {
+    setOpenSection("design");
+    setOpenProject(key);
   };
-
-  return (
-    <main style={{ background: "#000000", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <p style={{ color: "#ffffff", fontSize: 13, fontWeight: 400 }}>in progress</p>
-    </main>
-  );
 
   return (
     <main style={{ background: "#FFFFF8", minHeight: "100vh" }}>
       <Nav logoRef={navLogoRef} />
-      <Hero />
 
-      {/* ── Product Design ── */}
-      <section style={{ marginTop: 80 }}>
-        <div style={{ paddingLeft: L }}>
-          <SectionHeader title="Product Design" onClick={() => toggle("design")} />
+      {/* Identity area */}
+      <div style={{ paddingLeft: 144, paddingTop: 16, paddingBottom: 32 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 24 }}>
+          <CheckboxRow checked={false} label="Currently designing Folio" />
+          <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" />
         </div>
-        <div className="scroll-x" style={{ paddingLeft: L }}>
-          <div style={{ display: "inline-flex", gap: 50, paddingRight: 50 }}>
-            {designProjects.map(({ key, img, name, tags }) => (
-              <div key={name} style={{ width: 470, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 29 }}>
-                <div onClick={() => { setOpenSection("design"); setOpenProject(key); }} style={{ display: "block", width: "100%", cursor: "pointer" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={img} alt={name} className="thumbnail" style={{ width: "100%", height: 644, objectFit: "cover", borderRadius: 24, display: "block", boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)" }} />
-                </div>
-                <p style={{ margin: 0, fontSize: 14, color: "rgba(38,36,33,0.55)", lineHeight: 1.5 }}>
-                  <span style={{ color: "#262421" }}>{name}</span>{" · "}{tags}
-                </p>
-              </div>
-            ))}
+        <div style={{ width: 286, height: 1, background: "#D9D9D9" }} />
+      </div>
+
+      {/* 2-column card grid */}
+      <div style={{ paddingLeft: 141, paddingBottom: 120, overflowX: "auto" }}>
+        <div style={{ display: "flex", gap: 89, width: "fit-content" }}>
+
+          {/* Left column */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
+            <PlaceholderCard />
+            <JamsCard onClick={() => openDesignProject("jams")} />
           </div>
-        </div>
-      </section>
 
-      {/* ── Storytelling ── */}
-      <section style={{ marginTop: 80 }}>
-        <div style={{ paddingLeft: L }}>
-          <SectionHeader title="Storytelling" onClick={() => toggle("storytelling")} />
-        </div>
-        <div className="scroll-x" style={{ paddingLeft: L }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 40 }}>
-            {["Instagram", "TikTok", "Youtube"].map((p) => (
-              <span key={p} style={{ fontSize: 18, color: "rgba(38,36,33,0.55)", cursor: "pointer" }}>{p}</span>
-            ))}
+          {/* Right column */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 67, position: "relative" }}>
+            {/* Gray background behind Mermory card */}
+            <div style={{
+              position: "absolute",
+              top: -41,
+              left: -45,
+              right: -43,
+              height: 878 + 41 + 34,
+              background: "#f3f3f3",
+              borderRadius: 22,
+              zIndex: 0,
+            }} />
+            <div style={{ position: "relative", zIndex: 1 }}>
+              <MermoryCard onClick={() => openDesignProject("mermory")} />
+            </div>
+            <div style={{ position: "relative", zIndex: 1 }}>
+              <PorticoCard onClick={() => openDesignProject("portico")} />
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* ── Art ── */}
-      <section style={{ marginTop: 80 }}>
-        <div style={{ paddingLeft: L }}>
-          <SectionHeader title="Art" onClick={() => toggle("art")} />
         </div>
-        <div className="scroll-x" style={{ paddingLeft: L }}>
-          <div style={{ display: "inline-flex", gap: 50, paddingRight: 50 }}>
-            {artPieces.map(({ src, title }) => (
-              <div key={src} onClick={() => toggle("art")} style={{ width: 470, flexShrink: 0, cursor: "pointer" }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={src}
-                  alt={title}
-                  className="thumbnail"
-                  style={{ width: "100%", height: 644, objectFit: "cover", borderRadius: 24, display: "block", boxShadow: "0px 4px 38.3px 0px rgba(0,0,0,0.28)" }}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      </div>
 
-      {/* ── Footer ── */}
-      <footer style={{ paddingLeft: L, marginTop: 120, paddingBottom: 48, fontSize: 13, color: "rgba(38,36,33,0.35)" }}>
-        Made with Next.js, Figma, Claude Code
-      </footer>
-
-      {/* ── Peek Panel ── */}
+      {/* Peek Panel */}
       <PeekPanel
         open={openSection !== null}
         onClose={() => { setOpenSection(null); setOpenProject(null); }}
