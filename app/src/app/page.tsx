@@ -470,26 +470,14 @@ export default function Home() {
 
           {/* Left column */}
           <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
-            <PlaceholderCard />
-            <JamsCard onClick={() => openDesignProject("jams")} />
+            <div className="card-wrap"><PlaceholderCard /></div>
+            <div className="card-wrap"><JamsCard onClick={() => openDesignProject("jams")} /></div>
           </div>
 
           {/* Right column */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 67, position: "relative" }}>
-            {/* Gray background behind Mermory card */}
-            <div style={{
-              position: "absolute",
-              inset: -41,
-              background: "#f3f3f3",
-              borderRadius: 22,
-              zIndex: 0,
-            }} />
-            <div style={{ position: "relative", zIndex: 1 }}>
-              <MermoryCard onClick={() => openDesignProject("mermory")} />
-            </div>
-            <div style={{ position: "relative", zIndex: 1 }}>
-              <PorticoCard onClick={() => openDesignProject("portico")} />
-            </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
+            <div className="card-wrap"><MermoryCard onClick={() => openDesignProject("mermory")} /></div>
+            <div className="card-wrap"><PorticoCard onClick={() => openDesignProject("portico")} /></div>
           </div>
 
         </div>

@@ -27,6 +27,28 @@ body {
   display: none;
 }
 
+.card-wrap {
+  position: relative;
+}
+.card-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -41px;
+  background: #f3f3f3;
+  border-radius: 22px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+.card-wrap:hover::before {
+  opacity: 1;
+}
+.card-wrap > * {
+  position: relative;
+  z-index: 1;
+}
+
 .thumbnail {
   transform: scale(0.954);
   transform-origin: center center;
