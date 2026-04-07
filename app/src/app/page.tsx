@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Nav from "@/components/Nav";
 
 const artPieces = [
   { src: "/Art/01-gray-cut-blood.png", title: "Gray Cut Blood", year: "2024", medium: "Graphite on paper" },
@@ -417,7 +416,7 @@ function PeekPanel({
 
 export default function Home() {
   const [openSection, setOpenSection] = useState<Section>(null);
-  const navLogoRef = useRef<HTMLAnchorElement>(null);
+  const navLogoRef = useRef<HTMLSpanElement>(null);
   const [panelLeft, setPanelLeft] = useState(210);
   const [openProject, setOpenProject] = useState<string | null>(null);
 
@@ -440,14 +439,28 @@ export default function Home() {
 
   return (
     <main style={{ background: "#FFFFFF", minHeight: "100vh" }}>
-      <Nav logoRef={navLogoRef} />
-
-      {/* Identity area */}
-      <div style={{ paddingLeft: 144, paddingTop: 16, paddingBottom: 32 }}>
+      {/* Identity header — matches Figma MacBookPro16 layout */}
+      <div style={{ paddingLeft: 144, paddingTop: 60, paddingBottom: 48 }}>
+        {/* Square portrait photo */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo.png"
+          alt="Haven Park"
+          style={{ width: 59, height: 60, borderRadius: 4, objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: 18 }}
+        />
+        {/* Name — ref used to position peek panel */}
+        <span
+          ref={navLogoRef}
+          style={{ fontSize: 32, fontWeight: 500, color: "#494949", display: "block", marginBottom: 14, lineHeight: 1 }}
+        >
+          Haven Park
+        </span>
+        {/* Checkboxes */}
         <div style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 24 }}>
           <CheckboxRow checked={false} label="Currently designing Folio" />
           <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" />
         </div>
+        {/* Divider */}
         <div style={{ width: 286, height: 1, background: "#D9D9D9" }} />
       </div>
 
