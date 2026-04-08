@@ -492,12 +492,12 @@ export default function Home() {
         {/* Name — ref used to position peek panel */}
         <span
           ref={navLogoRef}
-          style={{ fontSize: 32, fontWeight: 500, color: "#494949", display: "block", marginBottom: 14, lineHeight: 1 }}
+          style={{ fontSize: 32, fontWeight: 500, color: "#494949", display: "block", marginBottom: 12, lineHeight: 1 }}
         >
           Haven Park
         </span>
         {/* Checkboxes */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 24 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 34 }}>
           <CheckboxRow checked={false} label="Currently designing Folio" color="#4a70bc" />
           <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" color="#a2a2a2" />
         </div>
