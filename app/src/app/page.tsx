@@ -41,7 +41,7 @@ function CheckboxRow({ checked, label, color }: { checked: boolean; label: strin
         ) : (
           /* Unchecked: dashed circle */
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-            <circle cx="7.5" cy="7.5" r="6" stroke={color} strokeWidth="1.5" strokeDasharray="2 2.8" />
+            <circle cx="7.5" cy="7.5" r="6" stroke={color} strokeWidth="1.7" strokeDasharray="5 5" pathLength="100" />
           </svg>
         )}
       </div>
