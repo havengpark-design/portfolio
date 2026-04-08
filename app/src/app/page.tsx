@@ -33,8 +33,8 @@ function CheckboxRow({ checked, label, color }: { checked: boolean; label: strin
   return (
     <div style={{ display: "flex", gap: 9, alignItems: "center" }}>
       <div style={{ width: 15, height: 15, flexShrink: 0 }}>
-        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-          <rect x="0.75" y="0.75" width="13.5" height="13.5" rx="2.25" stroke={color} strokeWidth="1.5" />
+        <svg width="15" height="15" viewBox="0 0 13 13" fill="none">
+          <rect x="0.75" y="0.75" width="11.5" height="11.5" rx="1.25" stroke={color} strokeWidth="1.5" />
           {checked && <path d={CHECKMARK_PATH} fill={color} />}
         </svg>
       </div>
