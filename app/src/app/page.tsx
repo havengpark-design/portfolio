@@ -502,7 +502,7 @@ export default function Home() {
           <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" color="#a2a2a2" />
         </div>
         {/* Divider */}
-        <div style={{ width: 336, height: 0.8, background: "#D9D9D9" }} />
+        <div style={{ width: 336, height: 0.8, background: "rgba(38,36,33,0.11)" }} />
       </div>
 
       {/* 2-column card grid */}
