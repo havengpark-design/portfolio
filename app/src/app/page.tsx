@@ -465,7 +465,7 @@ export default function Home() {
       </div>
 
       {/* 2-column card grid */}
-      <div style={{ paddingLeft: 141, paddingBottom: 120, overflowX: "auto" }}>
+      <div style={{ paddingLeft: 141, paddingBottom: 120, overflowX: "auto", paddingTop: 41, marginTop: -41 }}>
         <div style={{ display: "flex", gap: 89, width: "fit-content" }}>
 
           {/* Left column */}
