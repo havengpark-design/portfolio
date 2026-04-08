@@ -33,7 +33,7 @@ body {
 .card-wrap::before {
   content: '';
   position: absolute;
-  inset: -33px;
+  inset: -20px;
   background: #f3f3f3;
   border-radius: 22px;
   opacity: 0;
