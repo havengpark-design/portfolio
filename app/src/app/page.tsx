@@ -487,7 +487,7 @@ export default function Home() {
         <img
           src="/logo.png"
           alt="Haven Park"
-          style={{ width: 59, height: 60, borderRadius: 4, objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: 18, filter: "grayscale(100%)" }}
+          style={{ width: 59, height: 60, borderRadius: 4, objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: 22, filter: "grayscale(100%)" }}
         />
         {/* Name — ref used to position peek panel */}
         <span
@@ -497,12 +497,12 @@ export default function Home() {
           Haven Park
         </span>
         {/* Checkboxes */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 34 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 7, marginBottom: 34 }}>
           <CheckboxRow checked={false} label="Currently designing Folio" color="#4a70bc" />
           <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" color="#a2a2a2" />
         </div>
         {/* Divider */}
-        <div style={{ width: 286, height: 1, background: "#D9D9D9" }} />
+        <div style={{ width: 336, height: 0.8, background: "#D9D9D9" }} />
       </div>
 
       {/* 2-column card grid */}
