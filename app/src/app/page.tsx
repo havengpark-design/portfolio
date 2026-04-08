@@ -51,22 +51,44 @@ const CARD_SHADOW = "0px 4px 20.4px 3px rgba(0,0,0,0.06)";
 
 function PlaceholderCard() {
   return (
-    <div style={{
-      background: "white",
-      borderRadius: 17,
-      boxShadow: CARD_SHADOW,
-      width: 677,
-      height: 910,
-      flexShrink: 0,
-      position: "relative",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: 26,
-    }}>
+    <div
+      className="placeholder-card"
+      style={{
+        background: "white",
+        borderRadius: 17,
+        boxShadow: CARD_SHADOW,
+        width: 677,
+        height: 910,
+        flexShrink: 0,
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 26,
+        cursor: "default",
+      }}
+    >
       {[0, 1, 2].map((i) => (
         <div key={i} style={{ width: 22, height: 22, borderRadius: "50%", background: "#D9D9D9" }} />
       ))}
+      {/* Hover tooltip */}
+      <div className="placeholder-tooltip" style={{
+        position: "absolute",
+        width: 315,
+        height: 97,
+        borderRadius: 16,
+        background: "#f3f3f3",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        opacity: 0,
+        transition: "opacity 0.25s ease",
+        pointerEvents: "none",
+      }}>
+        <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
+          Something beautiful is in making...
+        </span>
+      </div>
     </div>
   );
 }
