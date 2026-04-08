@@ -29,16 +29,16 @@ type Section = "design" | "storytelling" | "art" | null;
 /* ── Checkmark SVG ── */
 const CHECKMARK_PATH = "M4.99324 8.4882L3.33633 6.83247C3.24705 6.74325 3.12596 6.69313 2.99969 6.69313C2.87343 6.69313 2.75234 6.74325 2.66306 6.83247C2.57378 6.92169 2.52362 7.04269 2.52362 7.16886C2.52362 7.23134 2.53593 7.2932 2.55986 7.35092C2.58378 7.40864 2.61885 7.46108 2.66306 7.50526L4.65899 9.49977C4.84522 9.68586 5.14604 9.68586 5.33226 9.49977L10.3842 4.45146C10.4735 4.36225 10.5236 4.24124 10.5236 4.11507C10.5236 3.9889 10.4735 3.86789 10.3842 3.77867C10.2949 3.68946 10.1738 3.63934 10.0475 3.63934C9.92128 3.63934 9.80019 3.68946 9.71091 3.77867L4.99324 8.4882Z";
 
-function CheckboxRow({ checked, label }: { checked: boolean; label: string }) {
+function CheckboxRow({ checked, label, color }: { checked: boolean; label: string; color: string }) {
   return (
     <div style={{ display: "flex", gap: 9, alignItems: "center" }}>
-      <div style={{ width: 13, height: 13, flexShrink: 0 }}>
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-          <rect x="0.75" y="0.75" width="11.5" height="11.5" rx="1.25" stroke="#707070" strokeWidth="1.5" />
-          {checked && <path d={CHECKMARK_PATH} fill="#707070" />}
+      <div style={{ width: 15, height: 15, flexShrink: 0 }}>
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <rect x="0.75" y="0.75" width="13.5" height="13.5" rx="2.25" stroke={color} strokeWidth="1.5" />
+          {checked && <path d={CHECKMARK_PATH} fill={color} />}
         </svg>
       </div>
-      <span style={{ fontFamily: "'SF Pro Display', sans-serif", fontSize: 15, color: "#707070", lineHeight: 1.196, whiteSpace: "nowrap" }}>
+      <span style={{ fontFamily: "'SF Pro Display', sans-serif", fontSize: 15, color, lineHeight: 1.196, whiteSpace: "nowrap" }}>
         {label}
       </span>
     </div>
@@ -491,8 +491,8 @@ export default function Home() {
         </span>
         {/* Checkboxes */}
         <div style={{ display: "flex", flexDirection: "column", gap: 5, marginBottom: 24 }}>
-          <CheckboxRow checked={false} label="Currently designing Folio" />
-          <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" />
+          <CheckboxRow checked={false} label="Currently designing Folio" color="#4a70bc" />
+          <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" color="#a2a2a2" />
         </div>
         {/* Divider */}
         <div style={{ width: 286, height: 1, background: "#D9D9D9" }} />
