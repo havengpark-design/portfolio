@@ -50,9 +50,19 @@ function CheckboxRow({ checked, label }: { checked: boolean; label: string }) {
 const CARD_SHADOW = "0px 4px 20.4px 3px rgba(0,0,0,0.06)";
 
 function PlaceholderCard() {
+  const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = cardRef.current!.getBoundingClientRect();
+    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
   return (
     <div
-      className="placeholder-card"
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setPos(null)}
       style={{
         background: "white",
         borderRadius: 17,
@@ -65,30 +75,33 @@ function PlaceholderCard() {
         alignItems: "center",
         justifyContent: "center",
         gap: 26,
-        cursor: "default",
+        cursor: "none",
       }}
     >
       {[0, 1, 2].map((i) => (
         <div key={i} style={{ width: 22, height: 22, borderRadius: "50%", background: "#D9D9D9" }} />
       ))}
-      {/* Hover tooltip */}
-      <div className="placeholder-tooltip" style={{
-        position: "absolute",
-        width: 315,
-        height: 97,
-        borderRadius: 16,
-        background: "#f3f3f3",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        opacity: 0,
-        transition: "opacity 0.25s ease",
-        pointerEvents: "none",
-      }}>
-        <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
-          Something beautiful is in making...
-        </span>
-      </div>
+      {pos && (
+        <div style={{
+          position: "absolute",
+          left: pos.x,
+          top: pos.y,
+          transform: "translate(-50%, -50%)",
+          width: 315,
+          height: 97,
+          borderRadius: 16,
+          background: "#f3f3f3",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          pointerEvents: "none",
+          zIndex: 10,
+        }}>
+          <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
+            Something beautiful is in making...
+          </span>
+        </div>
+      )}
     </div>
   );
 }
@@ -492,7 +505,7 @@ export default function Home() {
 
           {/* Left column */}
           <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
-            <div className="card-wrap"><PlaceholderCard /></div>
+            <PlaceholderCard />
             <div className="card-wrap"><JamsCard onClick={() => openDesignProject("jams")} /></div>
           </div>
 

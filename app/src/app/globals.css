@@ -49,10 +49,6 @@ body {
   z-index: 1;
 }
 
-.placeholder-card:hover .placeholder-tooltip {
-  opacity: 1;
-}
-
 .thumbnail {
   transform: scale(0.954);
   transform-origin: center center;
