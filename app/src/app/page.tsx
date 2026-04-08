@@ -77,7 +77,7 @@ function PlaceholderCard() {
         }}
       >
         {[0, 1, 2].map((i) => (
-          <div key={i} style={{ width: 22, height: 22, borderRadius: "50%", background: "#D9D9D9" }} />
+          <div key={i} className="dot-wave" style={{ width: 22, height: 22, borderRadius: "50%", background: "#D9D9D9", animationDelay: `${i * 0.2}s` }} />
         ))}
       </div>
       {viewportPos && (

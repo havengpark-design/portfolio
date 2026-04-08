@@ -49,6 +49,15 @@ body {
   z-index: 1;
 }
 
+@keyframes dot-wave {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-10px); }
+}
+
+.dot-wave {
+  animation: dot-wave 1.4s ease-in-out infinite;
+}
+
 .thumbnail {
   transform: scale(0.954);
   transform-origin: center center;
