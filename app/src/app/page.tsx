@@ -50,42 +50,41 @@ function CheckboxRow({ checked, label }: { checked: boolean; label: string }) {
 const CARD_SHADOW = "0px 4px 20.4px 3px rgba(0,0,0,0.06)";
 
 function PlaceholderCard() {
-  const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const [viewportPos, setViewportPos] = useState<{ x: number; y: number } | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = cardRef.current!.getBoundingClientRect();
-    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    setViewportPos({ x: e.clientX, y: e.clientY });
   };
 
   return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={() => setPos(null)}
-      style={{
-        background: "white",
-        borderRadius: 17,
-        boxShadow: CARD_SHADOW,
-        width: 677,
-        height: 910,
-        flexShrink: 0,
-        position: "relative",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 26,
-        cursor: "none",
-      }}
-    >
-      {[0, 1, 2].map((i) => (
-        <div key={i} style={{ width: 22, height: 22, borderRadius: "50%", background: "#D9D9D9" }} />
-      ))}
-      {pos && (
+    <>
+      <div
+        onMouseMove={handleMouseMove}
+        onMouseLeave={() => setViewportPos(null)}
+        style={{
+          background: "white",
+          borderRadius: 17,
+          boxShadow: CARD_SHADOW,
+          width: 677,
+          height: 910,
+          flexShrink: 0,
+          position: "relative",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 26,
+          cursor: "none",
+        }}
+      >
+        {[0, 1, 2].map((i) => (
+          <div key={i} style={{ width: 22, height: 22, borderRadius: "50%", background: "#D9D9D9" }} />
+        ))}
+      </div>
+      {viewportPos && (
         <div style={{
-          position: "absolute",
-          left: pos.x,
-          top: pos.y,
+          position: "fixed",
+          left: viewportPos.x,
+          top: viewportPos.y,
           transform: "translate(-50%, -50%)",
           width: 315,
           height: 97,
@@ -95,14 +94,14 @@ function PlaceholderCard() {
           alignItems: "center",
           justifyContent: "center",
           pointerEvents: "none",
-          zIndex: 10,
+          zIndex: 9999,
         }}>
           <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
             Something beautiful is in making...
           </span>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
