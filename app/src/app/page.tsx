@@ -530,7 +530,9 @@ function PeekPanel({
 
 /* ── Page ── */
 
-const DESIGN_WIDTH = 1723; // 1443px cards + 2×140px padding
+const DESIGN_WIDTH = 1723;        // 2-col: 1443px cards + 2×140px padding
+const MOBILE_DESIGN_WIDTH = 757;  // 1-col: 677px card + 2×40px padding
+const MOBILE_BREAKPOINT = 768;
 
 export default function Home() {
   const [openSection, setOpenSection] = useState<Section>(null);
@@ -538,18 +540,22 @@ export default function Home() {
   const [panelLeft, setPanelLeft] = useState(210);
   const [openProject, setOpenProject] = useState<string | null>(null);
   const [scale, setScale] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+  const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const update = () => {
-      setScale(Math.min(1, window.innerWidth / DESIGN_WIDTH));
+    const update = (width: number) => {
+      const mob = width < MOBILE_BREAKPOINT;
+      setIsMobile(mob);
+      setScale(Math.min(1, width / (mob ? MOBILE_DESIGN_WIDTH : DESIGN_WIDTH)));
       if (navLogoRef.current) {
         const rect = navLogoRef.current.getBoundingClientRect();
         setPanelLeft(rect.right + 20);
       }
     };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
+    const ro = new ResizeObserver(entries => update(entries[0].contentRect.width));
+    if (mainRef.current) ro.observe(mainRef.current);
+    return () => ro.disconnect();
   }, []);
 
   const openDesignProject = (key: string) => {
@@ -557,55 +563,50 @@ export default function Home() {
     setOpenProject(key);
   };
 
-  return (
-    <main style={{ background: "#FFFFFF", minHeight: "100vh" }}>
-      {/* Fixed design width, scaled down proportionally on smaller screens */}
-      <div style={{ width: DESIGN_WIDTH, margin: "0 auto", zoom: scale, paddingLeft: 140, paddingRight: 140, boxSizing: "border-box" }}>
-
-      {/* Identity header */}
-      <div style={{ paddingTop: 60, paddingBottom: 48 }}>
-        {/* Square portrait photo */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/logo.png"
-          alt="Haven Park"
-          style={{ width: 59, height: 60, borderRadius: 4, objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: 22, filter: "grayscale(100%)" }}
-        />
-        {/* Name — ref used to position peek panel */}
-        <span
-          ref={navLogoRef}
-          style={{ fontSize: 32, fontWeight: 500, color: "#494949", display: "block", marginBottom: 12, lineHeight: 1 }}
-        >
-          Haven Park
-        </span>
-        {/* Checkboxes */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 7, marginBottom: 34 }}>
-          <CheckboxRow checked={false} label="Currently designing Folio" color="#4a70bc" />
-          <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" color="#a2a2a2" />
-        </div>
-        {/* Divider */}
-        <div style={{ width: 336, height: 0.8, background: "rgba(38,36,33,0.11)" }} />
+  const identitySection = (
+    <div style={{ paddingTop: 60, paddingBottom: 48 }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/logo.png" alt="Haven Park" style={{ width: 59, height: 60, borderRadius: 4, objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: 22, filter: "grayscale(100%)" }} />
+      <span ref={navLogoRef} style={{ fontSize: 32, fontWeight: 500, color: "#494949", display: "block", marginBottom: 12, lineHeight: 1 }}>Haven Park</span>
+      <div style={{ display: "flex", flexDirection: "column", gap: 7, marginBottom: 34 }}>
+        <CheckboxRow checked={false} label="Currently designing Folio" color="#4a70bc" />
+        <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" color="#a2a2a2" />
       </div>
+      <div style={{ width: 336, height: 0.8, background: "rgba(38,36,33,0.11)" }} />
+    </div>
+  );
 
-      {/* 2-column card grid */}
-      <div style={{ paddingBottom: 120, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30 }}>
-        <div style={{ display: "flex", gap: 89, width: "fit-content" }}>
-
-          {/* Left column */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
+  return (
+    <main ref={mainRef} style={{ background: "#FFFFFF", minHeight: "100vh" }}>
+      {isMobile ? (
+        /* ── Mobile: single column, stacked ── */
+        <div style={{ width: MOBILE_DESIGN_WIDTH, margin: "0 auto", zoom: scale, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
+          {identitySection}
+          <div style={{ display: "flex", flexDirection: "column", gap: 67, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30, paddingBottom: 120 }}>
             <PlaceholderCard />
-            <div className="card-wrap"><JamsCard onClick={() => openDesignProject("jams")} /></div>
-          </div>
-
-          {/* Right column */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
             <div className="card-wrap"><MermoryCard onClick={() => openDesignProject("mermory")} /></div>
+            <div className="card-wrap"><JamsCard onClick={() => openDesignProject("jams")} /></div>
             <div className="card-wrap"><PorticoCard onClick={() => openDesignProject("portico")} /></div>
           </div>
-
         </div>
-      </div>
-      </div>{/* end centered wrapper */}
+      ) : (
+        /* ── Desktop: 2-column grid ── */
+        <div style={{ width: DESIGN_WIDTH, margin: "0 auto", zoom: scale, paddingLeft: 140, paddingRight: 140, boxSizing: "border-box" }}>
+          {identitySection}
+          <div style={{ paddingBottom: 120, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30 }}>
+            <div style={{ display: "flex", gap: 89, width: "fit-content" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
+                <PlaceholderCard />
+                <div className="card-wrap"><JamsCard onClick={() => openDesignProject("jams")} /></div>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
+                <div className="card-wrap"><MermoryCard onClick={() => openDesignProject("mermory")} /></div>
+                <div className="card-wrap"><PorticoCard onClick={() => openDesignProject("portico")} /></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Peek Panel */}
       <PeekPanel
