@@ -40,7 +40,7 @@ function CheckboxRow({ checked, label, color }: { checked: boolean; label: strin
           </svg>
         ) : (
           /* Unchecked: dashed circle */
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" className="dash-pulse">
             <path d="M6.36621 13.1895C6.73154 13.2617 7.11047 13.2998 7.5 13.2998V15C6.99894 15 6.50969 14.9492 6.03613 14.8555L6.36621 13.1895ZM8.96289 14.8555C8.48963 14.9491 8.00073 15 7.5 15V13.2998C7.88953 13.2998 8.26846 13.2617 8.63379 13.1895L8.96289 14.8555ZM2.67578 10.7217C3.09967 11.3548 3.64521 11.9003 4.27832 12.3242L3.33301 13.7354C2.51517 13.1877 1.81116 12.484 1.26367 11.666L2.67578 10.7217ZM13.7354 11.666C13.1878 12.484 12.484 13.1878 11.666 13.7354L10.7217 12.3242C11.3548 11.9003 11.9003 11.3548 12.3242 10.7217L13.7354 11.666ZM0 7.5C0 6.999 0.049863 6.50963 0.143555 6.03613L1.81055 6.36621C1.73827 6.73154 1.7002 7.11047 1.7002 7.5C1.7002 7.88953 1.73827 8.26846 1.81055 8.63379L0.143555 8.96289C0.0499839 8.48969 0 8.00066 0 7.5ZM15 7.5C15 8.00073 14.9491 8.48963 14.8555 8.96289L13.1895 8.63379C13.2617 8.26846 13.2998 7.88953 13.2998 7.5C13.2998 7.11047 13.2617 6.73154 13.1895 6.36621L14.8555 6.03613C14.9492 6.50969 15 6.99894 15 7.5ZM4.27832 2.67578C3.64521 3.09967 3.09967 3.64521 2.67578 4.27832L1.26367 3.33301C1.8112 2.5152 2.5152 1.8112 3.33301 1.26367L4.27832 2.67578ZM11.666 1.26367C12.484 1.81116 13.1877 2.51517 13.7354 3.33301L12.3242 4.27832C11.9003 3.64521 11.3548 3.09967 10.7217 2.67578L11.666 1.26367ZM7.5 0C8.00066 0 8.48969 0.0499839 8.96289 0.143555L8.63379 1.81055C8.26846 1.73827 7.88953 1.7002 7.5 1.7002C7.11047 1.7002 6.73154 1.73827 6.36621 1.81055L6.03613 0.143555C6.50963 0.049863 6.999 0 7.5 0Z" fill={color} />
           </svg>
         )}
@@ -56,8 +56,34 @@ function CheckboxRow({ checked, label, color }: { checked: boolean; label: strin
 
 const CARD_SHADOW = "0px 4px 20.4px 3px rgba(0,0,0,0.06)";
 
+const PILL_TEXT = "Something beautiful is in making...";
+
 function PlaceholderCard() {
   const [viewportPos, setViewportPos] = useState<{ x: number; y: number } | null>(null);
+  const [typedText, setTypedText] = useState("");
+  const [doneTyping, setDoneTyping] = useState(false);
+  const typingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const startTyping = () => {
+    if (typingRef.current) clearTimeout(typingRef.current);
+    setTypedText("");
+    setDoneTyping(false);
+    let i = 0;
+    const tick = () => {
+      i++;
+      setTypedText(PILL_TEXT.slice(0, i));
+      if (i < PILL_TEXT.length) {
+        typingRef.current = setTimeout(tick, 25);
+      } else {
+        setDoneTyping(true);
+      }
+    };
+    typingRef.current = setTimeout(tick, 25);
+  };
+
+  useEffect(() => () => { if (typingRef.current) clearTimeout(typingRef.current); }, []);
+
+  const handleMouseEnter = () => startTyping();
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setViewportPos({ x: e.clientX, y: e.clientY });
@@ -66,8 +92,9 @@ function PlaceholderCard() {
   return (
     <>
       <div
+        onMouseEnter={handleMouseEnter}
         onMouseMove={handleMouseMove}
-        onMouseLeave={() => setViewportPos(null)}
+        onMouseLeave={() => { setViewportPos(null); if (typingRef.current) clearTimeout(typingRef.current); }}
         style={{
           background: "white",
           borderRadius: 17,
@@ -104,7 +131,7 @@ function PlaceholderCard() {
           zIndex: 9999,
         }}>
           <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
-            Something beautiful is in making...
+            {typedText}<span className="blink-cursor" style={{ opacity: doneTyping ? undefined : 0 }}>|</span>
           </span>
         </div>
       )}

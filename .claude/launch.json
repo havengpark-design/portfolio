@@ -3,9 +3,8 @@
   "configurations": [
     {
       "name": "portfolio",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "cwd": "/Users/hvnpark/Library/Mobile Documents/com~apple~CloudDocs/portfolio code/app",
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": ["/tmp/portfolio-dev.sh"],
       "port": 3000
     }
   ]
