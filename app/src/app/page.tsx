@@ -96,10 +96,7 @@ function PlaceholderCard() {
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setViewportPos({ x: e.clientX, y: e.clientY });
-    if (phaseRef.current !== "interactive" || !cardRef.current) {
-      prevPos.current = { x: e.clientX, y: e.clientY };
-      return;
-    }
+    if (phaseRef.current !== "interactive" || !cardRef.current) return;
 
     const rect = cardRef.current.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
