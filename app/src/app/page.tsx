@@ -547,6 +547,7 @@ export default function Home() {
     const update = (width: number) => {
       const mob = width < MOBILE_BREAKPOINT;
       setIsMobile(mob);
+      // Mobile: scale single column (757px design). Desktop: scale card grid (1723px total with padding)
       setScale(Math.min(1, width / (mob ? MOBILE_DESIGN_WIDTH : DESIGN_WIDTH)));
       if (navLogoRef.current) {
         const rect = navLogoRef.current.getBoundingClientRect();
@@ -590,10 +591,15 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        /* ── Desktop: 2-column grid ── */
-        <div style={{ width: DESIGN_WIDTH, margin: "0 auto", zoom: scale, paddingLeft: 140, paddingRight: 140, boxSizing: "border-box" }}>
-          {identitySection}
-          <div style={{ paddingBottom: 120, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30 }}>
+        /* ── Desktop: identity unzoomed (fonts fixed), cards zoomed ── */
+        <>
+          {/* Identity — outside zoom so fonts stay full size; padding tracks card position */}
+          <div style={{ paddingLeft: "min(140px, 8.13vw)", paddingRight: "min(140px, 8.13vw)", maxWidth: DESIGN_WIDTH, margin: "0 auto", boxSizing: "border-box" }}>
+            {identitySection}
+          </div>
+
+          {/* Card grid — zoomed to scale proportionally */}
+          <div style={{ width: 1443, margin: "0 auto", zoom: scale, paddingBottom: 120, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30 }}>
             <div style={{ display: "flex", gap: 89, width: "fit-content" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
                 <PlaceholderCard />
@@ -605,7 +611,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {/* Peek Panel */}
