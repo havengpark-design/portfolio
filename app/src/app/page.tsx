@@ -57,25 +57,36 @@ function CheckboxRow({ checked, label, color }: { checked: boolean; label: strin
 const CARD_SHADOW = "0px 4px 20.4px 3px rgba(0,0,0,0.06)";
 
 const PILL_TEXT = "Something beautiful is in making...";
+const OUTER_ZONE = 0.75; // inner 75% = safe, outer 25% = reactive
 
 function PlaceholderCard() {
   const [viewportPos, setViewportPos] = useState<{ x: number; y: number } | null>(null);
-  const [typedText, setTypedText] = useState("");
-  const [doneTyping, setDoneTyping] = useState(false);
+  const [visibleChars, setVisibleChars] = useState(0);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const charsFloat = useRef(0);
   const typingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const phaseRef = useRef<"idle" | "typing" | "interactive">("idle");
+  const [phase, setPhase] = useState<"idle" | "typing" | "interactive">("idle");
+
+  const setPhaseSync = (p: "idle" | "typing" | "interactive") => {
+    phaseRef.current = p;
+    setPhase(p);
+  };
 
   const startTyping = () => {
     if (typingRef.current) clearTimeout(typingRef.current);
-    setTypedText("");
-    setDoneTyping(false);
+    setPhaseSync("typing");
+    charsFloat.current = 0;
+    setVisibleChars(0);
     let i = 0;
     const tick = () => {
       i++;
-      setTypedText(PILL_TEXT.slice(0, i));
+      charsFloat.current = i;
+      setVisibleChars(i);
       if (i < PILL_TEXT.length) {
         typingRef.current = setTimeout(tick, 25);
       } else {
-        setDoneTyping(true);
+        setPhaseSync("interactive");
       }
     };
     typingRef.current = setTimeout(tick, 25);
@@ -83,18 +94,58 @@ function PlaceholderCard() {
 
   useEffect(() => () => { if (typingRef.current) clearTimeout(typingRef.current); }, []);
 
-  const handleMouseEnter = () => startTyping();
-
   const handleMouseMove = (e: React.MouseEvent) => {
     setViewportPos({ x: e.clientX, y: e.clientY });
+    if (phaseRef.current !== "interactive" || !cardRef.current) {
+      prevPos.current = { x: e.clientX, y: e.clientY };
+      return;
+    }
+
+    const rect = cardRef.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const W = rect.width / 2;
+    const H = rect.height / 2;
+
+    // Normalized rectangular distance from center to edge (0=center, 1=edge)
+    const ex = e.clientX - cx;
+    const ey = e.clientY - cy;
+    const d = Math.sqrt(ex * ex + ey * ey) || 0;
+    let normalizedDist = 0;
+    if (d > 0) {
+      const ac = Math.abs(ex) / d;
+      const as_ = Math.abs(ey) / d;
+      const dMax = Math.min(ac > 0 ? W / ac : Infinity, as_ > 0 ? H / as_ : Infinity);
+      normalizedDist = Math.min(d / dMax, 1);
+    }
+
+    if (normalizedDist > OUTER_ZONE) {
+      // Outer 25%: linearly map position → chars (full at boundary, 0 at edge)
+      const progress = (normalizedDist - OUTER_ZONE) / (1 - OUTER_ZONE); // 0→1
+      charsFloat.current = (1 - progress) * PILL_TEXT.length;
+    } else {
+      // Inner 75%: always full
+      charsFloat.current = PILL_TEXT.length;
+    }
+
+    setVisibleChars(Math.round(charsFloat.current));
+  };
+
+  const handleMouseLeave = () => {
+    setViewportPos(null);
+    charsFloat.current = 0;
+    setVisibleChars(0);
+    setPhaseSync("idle");
+    if (typingRef.current) clearTimeout(typingRef.current);
   };
 
   return (
     <>
       <div
-        onMouseEnter={handleMouseEnter}
+        ref={cardRef}
+        onMouseEnter={startTyping}
         onMouseMove={handleMouseMove}
-        onMouseLeave={() => { setViewportPos(null); if (typingRef.current) clearTimeout(typingRef.current); }}
+        onMouseLeave={handleMouseLeave}
         style={{
           background: "white",
           borderRadius: 17,
@@ -114,7 +165,7 @@ function PlaceholderCard() {
           <div key={i} className="dot-wave" style={{ width: 22, height: 22, borderRadius: "50%", background: "#D9D9D9", animationDelay: `${i * 0.2}s` }} />
         ))}
       </div>
-      {viewportPos && (
+      {viewportPos && phase !== "idle" && (
         <div style={{
           position: "fixed",
           left: viewportPos.x,
@@ -131,7 +182,7 @@ function PlaceholderCard() {
           zIndex: 9999,
         }}>
           <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
-            {typedText}<span className="blink-cursor" style={{ opacity: doneTyping ? undefined : 0 }}>|</span>
+            {PILL_TEXT.slice(0, visibleChars)}<span className="blink-cursor" style={{ opacity: phase === "interactive" ? undefined : 0 }}>|</span>
           </span>
         </div>
       )}
