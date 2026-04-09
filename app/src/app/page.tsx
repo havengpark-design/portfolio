@@ -599,7 +599,8 @@ export default function Home() {
           </div>
 
           {/* Card grid — zoomed to scale proportionally */}
-          <div style={{ width: 1443, margin: "0 auto", zoom: scale, paddingBottom: 120, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30 }}>
+          <div style={{ width: 1443, margin: "0 auto", zoom: scale }}>
+          <div style={{ paddingBottom: 120, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30 }}>
             <div style={{ display: "flex", gap: 89, width: "fit-content" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
                 <PlaceholderCard />
@@ -611,6 +612,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          </div>{/* end zoom wrapper */}
         </>
       )}
 
