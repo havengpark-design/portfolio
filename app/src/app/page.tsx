@@ -530,22 +530,26 @@ function PeekPanel({
 
 /* ── Page ── */
 
+const DESIGN_WIDTH = 1723; // 1443px cards + 2×140px padding
+
 export default function Home() {
   const [openSection, setOpenSection] = useState<Section>(null);
   const navLogoRef = useRef<HTMLSpanElement>(null);
   const [panelLeft, setPanelLeft] = useState(210);
   const [openProject, setOpenProject] = useState<string | null>(null);
+  const [scale, setScale] = useState(1);
 
   useEffect(() => {
-    const measure = () => {
+    const update = () => {
+      setScale(Math.min(1, window.innerWidth / DESIGN_WIDTH));
       if (navLogoRef.current) {
         const rect = navLogoRef.current.getBoundingClientRect();
         setPanelLeft(rect.right + 20);
       }
     };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
   const openDesignProject = (key: string) => {
@@ -555,8 +559,8 @@ export default function Home() {
 
   return (
     <main style={{ background: "#FFFFFF", minHeight: "100vh" }}>
-      {/* Centered content wrapper — max 1723px (cards 1443px + 2×140px padding) */}
-      <div style={{ maxWidth: 1723, margin: "0 auto", paddingLeft: "clamp(24px, 9.7vw, 140px)", paddingRight: "clamp(24px, 9.7vw, 140px)", boxSizing: "border-box" }}>
+      {/* Fixed design width, scaled down proportionally on smaller screens */}
+      <div style={{ width: DESIGN_WIDTH, margin: "0 auto", zoom: scale, paddingLeft: 140, paddingRight: 140, boxSizing: "border-box" }}>
 
       {/* Identity header */}
       <div style={{ paddingTop: 60, paddingBottom: 48 }}>
@@ -584,7 +588,7 @@ export default function Home() {
       </div>
 
       {/* 2-column card grid */}
-      <div style={{ paddingBottom: 120, overflowX: "auto", paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30 }}>
+      <div style={{ paddingBottom: 120, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30 }}>
         <div style={{ display: "flex", gap: 89, width: "fit-content" }}>
 
           {/* Left column */}
