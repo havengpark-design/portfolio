@@ -555,8 +555,11 @@ export default function Home() {
 
   return (
     <main style={{ background: "#FFFFFF", minHeight: "100vh" }}>
-      {/* Identity header — matches Figma MacBookPro16 layout */}
-      <div style={{ paddingLeft: 144, paddingTop: 60, paddingBottom: 48 }}>
+      {/* Centered content wrapper — max 1723px (cards 1443px + 2×140px padding) */}
+      <div style={{ maxWidth: 1723, margin: "0 auto", paddingLeft: "clamp(24px, 9.7vw, 140px)", paddingRight: "clamp(24px, 9.7vw, 140px)", boxSizing: "border-box" }}>
+
+      {/* Identity header */}
+      <div style={{ paddingTop: 60, paddingBottom: 48 }}>
         {/* Square portrait photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -581,7 +584,7 @@ export default function Home() {
       </div>
 
       {/* 2-column card grid */}
-      <div style={{ paddingLeft: 141, paddingBottom: 120, overflowX: "auto", paddingTop: 30, marginTop: -30 }}>
+      <div style={{ paddingBottom: 120, overflowX: "auto", paddingTop: 30, marginTop: -30 }}>
         <div style={{ display: "flex", gap: 89, width: "fit-content" }}>
 
           {/* Left column */}
@@ -598,6 +601,7 @@ export default function Home() {
 
         </div>
       </div>
+      </div>{/* end centered wrapper */}
 
       {/* Peek Panel */}
       <PeekPanel
