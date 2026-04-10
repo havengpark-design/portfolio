@@ -571,6 +571,10 @@ function MermoryCaseStudy() {
 
 type SheetSnap = "partial" | "full";
 
+// Transition string used both in the style prop and restored after drag
+const SHEET_TRANSITION =
+  "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-radius 0.35s ease";
+
 function BottomSheet({
   open,
   onClose,
@@ -581,16 +585,17 @@ function BottomSheet({
   children: React.ReactNode;
 }) {
   const [snap, setSnap] = useState<SheetSnap>("partial");
-  const [isDragging, setIsDragging] = useState(false);
   const sheetRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
 
+  // Reset to partial each time the sheet opens
   useEffect(() => {
     if (open) setSnap("partial");
   }, [open]);
 
-  // Click-outside to close
+  // Click-outside to close (pointer-events: none on dim overlay lets clicks reach the page,
+  // so we detect outside clicks via document listener)
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
@@ -598,6 +603,7 @@ function BottomSheet({
         onCloseRef.current();
       }
     };
+    // Delay so the opening click that fired this effect doesn't immediately close the sheet
     const timer = setTimeout(() => document.addEventListener("click", handler), 80);
     return () => {
       clearTimeout(timer);
@@ -605,35 +611,42 @@ function BottomSheet({
     };
   }, [open]);
 
-  // Live drag — follows finger/cursor in real time, snaps on release
+  // Live drag — no React state during drag (avoids re-render fights with direct DOM writes)
   const startDrag = (startClientY: number) => {
     const sheet = sheetRef.current;
     if (!sheet) return;
 
     const startH = sheet.getBoundingClientRect().height;
+    let hasMoved = false;
+
+    // Kill CSS transition so height tracks the finger immediately
     sheet.style.transition = "none";
-    setIsDragging(true);
 
     const onMove = (e: MouseEvent | TouchEvent) => {
-      const currentY = "touches" in e ? (e as TouchEvent).touches[0].clientY : (e as MouseEvent).clientY;
-      const delta = startClientY - currentY; // positive = dragged up
+      const currentY =
+        "touches" in e
+          ? (e as TouchEvent).touches[0].clientY
+          : (e as MouseEvent).clientY;
+      const delta = startClientY - currentY; // positive = pulled up
+      if (Math.abs(delta) > 4) hasMoved = true;
       const newH = Math.max(0, Math.min(window.innerHeight, startH + delta));
-      if (sheet) sheet.style.height = `${newH}px`;
+      sheet.style.height = `${newH}px`;
     };
 
     const onUp = () => {
-      if (!sheet) return;
       const finalH = sheet.getBoundingClientRect().height;
       const frac = finalH / window.innerHeight;
 
-      // Clear inline height so CSS snap takes over (with transition re-enabled)
+      // Clear inline height, explicitly restore transition so snap animates
       sheet.style.height = "";
-      sheet.style.transition = "";
-      setIsDragging(false);
+      sheet.style.transition = SHEET_TRANSITION;
 
-      if (frac > 0.89)      setSnap("full");
-      else if (frac > 0.35) setSnap("partial");
-      else                  onCloseRef.current();
+      // Only snap/close if the user actually dragged; plain clicks do nothing
+      if (hasMoved) {
+        if (frac > 0.89)      setSnap("full");
+        else if (frac > 0.35) setSnap("partial");
+        else                  onCloseRef.current();
+      }
 
       document.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseup", onUp);
@@ -649,7 +662,7 @@ function BottomSheet({
 
   return (
     <>
-      {/* Dim overlay — pointer-events: none so page remains scrollable */}
+      {/* Dim overlay — pointer-events: none so the page underneath stays scrollable */}
       <div
         style={{
           position: "fixed",
@@ -673,18 +686,16 @@ function BottomSheet({
           borderRadius: snap === "full" ? 0 : "20px 20px 0 0",
           zIndex: 201,
           transform: open ? "translateY(0)" : "translateY(105%)",
-          transition: isDragging
-            ? "none"
-            : "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-radius 0.35s ease",
+          transition: SHEET_TRANSITION,
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
           boxShadow: "0 -4px 40px rgba(0,0,0,0.1)",
         }}
       >
-        {/* Drag handle — no border line */}
+        {/* Drag handle */}
         <div
-          onMouseDown={(e) => { e.stopPropagation(); startDrag(e.clientY); }}
+          onMouseDown={(e) => { e.preventDefault(); startDrag(e.clientY); }}
           onTouchStart={(e) => startDrag(e.touches[0].clientY)}
           style={{
             flexShrink: 0,
@@ -692,7 +703,7 @@ function BottomSheet({
             alignItems: "center",
             justifyContent: "center",
             height: 44,
-            cursor: isDragging ? "grabbing" : "grab",
+            cursor: "grab",
             userSelect: "none",
           }}
         >
