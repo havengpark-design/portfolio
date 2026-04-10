@@ -581,13 +581,11 @@ function BottomSheet({
   children: React.ReactNode;
 }) {
   const [snap, setSnap] = useState<SheetSnap>("partial");
+  const [isDragging, setIsDragging] = useState(false);
   const sheetRef = useRef<HTMLDivElement>(null);
-  const dragStartY = useRef<number | null>(null);
-  const dragStartSnap = useRef<SheetSnap>("partial");
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
 
-  // Reset to partial whenever sheet opens
   useEffect(() => {
     if (open) setSnap("partial");
   }, [open]);
@@ -600,7 +598,6 @@ function BottomSheet({
         onCloseRef.current();
       }
     };
-    // Delay slightly so the opening click doesn't immediately close
     const timer = setTimeout(() => document.addEventListener("click", handler), 80);
     return () => {
       clearTimeout(timer);
@@ -608,41 +605,46 @@ function BottomSheet({
     };
   }, [open]);
 
-  // Mouse drag on handle
-  const handleDragStart = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    dragStartY.current = e.clientY;
-    dragStartSnap.current = snap;
-    const onUp = (upE: MouseEvent) => {
-      if (dragStartY.current !== null) {
-        const delta = dragStartY.current - upE.clientY; // + = dragged up
-        if (delta > 40) setSnap("full");
-        else if (delta < -40) {
-          if (dragStartSnap.current === "full") setSnap("partial");
-          else onCloseRef.current();
-        }
-        dragStartY.current = null;
-      }
-      document.removeEventListener("mouseup", onUp);
-    };
-    document.addEventListener("mouseup", onUp);
-  };
+  // Live drag — follows finger/cursor in real time, snaps on release
+  const startDrag = (startClientY: number) => {
+    const sheet = sheetRef.current;
+    if (!sheet) return;
 
-  // Touch drag on handle
-  const handleTouchStart = (e: React.TouchEvent) => {
-    dragStartY.current = e.touches[0].clientY;
-    dragStartSnap.current = snap;
-  };
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (dragStartY.current !== null) {
-      const delta = dragStartY.current - e.changedTouches[0].clientY;
-      if (delta > 40) setSnap("full");
-      else if (delta < -40) {
-        if (dragStartSnap.current === "full") setSnap("partial");
-        else onCloseRef.current();
-      }
-      dragStartY.current = null;
-    }
+    const startH = sheet.getBoundingClientRect().height;
+    sheet.style.transition = "none";
+    setIsDragging(true);
+
+    const onMove = (e: MouseEvent | TouchEvent) => {
+      const currentY = "touches" in e ? (e as TouchEvent).touches[0].clientY : (e as MouseEvent).clientY;
+      const delta = startClientY - currentY; // positive = dragged up
+      const newH = Math.max(0, Math.min(window.innerHeight, startH + delta));
+      if (sheet) sheet.style.height = `${newH}px`;
+    };
+
+    const onUp = () => {
+      if (!sheet) return;
+      const finalH = sheet.getBoundingClientRect().height;
+      const frac = finalH / window.innerHeight;
+
+      // Clear inline height so CSS snap takes over (with transition re-enabled)
+      sheet.style.height = "";
+      sheet.style.transition = "";
+      setIsDragging(false);
+
+      if (frac > 0.89)      setSnap("full");
+      else if (frac > 0.35) setSnap("partial");
+      else                  onCloseRef.current();
+
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseup", onUp);
+      document.removeEventListener("touchmove", onMove as EventListener);
+      document.removeEventListener("touchend", onUp);
+    };
+
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", onUp);
+    document.addEventListener("touchmove", onMove as EventListener, { passive: false });
+    document.addEventListener("touchend", onUp);
   };
 
   return (
@@ -671,27 +673,27 @@ function BottomSheet({
           borderRadius: snap === "full" ? 0 : "20px 20px 0 0",
           zIndex: 201,
           transform: open ? "translateY(0)" : "translateY(105%)",
-          transition: "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-radius 0.35s ease",
+          transition: isDragging
+            ? "none"
+            : "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-radius 0.35s ease",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
           boxShadow: "0 -4px 40px rgba(0,0,0,0.1)",
         }}
       >
-        {/* Drag handle */}
+        {/* Drag handle — no border line */}
         <div
-          onMouseDown={handleDragStart}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
+          onMouseDown={(e) => { e.stopPropagation(); startDrag(e.clientY); }}
+          onTouchStart={(e) => startDrag(e.touches[0].clientY)}
           style={{
             flexShrink: 0,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             height: 44,
-            cursor: "grab",
+            cursor: isDragging ? "grabbing" : "grab",
             userSelect: "none",
-            borderBottom: "1px solid rgba(38,36,33,0.06)",
           }}
         >
           <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(0,0,0,0.15)" }} />
