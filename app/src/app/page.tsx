@@ -531,7 +531,7 @@ function MermoryCaseStudy() {
           </div>
           <div style={{ position: "absolute", left: 295.5, top: 579.2, width: 459, height: 137 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/mermory/case-study/inviteFriends1.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
+            <img alt="" src="/Design/mermory/case-study/inviteFriends1_collage.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
           </div>
           <div style={{ position: "absolute", left: 25.5, top: 408.2, width: 247, height: 240 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
