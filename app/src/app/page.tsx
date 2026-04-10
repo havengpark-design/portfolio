@@ -457,7 +457,7 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 1: Create menu ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 27 }}>
-          <div style={{ background: "black", borderRadius: 12, padding: 100 }}>
+          <div style={{ background: "black", borderRadius: 12, padding: "25%" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/importflow.png" style={{ width: "100%", display: "block", borderRadius: 18, pointerEvents: "none" }} />
           </div>
@@ -469,7 +469,7 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 2: Explore banners ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <div style={{ background: "black", borderRadius: 12, padding: 100, display: "flex", flexDirection: "column", gap: 20 }}>
+          <div style={{ background: "black", borderRadius: 12, padding: "25%", display: "flex", flexDirection: "column", gap: 20 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/explore.png" style={{ width: "100%", display: "block", borderRadius: 16, pointerEvents: "none" }} />
             <div style={{ display: "flex", gap: 20 }}>
@@ -487,7 +487,7 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 3: Creator Studio exit flow ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <div style={{ background: "black", borderRadius: 12, padding: 100 }}>
+          <div style={{ background: "black", borderRadius: 12, padding: "25%" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/creatorStudioExitFlow.png" style={{ width: "100%", display: "block", borderRadius: 25, pointerEvents: "none" }} />
           </div>
@@ -499,7 +499,7 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 4: Marketing page ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <div style={{ background: "black", borderRadius: 12, padding: 100, display: "flex", gap: 20, alignItems: "center" }}>
+          <div style={{ background: "black", borderRadius: 12, padding: "25%", display: "flex", gap: 20, alignItems: "center" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/marketingPageBefore.png" style={{ flex: 1, width: 0, display: "block", borderRadius: 14, objectFit: "cover", pointerEvents: "none" }} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
