@@ -393,6 +393,318 @@ function PorticoContent() {
   );
 }
 
+/* ── Mermory Case Study (Figma export, ported to inline styles) ── */
+
+const CS_BODY: React.CSSProperties = {
+  fontFamily: "-apple-system, 'SF Pro Rounded', sans-serif",
+  fontWeight: 300,
+  fontSize: 20,
+  lineHeight: "32px",
+};
+const CS_LABEL: React.CSSProperties = {
+  fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
+  fontWeight: 400,
+  fontSize: 16,
+};
+const CS_W = 793; // content column width (matches Figma)
+
+function MermoryCaseStudy() {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 120, paddingBottom: 150, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
+      <div style={{ width: "100%", maxWidth: CS_W, display: "flex", flexDirection: "column", gap: 110 }}>
+
+        {/* ─── Header ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 56 }}>
+          {/* Meta row */}
+          <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>Product Design</span>
+            <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#a2a2a2", flexShrink: 0 }} />
+            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>12 months (2025)</span>
+          </div>
+          {/* Title + subtitle */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
+            <h1 style={{ fontFamily: "-apple-system, 'SF Pro', sans-serif", fontWeight: 590, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Mermory</h1>
+            <p style={{ ...CS_BODY, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0, whiteSpace: "nowrap" }}>Flashcards made for creativity.</p>
+          </div>
+          {/* Divider */}
+          <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
+          {/* Metadata 4-col */}
+          <div style={{ display: "flex", gap: 100, flexWrap: "wrap" }}>
+            {([["Role", "Product Designer"], ["Timeline", "12 months (2025)"], ["Tools", "Figma"], ["Team", "Designers & Engineers"]] as const).map(([l, v]) => (
+              <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px" }}>{l}</span>
+                <span style={{ ...CS_BODY, fontSize: 20, lineHeight: "30px", color: "#262421" }}>{v}</span>
+              </div>
+            ))}
+          </div>
+          {/* Hero card */}
+          <div style={{ background: "white", borderRadius: 23, boxShadow: "0px 4px 24.9px 3px rgba(0,0,0,0.09)", height: 600, overflow: "hidden", position: "relative" }}>
+            <div style={{ position: "absolute", left: 0, top: 71, width: 974, height: 609 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="Mermory laptop mockup" src="/Design/mermory/case-study/laptopmockv2.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
+            </div>
+          </div>
+        </div>
+
+        {/* ─── Overview ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            As<strong style={{ fontWeight: 500 }}> one of 3 product designers</strong> of Mermory, I got to design an AI-powered flashcard platform that gave students creative autonomy over how they study. Unlike Quizlet or Anki, Mermory let users personalize their cards with stickers, themes, and design elements through a Creator Studio—while maintaining industry-standard learning science through FSRS spaced repetition.
+          </p>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>With the nature of the team size, I got to work on lots of different projects as you can see below:</p>
+        </div>
+
+        {/* ─── Section 1: Create menu ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 27 }}>
+          <div style={{ background: "black", height: 924, borderRadius: 12, position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", left: "calc(50% - 0.5px)", top: "14.2%", bottom: "14.26%", transform: "translateX(-50%)", aspectRatio: "2880 / 2154", borderRadius: 18, overflow: "hidden" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/mermory/case-study/importflow.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
+            </div>
+          </div>
+          <p style={{ ...CS_BODY, margin: 0 }}>
+            <strong style={{ fontWeight: 500, color: "black" }}>I designed & shipped the "Create" menu pop up. </strong>
+            <span style={{ color: "#5c5b59" }}>The users can start building their flashcards using the Creator Studio, add terms & definitions, or import a file. </span>
+          </p>
+        </div>
+
+        {/* ─── Section 2: Explore banners ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+          <div style={{ background: "black", height: 944, borderRadius: 12, position: "relative", overflow: "hidden" }}>
+            {/* Explore */}
+            <div style={{ position: "absolute", left: "calc(50% - 0.5px)", top: "12.15%", bottom: "33.08%", transform: "translateX(-50%)", aspectRatio: "1021 / 517", borderRadius: 16, overflow: "hidden" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/mermory/case-study/explore.png" style={{ position: "absolute", height: "127.66%", left: "-0.03%", top: "-4.06%", width: "100.07%", maxWidth: "none", pointerEvents: "none" }} />
+            </div>
+            {/* Invite Friends 1 */}
+            <div style={{ position: "absolute", left: "8.39%", right: "51.38%", top: "calc(50% + 282.2px)", transform: "translateY(-50%)", aspectRatio: "494 / 147", borderRadius: 7, overflow: "hidden" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/mermory/case-study/inviteFriends1.png" style={{ position: "absolute", height: "100.68%", left: "-0.28%", top: "-0.68%", width: "100.35%", maxWidth: "none", pointerEvents: "none" }} />
+            </div>
+            {/* Invite Friends 2 */}
+            <div style={{ position: "absolute", left: "calc(50% + 263px)", top: "72.11%", bottom: "12.32%", transform: "translateX(-50%)", aspectRatio: "494 / 147", borderRadius: 7, overflow: "hidden" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/mermory/case-study/inviteFriends2.png" style={{ position: "absolute", height: "100.68%", left: "-0.28%", top: "-0.68%", width: "100.35%", maxWidth: "none", pointerEvents: "none" }} />
+            </div>
+          </div>
+          <p style={{ ...CS_BODY, margin: 0 }}>
+            <strong style={{ fontWeight: 500, color: "black" }}>I designed the promotional banners for the explore page. </strong>
+            <span style={{ color: "#5c5b59" }}>The banners served to market Mermory's latest features.</span>
+          </p>
+        </div>
+
+        {/* ─── Section 3: Creator Studio exit flow ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+          <div style={{ background: "black", height: 881, borderRadius: 12, position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", left: "12.95%", right: "13.03%", top: "calc(50% - 0.8px)", transform: "translateY(-50%)", aspectRatio: "1440 / 1152", borderRadius: 25, overflow: "hidden" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/mermory/case-study/creatorStudioExitFlow.png" style={{ position: "absolute", height: "104.69%", left: 0, top: "-4.69%", width: "100%", maxWidth: "none", pointerEvents: "none" }} />
+            </div>
+          </div>
+          <p style={{ ...CS_BODY, margin: 0 }}>
+            <strong style={{ fontWeight: 500, color: "black" }}>I designed the flow to exit out of the Creator Studio. </strong>
+            <span style={{ color: "#5c5b59" }}>The users have the choice to either go to the Library or start learning the flashcard they made.</span>
+          </p>
+        </div>
+
+        {/* ─── Section 4: Marketing page ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+          <div style={{ background: "black", height: 776, borderRadius: 12, position: "relative", overflow: "hidden" }}>
+            {/* Before */}
+            <div style={{ position: "absolute", left: "10.52%", right: "56.12%", top: "calc(50% - 11.3px)", transform: "translateY(-50%)", aspectRatio: "722 / 649", borderRadius: 14, overflow: "hidden" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/mermory/case-study/marketingPageBefore.png" style={{ position: "absolute", height: "315.56%", left: 0, top: 0, width: "100%", maxWidth: "none", pointerEvents: "none" }} />
+            </div>
+            {/* After */}
+            <div style={{ position: "absolute", left: "48.42%", right: "5.12%", top: "calc(50% - 10.8px)", transform: "translateY(-50%)", aspectRatio: "2096 / 1396", borderRadius: 15, overflow: "hidden" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/mermory/case-study/marketingPageAfter.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
+            </div>
+          </div>
+          <p style={{ ...CS_BODY, fontWeight: 500, color: "black", margin: 0 }}>I redesigned the hero section of the landing page to be in horizontal alignment than vertical.</p>
+        </div>
+
+        {/* ─── Design Language ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#494949" }}>Design Language:</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>My vision for Mermory was to support users' creative autonomy. The design language was built around warmth and comfort, a space where creativity could thrive.</p>
+        </div>
+
+        {/* ─── Design collage ─── */}
+        <div style={{ width: 780, height: 748, position: "relative", flexShrink: 0, alignSelf: "center" }}>
+          <div style={{ position: "absolute", background: "black", borderRadius: 29, inset: 0 }} />
+          <div style={{ position: "absolute", left: 25.5, top: 60.2, width: 244, height: 304 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/mermory/case-study/group427319104.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
+          </div>
+          <div style={{ position: "absolute", left: 291.5, top: 25.2, width: 463, height: 218 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/mermory/case-study/importContainer.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
+          </div>
+          <div style={{ position: "absolute", left: 295.5, top: 271.2, width: 459, height: 280, borderRadius: 18, overflow: "hidden" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/mermory/case-study/justKmeepStudying.png" style={{ position: "absolute", height: "100%", left: "-0.1%", top: 0, width: "100.2%", maxWidth: "none", pointerEvents: "none" }} />
+          </div>
+          <div style={{ position: "absolute", left: 295.5, top: 579.2, width: 459, height: 137 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/mermory/case-study/inviteFriends1.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
+          </div>
+          <div style={{ position: "absolute", left: 25.5, top: 408.2, width: 247, height: 240 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/mermory/case-study/createFNew.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
+          </div>
+        </div>
+
+        {/* ─── Footer ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+          <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
+          <p style={{ ...CS_BODY, color: "#494949", margin: 0 }}>For more work samples, feel free to contact me at gaeunpark@g.ucla.edu.</p>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+/* ── Bottom Sheet ── */
+
+type SheetSnap = "partial" | "full";
+
+function BottomSheet({
+  open,
+  onClose,
+  children,
+}: {
+  open: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}) {
+  const [snap, setSnap] = useState<SheetSnap>("partial");
+  const sheetRef = useRef<HTMLDivElement>(null);
+  const dragStartY = useRef<number | null>(null);
+  const dragStartSnap = useRef<SheetSnap>("partial");
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+
+  // Reset to partial whenever sheet opens
+  useEffect(() => {
+    if (open) setSnap("partial");
+  }, [open]);
+
+  // Click-outside to close
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (sheetRef.current && !sheetRef.current.contains(e.target as Node)) {
+        onCloseRef.current();
+      }
+    };
+    // Delay slightly so the opening click doesn't immediately close
+    const timer = setTimeout(() => document.addEventListener("click", handler), 80);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("click", handler);
+    };
+  }, [open]);
+
+  // Mouse drag on handle
+  const handleDragStart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    dragStartY.current = e.clientY;
+    dragStartSnap.current = snap;
+    const onUp = (upE: MouseEvent) => {
+      if (dragStartY.current !== null) {
+        const delta = dragStartY.current - upE.clientY; // + = dragged up
+        if (delta > 40) setSnap("full");
+        else if (delta < -40) {
+          if (dragStartSnap.current === "full") setSnap("partial");
+          else onCloseRef.current();
+        }
+        dragStartY.current = null;
+      }
+      document.removeEventListener("mouseup", onUp);
+    };
+    document.addEventListener("mouseup", onUp);
+  };
+
+  // Touch drag on handle
+  const handleTouchStart = (e: React.TouchEvent) => {
+    dragStartY.current = e.touches[0].clientY;
+    dragStartSnap.current = snap;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (dragStartY.current !== null) {
+      const delta = dragStartY.current - e.changedTouches[0].clientY;
+      if (delta > 40) setSnap("full");
+      else if (delta < -40) {
+        if (dragStartSnap.current === "full") setSnap("partial");
+        else onCloseRef.current();
+      }
+      dragStartY.current = null;
+    }
+  };
+
+  return (
+    <>
+      {/* Dim overlay — pointer-events: none so page remains scrollable */}
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 200,
+          background: open ? "rgba(0,0,0,0.4)" : "transparent",
+          pointerEvents: "none",
+          transition: "background 0.4s ease",
+        }}
+      />
+      {/* Sheet */}
+      <div
+        ref={sheetRef}
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: snap === "full" ? "100vh" : "78vh",
+          background: "#FFFFFF",
+          borderRadius: snap === "full" ? 0 : "20px 20px 0 0",
+          zIndex: 201,
+          transform: open ? "translateY(0)" : "translateY(105%)",
+          transition: "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-radius 0.35s ease",
+          display: "flex",
+          flexDirection: "column",
+          overflow: "hidden",
+          boxShadow: "0 -4px 40px rgba(0,0,0,0.1)",
+        }}
+      >
+        {/* Drag handle */}
+        <div
+          onMouseDown={handleDragStart}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          style={{
+            flexShrink: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: 44,
+            cursor: "grab",
+            userSelect: "none",
+            borderBottom: "1px solid rgba(38,36,33,0.06)",
+          }}
+        >
+          <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(0,0,0,0.15)" }} />
+        </div>
+        {/* Scrollable content */}
+        <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
+          {children}
+        </div>
+      </div>
+    </>
+  );
+}
+
 /* ── Peek Panel ── */
 
 function PeekPanel({
@@ -536,6 +848,7 @@ const MOBILE_BREAKPOINT = 768;
 
 export default function Home() {
   const [openSection, setOpenSection] = useState<Section>(null);
+  const [openSheet, setOpenSheet] = useState<string | null>(null);
   const navLogoRef = useRef<HTMLSpanElement>(null);
   const [panelLeft, setPanelLeft] = useState(210);
   const [openProject, setOpenProject] = useState<string | null>(null);
@@ -560,8 +873,7 @@ export default function Home() {
   }, []);
 
   const openDesignProject = (key: string) => {
-    setOpenSection("design");
-    setOpenProject(key);
+    setOpenSheet(key);
   };
 
   const identitySection = (
@@ -616,7 +928,7 @@ export default function Home() {
         </>
       )}
 
-      {/* Peek Panel */}
+      {/* Peek Panel — kept for section browsing (art / storytelling) */}
       <PeekPanel
         open={openSection !== null}
         onClose={() => { setOpenSection(null); setOpenProject(null); }}
@@ -625,6 +937,13 @@ export default function Home() {
         setOpenProject={setOpenProject}
         panelLeft={panelLeft}
       />
+
+      {/* Bottom Sheet — slides up from bottom when a project card is clicked */}
+      <BottomSheet open={openSheet !== null} onClose={() => setOpenSheet(null)}>
+        {openSheet === "mermory" && <MermoryCaseStudy />}
+        {openSheet === "jams"    && <JamsContent />}
+        {openSheet === "portico" && <PorticoContent />}
+      </BottomSheet>
     </main>
   );
 }
