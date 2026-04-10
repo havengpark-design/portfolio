@@ -429,7 +429,7 @@ function MermoryCaseStudy() {
           {/* Divider */}
           <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
           {/* Metadata 4-col */}
-          <div style={{ display: "flex", gap: 100, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 100 }}>
             {([["Role", "Product Designer"], ["Timeline", "12 months (2025)"], ["Tools", "Figma"], ["Team", "Designers & Engineers"]] as const).map(([l, v]) => (
               <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                 <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px" }}>{l}</span>
