@@ -32,20 +32,20 @@ const CHECKMARK_PATH = "M4.99324 8.4882L3.33633 6.83247C3.24705 6.74325 3.12596 
 function CheckboxRow({ checked, label, color }: { checked: boolean; label: string; color: string }) {
   return (
     <div style={{ display: "flex", gap: 9, alignItems: "center" }}>
-      <div style={{ width: 15, height: 15, flexShrink: 0 }}>
+      <div style={{ width: 19, height: 19, flexShrink: 0 }}>
         {checked ? (
           /* Checked: plain checkmark, no box */
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <svg width="19" height="19" viewBox="0 0 15 15" fill="none">
             <path d="M2.5 7.5L6 11L12.5 4" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         ) : (
           /* Unchecked: dashed circle */
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" className="dash-pulse">
+          <svg width="19" height="19" viewBox="0 0 15 15" fill="none" className="dash-pulse">
             <path d="M6.36621 13.1895C6.73154 13.2617 7.11047 13.2998 7.5 13.2998V15C6.99894 15 6.50969 14.9492 6.03613 14.8555L6.36621 13.1895ZM8.96289 14.8555C8.48963 14.9491 8.00073 15 7.5 15V13.2998C7.88953 13.2998 8.26846 13.2617 8.63379 13.1895L8.96289 14.8555ZM2.67578 10.7217C3.09967 11.3548 3.64521 11.9003 4.27832 12.3242L3.33301 13.7354C2.51517 13.1877 1.81116 12.484 1.26367 11.666L2.67578 10.7217ZM13.7354 11.666C13.1878 12.484 12.484 13.1878 11.666 13.7354L10.7217 12.3242C11.3548 11.9003 11.9003 11.3548 12.3242 10.7217L13.7354 11.666ZM0 7.5C0 6.999 0.049863 6.50963 0.143555 6.03613L1.81055 6.36621C1.73827 6.73154 1.7002 7.11047 1.7002 7.5C1.7002 7.88953 1.73827 8.26846 1.81055 8.63379L0.143555 8.96289C0.0499839 8.48969 0 8.00066 0 7.5ZM15 7.5C15 8.00073 14.9491 8.48963 14.8555 8.96289L13.1895 8.63379C13.2617 8.26846 13.2998 7.88953 13.2998 7.5C13.2998 7.11047 13.2617 6.73154 13.1895 6.36621L14.8555 6.03613C14.9492 6.50969 15 6.99894 15 7.5ZM4.27832 2.67578C3.64521 3.09967 3.09967 3.64521 2.67578 4.27832L1.26367 3.33301C1.8112 2.5152 2.5152 1.8112 3.33301 1.26367L4.27832 2.67578ZM11.666 1.26367C12.484 1.81116 13.1877 2.51517 13.7354 3.33301L12.3242 4.27832C11.9003 3.64521 11.3548 3.09967 10.7217 2.67578L11.666 1.26367ZM7.5 0C8.00066 0 8.48969 0.0499839 8.96289 0.143555L8.63379 1.81055C8.26846 1.73827 7.88953 1.7002 7.5 1.7002C7.11047 1.7002 6.73154 1.73827 6.36621 1.81055L6.03613 0.143555C6.50963 0.049863 6.999 0 7.5 0Z" fill={color} />
           </svg>
         )}
       </div>
-      <span style={{ fontFamily: "'SF Pro Display', sans-serif", fontSize: 15, color, lineHeight: 1.196, whiteSpace: "nowrap" }}>
+      <span style={{ fontFamily: "'SF Pro Display', sans-serif", fontSize: 20, color, lineHeight: 1.196, whiteSpace: "nowrap" }}>
         {label}
       </span>
     </div>
@@ -884,8 +884,8 @@ export default function Home() {
       <img src="/logo.png" alt="Haven Park" style={{ width: 59, height: 60, borderRadius: 4, objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: 22, filter: "grayscale(100%)" }} />
       <span ref={navLogoRef} style={{ fontSize: 32, fontWeight: 500, color: "#494949", display: "block", marginBottom: 12, lineHeight: 1 }}>Haven Park</span>
       <div style={{ display: "flex", flexDirection: "column", gap: 7, marginBottom: 34 }}>
-        <CheckboxRow checked={false} label="Currently designing Folio" color="#2B64D4" />
-        <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" color="#797979" />
+        <CheckboxRow checked={false} label="Currently designing Folio" color="#4a70bc" />
+        <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" color="#808080" />
       </div>
       <div style={{ width: 336, height: 0.8, background: "rgba(38,36,33,0.11)" }} />
     </div>
