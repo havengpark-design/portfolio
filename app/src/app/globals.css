@@ -86,3 +86,8 @@ body {
 .thumbnail:hover {
   transform: scale(1);
 }
+
+@keyframes koala-wave {
+  0%, 100% { transform: rotate(-25deg); }
+  50% { transform: rotate(30deg); }
+}

@@ -59,7 +59,7 @@ const CARD_SHADOW = "0px 4px 20.4px 3px rgba(0,0,0,0.06)";
 const PILL_TEXT = "Something beautiful is in making...";
 const OUTER_ZONE = 0.75; // inner 75% = safe, outer 25% = reactive
 
-function PlaceholderCard() {
+function PlaceholderCard({ scale = 1 }: { scale?: number }) {
   const [viewportPos, setViewportPos] = useState<{ x: number; y: number } | null>(null);
   const [visibleChars, setVisibleChars] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -165,12 +165,12 @@ function PlaceholderCard() {
       {viewportPos && phase !== "idle" && (
         <div style={{
           position: "fixed",
-          left: viewportPos.x,
-          top: viewportPos.y,
+          left: viewportPos.x / scale,
+          top: viewportPos.y / scale,
           transform: "translate(-50%, -50%)",
-          width: 315,
-          height: 97,
-          borderRadius: 16,
+          width: 315 / scale,
+          height: 97 / scale,
+          borderRadius: 16 / scale,
           background: "#f3f3f3",
           display: "flex",
           alignItems: "center",
@@ -178,7 +178,7 @@ function PlaceholderCard() {
           pointerEvents: "none",
           zIndex: 9999,
         }}>
-          <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
+          <span style={{ fontSize: 15 / scale, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
             {PILL_TEXT.slice(0, visibleChars)}<span className="blink-cursor" style={{ opacity: phase === "interactive" ? undefined : 0 }}>|</span>
           </span>
         </div>
@@ -892,7 +892,7 @@ export default function Home() {
         <div style={{ width: MOBILE_DESIGN_WIDTH, margin: "0 auto", zoom: scale, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
           {identitySection}
           <div style={{ display: "flex", flexDirection: "column", gap: 67, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30, paddingBottom: 120 }}>
-            <PlaceholderCard />
+            <PlaceholderCard scale={scale} />
             <div className="card-wrap"><MermoryCard onClick={() => openDesignProject("mermory")} /></div>
             <div className="card-wrap"><JamsCard onClick={() => openDesignProject("jams")} /></div>
             <div className="card-wrap"><PorticoCard onClick={() => openDesignProject("portico")} /></div>
@@ -911,7 +911,7 @@ export default function Home() {
           <div style={{ paddingBottom: 120, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30 }}>
             <div style={{ display: "flex", gap: 89, width: "fit-content" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
-                <PlaceholderCard />
+                <PlaceholderCard scale={scale} />
                 <div className="card-wrap"><JamsCard onClick={() => openDesignProject("jams")} /></div>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
