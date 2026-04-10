@@ -457,11 +457,9 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 1: Create menu ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 27 }}>
-          <div style={{ background: "black", height: 924, borderRadius: 12, position: "relative", overflow: "hidden" }}>
-            <div style={{ position: "absolute", left: "calc(50% - 0.5px)", top: "14.2%", bottom: "14.26%", transform: "translateX(-50%)", aspectRatio: "2880 / 2154", borderRadius: 18, overflow: "hidden" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src="/Design/mermory/case-study/importflow.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
-            </div>
+          <div style={{ background: "black", borderRadius: 12, padding: 100 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/mermory/case-study/importflow.png" style={{ width: "100%", display: "block", borderRadius: 18, pointerEvents: "none" }} />
           </div>
           <p style={{ ...CS_BODY, margin: 0 }}>
             <strong style={{ fontWeight: 500, color: "black" }}>I designed & shipped the "Create" menu pop up. </strong>
@@ -471,21 +469,14 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 2: Explore banners ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <div style={{ background: "black", height: 944, borderRadius: 12, position: "relative", overflow: "hidden" }}>
-            {/* Explore */}
-            <div style={{ position: "absolute", left: "calc(50% - 0.5px)", top: "12.15%", bottom: "33.08%", transform: "translateX(-50%)", aspectRatio: "1021 / 517", borderRadius: 16, overflow: "hidden" }}>
+          <div style={{ background: "black", borderRadius: 12, padding: 100, display: "flex", flexDirection: "column", gap: 20 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/mermory/case-study/explore.png" style={{ width: "100%", display: "block", borderRadius: 16, pointerEvents: "none" }} />
+            <div style={{ display: "flex", gap: 20 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src="/Design/mermory/case-study/explore.png" style={{ position: "absolute", height: "127.66%", left: "-0.03%", top: "-4.06%", width: "100.07%", maxWidth: "none", pointerEvents: "none" }} />
-            </div>
-            {/* Invite Friends 1 */}
-            <div style={{ position: "absolute", left: "8.39%", right: "51.38%", top: "calc(50% + 282.2px)", transform: "translateY(-50%)", aspectRatio: "494 / 147", borderRadius: 7, overflow: "hidden" }}>
+              <img alt="" src="/Design/mermory/case-study/inviteFriends1.png" style={{ flex: 1, width: 0, display: "block", borderRadius: 7, pointerEvents: "none" }} />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src="/Design/mermory/case-study/inviteFriends1.png" style={{ position: "absolute", height: "100.68%", left: "-0.28%", top: "-0.68%", width: "100.35%", maxWidth: "none", pointerEvents: "none" }} />
-            </div>
-            {/* Invite Friends 2 */}
-            <div style={{ position: "absolute", left: "calc(50% + 263px)", top: "72.11%", bottom: "12.32%", transform: "translateX(-50%)", aspectRatio: "494 / 147", borderRadius: 7, overflow: "hidden" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src="/Design/mermory/case-study/inviteFriends2.png" style={{ position: "absolute", height: "100.68%", left: "-0.28%", top: "-0.68%", width: "100.35%", maxWidth: "none", pointerEvents: "none" }} />
+              <img alt="" src="/Design/mermory/case-study/inviteFriends2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: 7, pointerEvents: "none" }} />
             </div>
           </div>
           <p style={{ ...CS_BODY, margin: 0 }}>
@@ -496,11 +487,9 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 3: Creator Studio exit flow ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <div style={{ background: "black", height: 881, borderRadius: 12, position: "relative", overflow: "hidden" }}>
-            <div style={{ position: "absolute", left: "12.95%", right: "13.03%", top: "calc(50% - 0.8px)", transform: "translateY(-50%)", aspectRatio: "1440 / 1152", borderRadius: 25, overflow: "hidden" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src="/Design/mermory/case-study/creatorStudioExitFlow.png" style={{ position: "absolute", height: "104.69%", left: 0, top: "-4.69%", width: "100%", maxWidth: "none", pointerEvents: "none" }} />
-            </div>
+          <div style={{ background: "black", borderRadius: 12, padding: 100 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/mermory/case-study/creatorStudioExitFlow.png" style={{ width: "100%", display: "block", borderRadius: 25, pointerEvents: "none" }} />
           </div>
           <p style={{ ...CS_BODY, margin: 0 }}>
             <strong style={{ fontWeight: 500, color: "black" }}>I designed the flow to exit out of the Creator Studio. </strong>
@@ -510,17 +499,11 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 4: Marketing page ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <div style={{ background: "black", height: 776, borderRadius: 12, position: "relative", overflow: "hidden" }}>
-            {/* Before */}
-            <div style={{ position: "absolute", left: "10.52%", right: "56.12%", top: "calc(50% - 11.3px)", transform: "translateY(-50%)", aspectRatio: "722 / 649", borderRadius: 14, overflow: "hidden" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src="/Design/mermory/case-study/marketingPageBefore.png" style={{ position: "absolute", height: "315.56%", left: 0, top: 0, width: "100%", maxWidth: "none", pointerEvents: "none" }} />
-            </div>
-            {/* After */}
-            <div style={{ position: "absolute", left: "48.42%", right: "5.12%", top: "calc(50% - 10.8px)", transform: "translateY(-50%)", aspectRatio: "2096 / 1396", borderRadius: 15, overflow: "hidden" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src="/Design/mermory/case-study/marketingPageAfter.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
-            </div>
+          <div style={{ background: "black", borderRadius: 12, padding: 100, display: "flex", gap: 20, alignItems: "center" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/mermory/case-study/marketingPageBefore.png" style={{ flex: 1, width: 0, display: "block", borderRadius: 14, objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/mermory/case-study/marketingPageAfter.png" style={{ flex: 1, width: 0, display: "block", borderRadius: 15, pointerEvents: "none" }} />
           </div>
           <p style={{ ...CS_BODY, fontWeight: 500, color: "black", margin: 0 }}>I redesigned the hero section of the landing page to be in horizontal alignment than vertical.</p>
         </div>
