@@ -45,7 +45,7 @@ function CheckboxRow({ checked, label, color }: { checked: boolean; label: strin
           </svg>
         )}
       </div>
-      <span style={{ fontFamily: "'SF Pro Display', sans-serif", fontSize: 18, color, lineHeight: 1.196, whiteSpace: "nowrap" }}>
+      <span style={{ fontFamily: "'SF Pro Display', sans-serif", fontSize: 17, color, lineHeight: 1.196, whiteSpace: "nowrap" }}>
         {label}
       </span>
     </div>
