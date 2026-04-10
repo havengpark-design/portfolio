@@ -433,7 +433,7 @@ function MermoryCaseStudy() {
             {([["Role", "Product Designer"], ["Timeline", "12 months (2025)"], ["Tools", "Figma"], ["Team", "Designers & Engineers"]] as const).map(([l, v]) => (
               <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
                 <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px", whiteSpace: "nowrap" }}>{l}</span>
-                <span style={{ ...CS_BODY, fontSize: 20, lineHeight: "30px", color: "#262421" }}>{v}</span>
+                <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>{v}</span>
               </div>
             ))}
           </div>
