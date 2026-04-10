@@ -570,8 +570,8 @@ export default function Home() {
       <img src="/logo.png" alt="Haven Park" style={{ width: 59, height: 60, borderRadius: 4, objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: 22, filter: "grayscale(100%)" }} />
       <span ref={navLogoRef} style={{ fontSize: 32, fontWeight: 500, color: "#494949", display: "block", marginBottom: 12, lineHeight: 1 }}>Haven Park</span>
       <div style={{ display: "flex", flexDirection: "column", gap: 7, marginBottom: 34 }}>
-        <CheckboxRow checked={false} label="Currently designing Folio" color="#4a70bc" />
-        <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" color="#a2a2a2" />
+        <CheckboxRow checked={false} label="Currently designing Folio" color="#2B64D4" />
+        <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" color="#797979" />
       </div>
       <div style={{ width: 336, height: 0.8, background: "rgba(38,36,33,0.11)" }} />
     </div>
