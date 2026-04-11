@@ -209,10 +209,10 @@ function MermoryCard({ onClick }: { onClick: () => void }) {
         alt="Mermory"
         style={{
           position: "absolute",
-          left: 112,
-          top: 198,
-          width: 961,
-          height: 601,
+          left: 0,
+          top: 80,
+          width: 800,
+          height: 851,
           maxWidth: "none",
           objectFit: "cover",
           pointerEvents: "none",
@@ -407,8 +407,58 @@ const CS_LABEL: React.CSSProperties = {
   fontSize: 16,
 };
 const CS_W = 793; // content column width (matches Figma)
+const CS_PAD = 40; // horizontal padding of case study outer container
+
+function ExpandableBlackFrame({
+  id, expandedId, setExpandedId, style, children,
+}: {
+  id: string; expandedId: string | null; setExpandedId: (id: string | null) => void;
+  style?: React.CSSProperties; children: React.ReactNode;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const expanded = expandedId === id;
+
+  useEffect(() => {
+    if (!expanded) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (!entry.isIntersecting) setExpandedId(null); },
+      { threshold: 0.05 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [expanded, setExpandedId]);
+
+  useEffect(() => {
+    if (!expanded) return;
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setExpandedId(null);
+    };
+    const t = setTimeout(() => document.addEventListener("click", handler), 80);
+    return () => { clearTimeout(t); document.removeEventListener("click", handler); };
+  }, [expanded, setExpandedId]);
+
+  return (
+    <div
+      ref={ref}
+      onClick={() => { if (!expanded) setExpandedId(id); }}
+      style={{
+        background: "black",
+        borderRadius: expanded ? 0 : 12,
+        padding: "10%",
+        marginLeft: expanded ? -CS_PAD : 0,
+        marginRight: expanded ? -CS_PAD : 0,
+        transition: "margin 0.45s cubic-bezier(0.25,0.46,0.45,0.94), border-radius 0.45s cubic-bezier(0.25,0.46,0.45,0.94), padding 0.45s cubic-bezier(0.25,0.46,0.45,0.94)",
+        cursor: expanded ? "default" : "pointer",
+        ...(style || {}),
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 function MermoryCaseStudy() {
+  const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 120, paddingBottom: 150, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
       <div style={{ width: "100%", maxWidth: CS_W, display: "flex", flexDirection: "column", gap: 110 }}>
@@ -457,10 +507,10 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 1: Create menu ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 27 }}>
-          <div style={{ background: "black", borderRadius: 12, padding: "10%" }}>
+          <ExpandableBlackFrame id="s1" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/importflow.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
-          </div>
+          </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
             <strong style={{ fontWeight: 500, color: "black" }}>I designed & shipped the "Create" menu pop up. </strong>
             <span style={{ color: "#5c5b59" }}>The users can start building their flashcards using the Creator Studio, add terms & definitions, or import a file. </span>
@@ -469,7 +519,7 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 2: Explore banners ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <div style={{ background: "black", borderRadius: 12, padding: "10%", display: "flex", flexDirection: "column", gap: 20 }}>
+          <ExpandableBlackFrame id="s2" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/explore.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
             <div style={{ display: "flex", gap: 20 }}>
@@ -478,7 +528,7 @@ function MermoryCaseStudy() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/mermory/case-study/inviteFriends2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
             </div>
-          </div>
+          </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
             <strong style={{ fontWeight: 500, color: "black" }}>I designed the promotional banners for the explore page. </strong>
             <span style={{ color: "#5c5b59" }}>The banners served to market Mermory's latest features.</span>
@@ -487,10 +537,10 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 3: Creator Studio exit flow ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <div style={{ background: "black", borderRadius: 12, padding: "10%" }}>
+          <ExpandableBlackFrame id="s3" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/creatorStudioExitFlow.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
-          </div>
+          </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
             <strong style={{ fontWeight: 500, color: "black" }}>I designed the flow to exit out of the Creator Studio. </strong>
             <span style={{ color: "#5c5b59" }}>The users have the choice to either go to the Library or start learning the flashcard they made.</span>
@@ -499,12 +549,12 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 4: Marketing page ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <div style={{ background: "black", borderRadius: 12, padding: "10%", display: "flex", gap: 20, alignItems: "center" }}>
+          <ExpandableBlackFrame id="s4" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: 20, alignItems: "center" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/marketingPageBefore.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/marketingPageAfter.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
-          </div>
+          </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, fontWeight: 500, color: "black", margin: 0 }}>I redesigned the hero section of the landing page to be in horizontal alignment than vertical.</p>
         </div>
 
