@@ -210,11 +210,12 @@ function MermoryCard({ onClick }: { onClick: () => void }) {
         style={{
           position: "absolute",
           left: 0,
-          top: 80,
-          width: 800,
-          height: 851,
+          top: 0,
+          width: "100%",
+          height: "100%",
           maxWidth: "none",
-          objectFit: "cover",
+          objectFit: "contain",
+          objectPosition: "center top",
           pointerEvents: "none",
         }}
       />
