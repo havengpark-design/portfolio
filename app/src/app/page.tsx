@@ -209,13 +209,12 @@ function MermoryCard({ onClick }: { onClick: () => void }) {
         alt="Mermory"
         style={{
           position: "absolute",
-          left: 0,
-          top: 0,
-          width: "100%",
-          height: "100%",
+          top: 198,
+          left: 112,
+          width: 961,
+          height: 601,
           maxWidth: "none",
-          objectFit: "contain",
-          objectPosition: "center top",
+          objectFit: "cover",
           pointerEvents: "none",
         }}
       />
