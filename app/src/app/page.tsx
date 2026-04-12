@@ -59,6 +59,60 @@ const CARD_SHADOW = "0px 4px 20.4px 3px rgba(0,0,0,0.06)";
 const PILL_TEXT = "Something beautiful is in making...";
 const OUTER_ZONE = 0.75; // inner 75% = safe, outer 25% = reactive
 
+function SocialIcon({ src, w, h, href }: { src: string; w: number; h: number; href?: string }) {
+  const [hovered, setHovered] = useState(false);
+  const inner = (
+    <>
+      <div style={{
+        position: "absolute", top: -6, right: -6, bottom: -6, left: -6, background: "#f3f3f3", borderRadius: 10,
+        opacity: hovered ? 1 : 0, transition: "opacity 0.3s ease", pointerEvents: "none",
+      }} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img alt="" src={src} style={{ width: w, height: h, position: "relative", zIndex: 1 }} />
+    </>
+  );
+  if (href) return (
+    <a href={href} target="_blank" rel="noopener noreferrer"
+      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
+      style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", textDecoration: "none" }}>
+      {inner}
+    </a>
+  );
+  return (
+    <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
+      style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+      {inner}
+    </div>
+  );
+}
+
+function LoadingSpinner() {
+  return (
+    <>
+      <style>{`
+        @keyframes spinner-rotate {
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes spinner-dash {
+          0%   { stroke-dasharray: 1 28; stroke-dashoffset: 0; }
+          50%  { stroke-dasharray: 20 28; stroke-dashoffset: -5; }
+          100% { stroke-dasharray: 1 28; stroke-dashoffset: -28; }
+        }
+      `}</style>
+      <svg
+        width="14" height="14" viewBox="0 0 14 14" fill="none"
+        style={{ flexShrink: 0, opacity: 0.7, animation: "spinner-rotate 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite" }}
+      >
+        <circle
+          cx="7" cy="7" r="4.5"
+          stroke="#4a70bc" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.4"
+          style={{ animation: "spinner-dash 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite" }}
+        />
+      </svg>
+    </>
+  );
+}
+
 function PlaceholderCard({ scale = 1 }: { scale?: number }) {
   const [viewportPos, setViewportPos] = useState<{ x: number; y: number } | null>(null);
   const [visibleChars, setVisibleChars] = useState(0);
@@ -923,15 +977,38 @@ export default function Home() {
   };
 
   const identitySection = (
-    <div style={{ paddingTop: 60, paddingBottom: 48 }}>
+    <div style={{ paddingTop: 150, paddingBottom: 150 }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/logo.png" alt="Haven Park" style={{ width: 59, height: 60, borderRadius: 4, objectFit: "cover", objectPosition: "center top", display: "block", marginBottom: 22, filter: "grayscale(100%)" }} />
-      <span ref={navLogoRef} style={{ fontSize: 32, fontWeight: 500, color: "#494949", display: "block", marginBottom: 12, lineHeight: 1 }}>Haven Park</span>
-      <div style={{ display: "flex", flexDirection: "column", gap: 7, marginBottom: 34 }}>
-        <CheckboxRow checked={false} label="Currently designing Folio" color="#4a70bc" />
-        <CheckboxRow checked={true} label="Previously @ EdTech & Enterprise" color="#808080" />
+      <div style={{ width: "100%", height: 161, position: "relative", textAlign: "center", fontSize: 32, color: "#494949", fontFamily: "'SF Pro Display', -apple-system, sans-serif" }}>
+        {/* Haven Park */}
+        <span ref={navLogoRef} style={{ position: "absolute", top: 0, left: 206, fontWeight: 500 }}>Haven Park</span>
+        {/* Identity labels */}
+        <div style={{ position: "absolute", top: 54, left: 206, width: 307, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 6, textAlign: "left", fontSize: 17, color: "#4a70bc" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ position: "relative", lineHeight: "119.62%", display: "inline-block", flexShrink: 0 }}>Currently designing Folio</div>
+            <LoadingSpinner />
+          </div>
+          <div style={{ width: 303, display: "flex", alignItems: "center", color: "#808080" }}>
+            <div style={{ width: 307, position: "relative", lineHeight: "119.62%", display: "inline-block", flexShrink: 0 }}>{`Previously @ EdTech & Enterprise`}</div>
+          </div>
+        </div>
+        {/* Profile image */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img alt="" src="/logmo2.png" style={{ position: "absolute", top: 0, left: 0, width: 158, height: 161, objectFit: "cover", filter: "grayscale(100%)", borderRadius: 12 }} />
+        {/* Social icons group */}
+        <div style={{ position: "absolute", top: 132, left: 206, display: "flex", alignItems: "center", gap: 12 }}>
+          {[
+            { src: "/email_icon.svg", w: 27, h: 24, href: "mailto:gaeunpark@g.ucla.edu" },
+            { src: "/mdi_instagram.svg", w: 24, h: 24, href: "https://instagram.com/hvnpark" },
+            { src: "/uil_linkedin.svg", w: 24, h: 24, href: "https://www.linkedin.com/in/havenpark/" },
+          ].map(({ src, w, h, href }) => (
+            <SocialIcon key={src} src={src} w={w} h={h} href={href} />
+          ))}
+        </div>
+        {/* Separator */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img alt="" src="/separator.svg" style={{ position: "absolute", top: 0, left: 182, width: 1, height: 157, objectFit: "contain" }} />
       </div>
-      <div style={{ width: 336, height: 0.8, background: "rgba(38,36,33,0.11)" }} />
     </div>
   );
 
@@ -941,7 +1018,7 @@ export default function Home() {
         /* ── Mobile: single column, stacked ── */
         <div style={{ width: MOBILE_DESIGN_WIDTH, margin: "0 auto", zoom: scale, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
           {identitySection}
-          <div style={{ display: "flex", flexDirection: "column", gap: 67, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30, paddingBottom: 120 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 67, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30, paddingBottom: 150 }}>
             <PlaceholderCard scale={scale} />
             <div className="card-wrap"><MermoryCard onClick={() => openDesignProject("mermory")} /></div>
             <div className="card-wrap"><JamsCard onClick={() => openDesignProject("jams")} /></div>
@@ -958,7 +1035,7 @@ export default function Home() {
 
           {/* Card grid — zoomed to scale proportionally */}
           <div style={{ width: 1443, margin: "0 auto", zoom: scale }}>
-          <div style={{ paddingBottom: 120, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30 }}>
+          <div style={{ paddingBottom: 150, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30 }}>
             <div style={{ display: "flex", gap: 89, width: "fit-content" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
                 <PlaceholderCard scale={scale} />
