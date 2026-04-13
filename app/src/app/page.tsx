@@ -449,7 +449,26 @@ function PorticoCaseStudy() {
           </div>
           {/* Title + subtitle */}
           <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
-            <h1 style={{ fontFamily: "-apple-system, 'SF Pro', sans-serif", fontWeight: 590, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Portico</h1>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <h1 style={{ fontFamily: "-apple-system, 'SF Pro', sans-serif", fontWeight: 590, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Portico</h1>
+              {/* External link icon */}
+              <div style={{ position: "relative", width: 17, height: 17, flexShrink: 0, marginTop: 8 }}>
+                {/* Rounded rect (open at top-right) */}
+                <div style={{ position: "absolute", left: 0, top: 3, width: 14, height: 14 }}>
+                  <svg width="100%" height="100%" viewBox="0 0 15.5 15.5" fill="none">
+                    <path d="M9.75 0.75H4.75C2.54086 0.75 0.75 2.54086 0.75 4.75V10.75C0.75 12.9591 2.54086 14.75 4.75 14.75H10.75C12.9591 14.75 14.75 12.9591 14.75 10.75V5.75" stroke="#A2A2A2" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+                  </svg>
+                </div>
+                {/* Arrow (rotated -45deg to point upper-right) */}
+                <div style={{ position: "absolute", left: 8, top: 0, width: 9, height: 9, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ transform: "rotate(-45deg)", position: "relative", width: 12.728, height: 0 }}>
+                    <svg style={{ position: "absolute", top: "-5.52px", left: "-5.89%", right: "-5.89%" }} width="14.2279" height="11.0459" viewBox="0 0 14.2279 11.0459" fill="none">
+                      <path d="M0.75 4.77297C0.335786 4.77297 0 5.10876 0 5.52297C0 5.93718 0.335786 6.27297 0.75 6.27297V5.52297V4.77297ZM14.0083 6.0533C14.3011 5.76041 14.3011 5.28553 14.0083 4.99264L9.23528 0.21967C8.94239 -0.0732231 8.46751 -0.0732231 8.17462 0.21967C7.88173 0.512564 7.88173 0.987437 8.17462 1.28033L12.4173 5.52297L8.17462 9.76561C7.88173 10.0585 7.88173 10.5334 8.17462 10.8263C8.46751 11.1192 8.94239 11.1192 9.23528 10.8263L14.0083 6.0533ZM0.75 5.52297V6.27297H13.4779V5.52297V4.77297H0.75V5.52297Z" fill="#A2A2A2" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
             <p style={{ ...CS_BODY, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0 }}>Unifying the fragmented student experience.</p>
           </div>
           {/* Divider */}
