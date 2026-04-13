@@ -459,9 +459,9 @@ function PorticoLanguageVisual() {
       {/* Platform labels */}
       <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(20), color: "#262421", left: s(112), top: s(107), margin: 0, whiteSpace: "nowrap" }}>Acquired platform A</p>
       <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(20), color: "#262421", left: s(106), top: s(603), margin: 0, whiteSpace: "nowrap" }}>Acquired platform B</p>
-      {/* Skill Attributes labels (white, inside dark box) */}
-      <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(16), color: "white", left: s(388), top: s(113), margin: 0, whiteSpace: "nowrap" }}>Skill Attributes</p>
-      <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(16), color: "white", left: s(388), top: s(611), margin: 0, whiteSpace: "nowrap" }}>Skill Attributes</p>
+      {/* Skill Attributes labels (gray, above platform names) */}
+      <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(14), color: "#a2a2a2", left: s(112), top: s(80), margin: 0, whiteSpace: "nowrap" }}>Skill Attributes</p>
+      <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(14), color: "#a2a2a2", left: s(106), top: s(576), margin: 0, whiteSpace: "nowrap" }}>Skill Attributes</p>
       {/* Platform A chips */}
       <Chip label="Key" bg="#d9d9d9" left={501} top={46} w={108} h={43} fs={16} />
       <Chip2 lines={["Participation", "Level"]} bg="#ffe3aa" left={634} top={20} w={109} h={56} fs={16} />
