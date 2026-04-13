@@ -276,16 +276,16 @@ function MermoryCard({ onClick }: { onClick: () => void }) {
   );
 }
 
-function JamsCard({ onClick }: { onClick: () => void }) {
+function JamsCard({ onClick: _onClick }: { onClick: () => void }) {
   return (
     <div
-      onClick={onClick}
       style={{
         background: "white",
         borderRadius: 17,
         boxShadow: CARD_SHADOW,
         width: 677,
         height: 910,
+        cursor: "default",
         flexShrink: 0,
         position: "relative",
         overflow: "hidden",
@@ -1252,7 +1252,7 @@ export default function Home() {
           <div style={{ display: "flex", flexDirection: "column", gap: 67, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30, paddingBottom: 150 }}>
             <PlaceholderCard scale={scale} />
             <div className="card-wrap"><MermoryCard onClick={() => openDesignProject("mermory")} /></div>
-            <div className="card-wrap"><JamsCard onClick={() => openDesignProject("jams")} /></div>
+            <div><JamsCard onClick={() => openDesignProject("jams")} /></div>
             <div className="card-wrap"><PorticoCard onClick={() => openDesignProject("portico")} /></div>
           </div>
         </div>
@@ -1270,7 +1270,7 @@ export default function Home() {
             <div style={{ display: "flex", gap: 89, width: "fit-content" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
                 <PlaceholderCard scale={scale} />
-                <div className="card-wrap"><JamsCard onClick={() => openDesignProject("jams")} /></div>
+                <div><JamsCard onClick={() => openDesignProject("jams")} /></div>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
                 <div className="card-wrap"><MermoryCard onClick={() => openDesignProject("mermory")} /></div>
