@@ -1204,7 +1204,22 @@ export default function Home() {
 
   const openDesignProject = (key: string) => {
     setOpenSheet(key);
+    window.history.pushState(null, "", `/${key}`);
   };
+
+  // Sync URL → sheet state (handles direct links + back/forward)
+  useEffect(() => {
+    const slug = window.location.pathname.replace("/", "");
+    if (slug === "mermory" || slug === "portico") {
+      setOpenSheet(slug);
+    }
+    const onPop = () => {
+      const s = window.location.pathname.replace("/", "");
+      setOpenSheet(s === "mermory" || s === "portico" ? s : null);
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
 
   const identitySection = (
     <div style={{ paddingTop: 150, paddingBottom: 150 }}>
@@ -1292,7 +1307,7 @@ export default function Home() {
       />
 
       {/* Bottom Sheet — slides up from bottom when a project card is clicked */}
-      <BottomSheet open={openSheet !== null} onClose={() => setOpenSheet(null)}>
+      <BottomSheet open={openSheet !== null} onClose={() => { setOpenSheet(null); window.history.pushState(null, "", "/"); }}>
         {openSheet === "mermory" && <MermoryCaseStudy />}
         {openSheet === "jams"    && <JamsContent />}
         {openSheet === "portico" && <PorticoCaseStudy />}
