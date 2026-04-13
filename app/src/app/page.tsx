@@ -472,13 +472,21 @@ function PorticoLanguageVisual() {
       <Chip label="Date" bg="#d9d9d9" left={498} top={180} w={108} h={43} fs={16} />
       <Chip label="Repeats" bg="#d9d9d9" left={631} top={180} w={108} h={43} fs={16} />
       <Chip label="Site" bg="#d9d9d9" left={759} top={180} w={108} h={43} fs={16} />
-      {/* Middle rows */}
-      <Chip label="Program" bg="#d9d9d9" left={0} top={344} w={143} h={43} fs={20} />
-      <Chip label="Major Study" bg="#ffe3aa" left={174} top={344} w={143} h={43} fs={20} />
-      <Chip label="Skill" bg="#d9d9d9" left={348} top={341} w={143} h={43} fs={20} />
-      <Chip label="Program" bg="#d9d9d9" left={0} top={438} w={143} h={43} fs={20} />
-      <Chip label="Checklist Name" bg="#ffe3aa" left={174} top={438} h={43} fs={20} />
-      <Chip label="Skill" bg="#d9d9d9" left={348} top={438} w={143} h={43} fs={20} />
+      {/* Middle rows — flex so spacing is always even */}
+      <div style={{ position: "absolute", left: 0, top: s(334), display: "flex", gap: s(31) }}>
+        {[["Program","#d9d9d9"],["Major Study","#ffe3aa"],["Skill","#d9d9d9"]].map(([label, bg]) => (
+          <div key={label} style={{ background: bg, display: "flex", alignItems: "center", justifyContent: "center", height: s(43), borderRadius: s(5), paddingLeft: s(24), paddingRight: s(24) }}>
+            <p style={{ fontFamily: "-apple-system, sans-serif", fontSize: s(20), color: "#494949", whiteSpace: "nowrap", margin: 0 }}>{label}</p>
+          </div>
+        ))}
+      </div>
+      <div style={{ position: "absolute", left: 0, top: s(428), display: "flex", gap: s(31) }}>
+        {[["Program","#d9d9d9"],["Checklist Name","#ffe3aa"],["Skill","#d9d9d9"]].map(([label, bg]) => (
+          <div key={label} style={{ background: bg, display: "flex", alignItems: "center", justifyContent: "center", height: s(43), borderRadius: s(5), paddingLeft: s(24), paddingRight: s(24) }}>
+            <p style={{ fontFamily: "-apple-system, sans-serif", fontSize: s(20), color: "#494949", whiteSpace: "nowrap", margin: 0 }}>{label}</p>
+          </div>
+        ))}
+      </div>
       {/* Platform B chips */}
       <Chip label="Count" bg="#ffc54f" left={365} top={595} w={109} h={43} fs={16} />
       <Chip label="Date" bg="#d9d9d9" left={499} top={595} w={108} h={43} fs={16} />
