@@ -795,20 +795,19 @@ function BottomSheet({
     if (open) setSnap("partial");
   }, [open]);
 
-  // Click-outside to close (pointer-events: none on dim overlay lets clicks reach the page,
-  // so we detect outside clicks via document listener)
+  // Pointerdown-outside to close
   useEffect(() => {
     if (!open) return;
-    const handler = (e: MouseEvent) => {
+    const handler = (e: PointerEvent) => {
       if (sheetRef.current && !sheetRef.current.contains(e.target as Node)) {
         onCloseRef.current();
       }
     };
     // Delay so the opening click that fired this effect doesn't immediately close the sheet
-    const timer = setTimeout(() => document.addEventListener("click", handler), 80);
+    const timer = setTimeout(() => document.addEventListener("pointerdown", handler), 150);
     return () => {
       clearTimeout(timer);
-      document.removeEventListener("click", handler);
+      document.removeEventListener("pointerdown", handler);
     };
   }, [open]);
 
@@ -834,7 +833,7 @@ function BottomSheet({
       sheet.style.height = `${newH}px`;
     };
 
-    const onUp = () => {
+    const onUp = (e: MouseEvent | TouchEvent) => {
       const finalH = sheet.getBoundingClientRect().height;
       const frac = finalH / window.innerHeight;
 
@@ -844,33 +843,35 @@ function BottomSheet({
 
       // Only snap/close if the user actually dragged; plain clicks do nothing
       if (hasMoved) {
+        // Prevent the mouseup from being treated as a click by the click-outside handler
+        e.stopPropagation();
         if (frac > 0.89)      setSnap("full");
         else if (frac > 0.35) setSnap("partial");
         else                  onCloseRef.current();
       }
 
       document.removeEventListener("mousemove", onMove);
-      document.removeEventListener("mouseup", onUp);
+      document.removeEventListener("mouseup", onUp as EventListener);
       document.removeEventListener("touchmove", onMove as EventListener);
-      document.removeEventListener("touchend", onUp);
+      document.removeEventListener("touchend", onUp as EventListener);
     };
 
     document.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseup", onUp);
+    document.addEventListener("mouseup", onUp as EventListener);
     document.addEventListener("touchmove", onMove as EventListener, { passive: false });
-    document.addEventListener("touchend", onUp);
+    document.addEventListener("touchend", onUp as EventListener);
   };
 
   return (
     <>
-      {/* Dim overlay — pointer-events: none so the page underneath stays scrollable */}
+      {/* Dim overlay — blocks clicks to content behind when sheet is open */}
       <div
         style={{
           position: "fixed",
           inset: 0,
           zIndex: 200,
           background: open ? "rgba(0,0,0,0.4)" : "transparent",
-          pointerEvents: "none",
+          pointerEvents: open ? "auto" : "none",
           transition: "background 0.4s ease",
         }}
       />
@@ -894,17 +895,18 @@ function BottomSheet({
           boxShadow: "0 -4px 40px rgba(0,0,0,0.1)",
         }}
       >
-        {/* Drag handle */}
+        {/* Drag handle — click toggles partial/full, drag adjusts freely */}
         <div
           onMouseDown={(e) => { e.preventDefault(); startDrag(e.clientY); }}
           onTouchStart={(e) => startDrag(e.touches[0].clientY)}
+          onClick={() => setSnap(s => s === "full" ? "partial" : "full")}
           style={{
             flexShrink: 0,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             height: 44,
-            cursor: "grab",
+            cursor: "pointer",
             userSelect: "none",
           }}
         >
