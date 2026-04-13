@@ -364,12 +364,12 @@ function PorticoCard({ onClick }: { onClick: () => void }) {
 function MermoryContent() {
   return (
     <div style={{ maxWidth: 800, paddingBottom: 80 }}>
-      <p style={{ fontSize: 13, color: "rgba(38,36,33,0.4)", marginBottom: 18 }}>Product Design · 2 months (2025)</p>
+      <p style={{ fontSize: 13, color: "rgba(38,36,33,0.4)", marginBottom: 18 }}>Product Design · 12 months (2025)</p>
       <h1 style={{ fontSize: 64, fontWeight: 700, color: "#262421", letterSpacing: "-2px", lineHeight: 1, marginBottom: 14 }}>Mermory</h1>
       <p style={{ fontSize: 18, color: "rgba(38,36,33,0.5)", marginBottom: 40 }}>AI-powered study app</p>
 
       <div style={{ display: "flex", gap: 64, paddingTop: 20, paddingBottom: 20, borderTop: "1px solid rgba(38,36,33,0.08)", borderBottom: "1px solid rgba(38,36,33,0.08)", marginBottom: 56 }}>
-        {[["Role","Product Designer"],["Timeline","2 months (2025)"],["Tools","Figma, Rive"]].map(([l,v]) => (
+        {[["Role","Product Designer"],["Timeline","12 months (2025)"],["Tools","Figma, Rive"]].map(([l,v]) => (
           <div key={l}>
             <p style={{ fontSize: 12, color: "rgba(38,36,33,0.35)", marginBottom: 5 }}>{l}</p>
             <p style={{ fontSize: 14, color: "#262421" }}>{v}</p>
@@ -654,7 +654,7 @@ function MermoryCaseStudy() {
           <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
             <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>Product Design</span>
             <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#a2a2a2", flexShrink: 0 }} />
-            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>2 months (2025)</span>
+            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>12 months (2025)</span>
           </div>
           {/* Title + subtitle */}
           <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
@@ -665,7 +665,7 @@ function MermoryCaseStudy() {
           <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
           {/* Metadata 4-col */}
           <div style={{ display: "flex", gap: 60 }}>
-            {([["Role", "Product Designer"], ["Timeline", "2 months (2025)"], ["Tools", "Figma"], ["Team", "Designers & Engineers"]] as const).map(([l, v]) => (
+            {([["Role", "Product Designer"], ["Timeline", "12 months (2025)"], ["Tools", "Figma"], ["Team", "Designers & Engineers"]] as const).map(([l, v]) => (
               <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
                 <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px", whiteSpace: "nowrap" }}>{l}</span>
                 <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>{v}</span>
