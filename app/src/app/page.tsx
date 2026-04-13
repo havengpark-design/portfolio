@@ -433,15 +433,129 @@ function JamsContent() {
   );
 }
 
-function PorticoContent() {
+function PorticoCaseStudy() {
+  const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
   return (
-    <div style={{ maxWidth: 800, paddingBottom: 80 }}>
-      <p style={{ fontSize: 13, color: "rgba(38,36,33,0.4)", marginBottom: 18 }}>Product Design · Career Platform</p>
-      <h1 style={{ fontSize: 64, fontWeight: 700, color: "#262421", letterSpacing: "-2px", lineHeight: 1, marginBottom: 14 }}>Portico</h1>
-      <p style={{ fontSize: 18, color: "rgba(38,36,33,0.5)", marginBottom: 40 }}>Career platform</p>
-      <div style={{ background: "#F0EEE8", borderRadius: 20, padding: "32px 48px", marginBottom: 48 }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/Design/portico/thumbnails.png" alt="Portico mockup" style={{ width: "100%", borderRadius: 10, display: "block" }} />
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 120, paddingBottom: 150, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
+      <div style={{ width: "100%", maxWidth: CS_W, display: "flex", flexDirection: "column", gap: 110 }}>
+
+        {/* ─── Header ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 56 }}>
+          {/* Meta row */}
+          <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>Product Design</span>
+            <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#a2a2a2", flexShrink: 0 }} />
+            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>12 months (2025)</span>
+          </div>
+          {/* Title + subtitle */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
+            <h1 style={{ fontFamily: "-apple-system, 'SF Pro', sans-serif", fontWeight: 590, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Portico</h1>
+            <p style={{ ...CS_BODY, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0 }}>Unifying the fragmented student experience.</p>
+          </div>
+          {/* Divider */}
+          <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
+          {/* Metadata 3-col */}
+          <div style={{ display: "flex", gap: 60 }}>
+            {([["Role", "Product Designer"], ["Timeline", "8 weeks (2025)"], ["Tools", "Figma"]] as const).map(([l, v]) => (
+              <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
+                <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px" }}>{l}</span>
+                <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>{v}</span>
+              </div>
+            ))}
+          </div>
+          {/* Hero card */}
+          <div style={{ background: "white", borderRadius: 23, boxShadow: "0px 4px 24.9px 3px rgba(0,0,0,0.09)", height: 600, overflow: "hidden", position: "relative" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="Portico" src="/Design/portico/case-study/hero.png"
+              style={{ position: "absolute", left: "50%", top: 122, transform: "translateX(-50%)", width: 377, height: 356, objectFit: "cover", pointerEvents: "none" }} />
+          </div>
+        </div>
+
+        {/* ─── Overview ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            This Waay Design Studio was brought in to <strong style={{ fontWeight: 500 }}>define the north star for a unified student mobile experience, delivering both a long-term vision and tactical design guidance for Q4 execution</strong>.
+          </p>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            Portico — formed through the merger of Campus Ivy, CourseKey, and Verity IQ — <strong style={{ fontWeight: 500 }}>inherited a fragmented ecosystem of tools</strong>. Career school students were forced to navigate 4 separate web portals and 2 mobile apps to complete basic daily tasks like logging skills, checking attendance, and making payments.
+          </p>
+        </div>
+
+        {/* ─── Section 1: Fragmented platforms ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 27 }}>
+          <ExpandableBlackFrame id="p1" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "center" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/portico/case-study/fragmented-wide.png" style={{ flex: 3, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/portico/case-study/fragmented-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/portico/case-study/fragmented-3.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+          </ExpandableBlackFrame>
+          <p style={{ ...CS_BODY, margin: 0 }}>
+            <strong style={{ fontWeight: 500, color: "black" }}>Combining multiple platforms creates fragmented experiences. </strong>
+            <span style={{ color: "#5c5b59" }}>Credit-based students had to use one platform and traditional students had to use another. The payments and attendance logging were all separated.</span>
+          </p>
+        </div>
+
+        {/* ─── Fragmented Language ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Fragmented Experience</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>For example, there was a different language used to describe the same function.</p>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            One platform used the word "<strong style={{ fontWeight: 500 }}>amount</strong>" and the other, "<strong style={{ fontWeight: 500 }}>count</strong>," for tracking student skills. <strong style={{ fontWeight: 500 }}>We unified them by using the phrase "logging task."</strong>
+          </p>
+        </div>
+
+        {/* ─── Section 2: Course listings solution ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+          <ExpandableBlackFrame id="p2" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "flex-end" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/portico/case-study/course-listing-1.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/portico/case-study/course-listing-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/portico/case-study/course-listing-3.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+          </ExpandableBlackFrame>
+          <p style={{ ...CS_BODY, margin: 0 }}>
+            <strong style={{ fontWeight: 500, color: "black" }}>This was our solution, combining the features of all the different platforms that Portico had. </strong>
+          </p>
+        </div>
+
+        {/* ─── Section 3: Task tracking ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+          <ExpandableBlackFrame id="p3" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "center" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/portico/case-study/fragmented-wide.png" style={{ flex: 1.5, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/portico/case-study/task-log-1.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/portico/case-study/task-log-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+          </ExpandableBlackFrame>
+          <p style={{ ...CS_BODY, margin: 0 }}>
+            <strong style={{ fontWeight: 500, color: "black" }}>We designed a way students could keep track of their tasks. </strong>
+            <span style={{ color: "#5c5b59" }}>It's more straightforward and simple.</span>
+          </p>
+        </div>
+
+        {/* ─── Section 4: Messages ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+          <ExpandableBlackFrame id="p4" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", justifyContent: "center" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src="/Design/portico/case-study/messages.png" style={{ width: "40%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+          </ExpandableBlackFrame>
+          <p style={{ ...CS_BODY, margin: 0 }}>
+            <strong style={{ fontWeight: 500, color: "black" }}>We surfaced all messages and correspondence in one place </strong>
+            <span style={{ color: "#5c5b59" }}>so students can clearly see when there is an update.</span>
+          </p>
+        </div>
+
+        {/* ─── Footer ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+          <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
+          <p style={{ ...CS_BODY, color: "#494949", margin: 0 }}>For more work samples, feel free to contact me at gaeunpark@g.ucla.edu.</p>
+        </div>
+
       </div>
     </div>
   );
@@ -878,7 +992,7 @@ function PeekPanel({
           {/* Case study view */}
           {openProject === "mermory" && <MermoryContent />}
           {openProject === "jams"    && <JamsContent />}
-          {openProject === "portico" && <PorticoContent />}
+          {openProject === "portico" && <PorticoCaseStudy />}
 
           {/* Section: Design grid */}
           {!openProject && section === "design" && (
@@ -1065,7 +1179,7 @@ export default function Home() {
       <BottomSheet open={openSheet !== null} onClose={() => setOpenSheet(null)}>
         {openSheet === "mermory" && <MermoryCaseStudy />}
         {openSheet === "jams"    && <JamsContent />}
-        {openSheet === "portico" && <PorticoContent />}
+        {openSheet === "portico" && <PorticoCaseStudy />}
       </BottomSheet>
     </main>
   );
