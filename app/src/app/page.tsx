@@ -435,6 +435,7 @@ function JamsContent() {
 
 function PorticoCaseStudy() {
   const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
+  const [iconHovered, setIconHovered] = useState(false);
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 120, paddingBottom: 150, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
       <div style={{ width: "100%", maxWidth: CS_W, display: "flex", flexDirection: "column", gap: 110 }}>
@@ -451,10 +452,17 @@ function PorticoCaseStudy() {
           <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <h1 style={{ fontFamily: "-apple-system, 'SF Pro', sans-serif", fontWeight: 590, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Portico</h1>
-              <svg width="19" height="19" viewBox="0 0 19 19" fill="none" style={{ flexShrink: 0, marginTop: 8 }}>
-                <path d="M9.75 3.75H4.75C2.54086 3.75 0.75 5.54086 0.75 7.75V13.75C0.75 15.9591 2.54086 17.75 4.75 17.75H10.75C12.9591 17.75 14.75 15.9591 14.75 13.75V8.75" stroke="#A2A2A2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M8.21967 9.21967C7.92678 9.51256 7.92678 9.98744 8.21967 10.2803C8.51256 10.5732 8.98744 10.5732 9.28033 10.2803L8.75 9.75L8.21967 9.21967ZM18.5 0.75C18.5 0.335786 18.1642 3.87003e-08 17.75 1.86214e-07L11 -2.35254e-07C10.5858 -2.35254e-07 10.25 0.335786 10.25 0.75C10.25 1.16421 10.5858 1.5 11 1.5H17V7.5C17 7.91421 17.3358 8.25 17.75 8.25C18.1642 8.25 18.5 7.91421 18.5 7.5L18.5 0.75ZM8.75 9.75L9.28033 10.2803L18.2803 1.28033L17.75 0.75L17.2197 0.21967L8.21967 9.21967L8.75 9.75Z" fill="#A2A2A2" />
-              </svg>
+              <div
+                onMouseEnter={() => setIconHovered(true)}
+                onMouseLeave={() => setIconHovered(false)}
+                style={{ position: "relative", flexShrink: 0, marginTop: 8, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
+              >
+                <div style={{ position: "absolute", top: -8, right: -8, bottom: -8, left: -8, background: "#f3f3f3", borderRadius: 10, opacity: iconHovered ? 1 : 0, transition: "opacity 0.3s ease", pointerEvents: "none" }} />
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" style={{ position: "relative", zIndex: 1 }}>
+                  <path d="M9.75 3.75H4.75C2.54086 3.75 0.75 5.54086 0.75 7.75V13.75C0.75 15.9591 2.54086 17.75 4.75 17.75H10.75C12.9591 17.75 14.75 15.9591 14.75 13.75V8.75" stroke="#A2A2A2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M8.21967 9.21967C7.92678 9.51256 7.92678 9.98744 8.21967 10.2803C8.51256 10.5732 8.98744 10.5732 9.28033 10.2803L8.75 9.75L8.21967 9.21967ZM18.5 0.75C18.5 0.335786 18.1642 3.87003e-08 17.75 1.86214e-07L11 -2.35254e-07C10.5858 -2.35254e-07 10.25 0.335786 10.25 0.75C10.25 1.16421 10.5858 1.5 11 1.5H17V7.5C17 7.91421 17.3358 8.25 17.75 8.25C18.1642 8.25 18.5 7.91421 18.5 7.5L18.5 0.75ZM8.75 9.75L9.28033 10.2803L18.2803 1.28033L17.75 0.75L17.2197 0.21967L8.21967 9.21967L8.75 9.75Z" fill="#A2A2A2" />
+                </svg>
+              </div>
             </div>
             <p style={{ ...CS_BODY, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0 }}>Unifying the fragmented student experience.</p>
           </div>
