@@ -433,6 +433,88 @@ function JamsContent() {
   );
 }
 
+const ARROW_PATH = "M32.7071 8.07107C33.0976 7.68054 33.0976 7.04738 32.7071 6.65685L26.3431 0.292893C25.9526 -0.097631 25.3195 -0.097631 24.9289 0.292893C24.5384 0.683418 24.5384 1.31658 24.9289 1.70711L30.5858 7.36396L24.9289 13.0208C24.5384 13.4113 24.5384 14.0445 24.9289 14.435C25.3195 14.8256 25.9526 14.8256 26.3431 14.435L32.7071 8.07107ZM0 7.36396V8.36396H32V7.36396V6.36396H0V7.36396Z";
+
+function PChip({ label, bg, left, top, w, h, fs }: { label: string; bg: string; left: number; top: number; w: number; h: number; fs: number }) {
+  return (
+    <div style={{ position: "absolute", background: bg, display: "flex", alignItems: "center", justifyContent: "center", left, top, width: w, height: h, borderRadius: 5, paddingLeft: 24, paddingRight: 24, boxSizing: "border-box" }}>
+      <p style={{ fontFamily: "-apple-system, sans-serif", fontSize: fs, color: "#494949", whiteSpace: "nowrap", margin: 0, lineHeight: "32px" }}>{label}</p>
+    </div>
+  );
+}
+function PChip2({ lines, bg, left, top, w, h, fs }: { lines: string[]; bg: string; left: number; top: number; w: number; h: number; fs: number }) {
+  return (
+    <div style={{ position: "absolute", background: bg, display: "flex", alignItems: "center", justifyContent: "center", left, top, width: w, height: h, borderRadius: 5, paddingLeft: 24, paddingRight: 24, boxSizing: "border-box" }}>
+      <div style={{ fontFamily: "-apple-system, sans-serif", fontSize: fs, color: "#494949", textAlign: "center", lineHeight: "20px" }}>
+        {lines.map((l, i) => <p key={i} style={{ margin: 0 }}>{l}</p>)}
+      </div>
+    </div>
+  );
+}
+
+function PorticoLanguageVisual() {
+  const W = 893, H = 685, SCALE = 793 / 893;
+  return (
+    <div style={{ position: "relative", width: "100%", height: H * SCALE, overflow: "visible" }}>
+      <div style={{ position: "absolute", top: 0, left: 0, width: W, height: H, transform: `scale(${SCALE})`, transformOrigin: "top left" }}>
+        {/* Dark boxes */}
+        <div style={{ position: "absolute", background: "#404040", height: 243, left: 345, borderRadius: 11, top: 0, width: 548 }} />
+        <div style={{ position: "absolute", background: "#404040", height: 96, left: 345, borderRadius: 11, top: 575, width: 548 }} />
+        {/* Platform labels */}
+        <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: 20, color: "#262421", left: 112, top: 107, margin: 0, lineHeight: "32px", whiteSpace: "nowrap" }}>Acquired platform A</p>
+        <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: 20, color: "#262421", left: 106, top: 603, margin: 0, lineHeight: "32px", whiteSpace: "nowrap" }}>Acquired platform B</p>
+        {/* Skill Attributes labels */}
+        <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: 16, color: "white", left: 224, top: 113, margin: 0, lineHeight: "32px", whiteSpace: "nowrap" }}>Skill Attributes</p>
+        <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: 16, color: "white", left: 224, top: 611, margin: 0, lineHeight: "32px", whiteSpace: "nowrap" }}>Skill Attributes</p>
+        {/* Platform A chips inside dark box */}
+        <PChip label="Key" bg="#d9d9d9" left={501} top={46} w={108} h={43} fs={16} />
+        <PChip2 lines={["Participation", "Level"]} bg="#ffe3aa" left={634} top={20} w={109} h={56} fs={16} />
+        <PChip label="Total Time" bg="#d9d9d9" left={368} top={113} w={108} h={43} fs={16} />
+        <PChip label="Pathology" bg="#d9d9d9" left={501} top={113} w={108} h={43} fs={16} />
+        <PChip2 lines={["Supervising", "Employee"]} bg="#d9d9d9" left={634} top={100} w={108} h={56} fs={15} />
+        <PChip label="Amount" bg="#ffc54f" left={365} top={180} w={109} h={43} fs={16} />
+        <PChip label="Date" bg="#d9d9d9" left={498} top={180} w={108} h={43} fs={16} />
+        <PChip label="Repeats" bg="#d9d9d9" left={631} top={180} w={108} h={43} fs={16} />
+        <PChip label="Site" bg="#d9d9d9" left={759} top={180} w={108} h={43} fs={16} />
+        {/* Middle rows */}
+        <PChip label="Program" bg="#d9d9d9" left={0} top={344} w={143} h={43} fs={20} />
+        <PChip label="Major Study" bg="#ffe3aa" left={174} top={344} w={143} h={43} fs={20} />
+        <PChip label="Skill" bg="#d9d9d9" left={348} top={341} w={143} h={43} fs={20} />
+        <PChip label="Program" bg="#d9d9d9" left={0} top={438} w={143} h={43} fs={20} />
+        <PChip label="Checklist Name" bg="#ffe3aa" left={174} top={438} w={143} h={43} fs={20} />
+        <PChip label="Skill" bg="#d9d9d9" left={348} top={438} w={143} h={43} fs={20} />
+        {/* Platform B chips inside dark box */}
+        <PChip label="Count" bg="#ffc54f" left={365} top={595} w={109} h={43} fs={16} />
+        <PChip label="Date" bg="#d9d9d9" left={499} top={595} w={108} h={43} fs={16} />
+        <PChip2 lines={["Media", "(Attachment)"]} bg="#d9d9d9" left={632} top={595} w={108} h={56} fs={15} />
+        <PChip2 lines={["Supervising", "Employee"]} bg="#ffe3aa" left={765} top={595} w={108} h={56} fs={15} />
+        {/* Up arrow */}
+        <div style={{ position: "absolute", display: "flex", height: 32, alignItems: "center", justifyContent: "center", left: 420, top: 276, width: 0 }}>
+          <div style={{ transform: "rotate(-90deg)", position: "relative", width: 32, height: 0 }}>
+            <div style={{ position: "absolute", top: -7.36, left: 0, bottom: -7.36, right: 0, width: 33 }}>
+              <svg width="33" height="14.73" viewBox="0 0 33 14.7279" fill="none" style={{ display: "block" }}>
+                <path d={ARROW_PATH} fill="#404040" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        {/* Down arrow */}
+        <div style={{ position: "absolute", display: "flex", height: 32, alignItems: "center", justifyContent: "center", left: 419, top: 512, width: 0 }}>
+          <div style={{ transform: "rotate(90deg)", position: "relative", width: 32, height: 0 }}>
+            <div style={{ position: "absolute", top: -7.36, left: 0, bottom: -7.36, right: 0, width: 33 }}>
+              <svg width="33" height="14.73" viewBox="0 0 33 14.7279" fill="none" style={{ display: "block" }}>
+                <path d={ARROW_PATH} fill="#404040" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        {/* Separator */}
+        <div style={{ position: "absolute", left: 0, top: 411, width: 793, height: 1, background: "rgba(38,36,33,0.16)" }} />
+      </div>
+    </div>
+  );
+}
+
 function PorticoCaseStudy() {
   const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
   const [iconHovered, setIconHovered] = useState(false);
@@ -522,6 +604,7 @@ function PorticoCaseStudy() {
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             One platform used the word "<strong style={{ fontWeight: 500 }}>amount</strong>" and the other, "<strong style={{ fontWeight: 500 }}>count</strong>," for tracking student skills. <strong style={{ fontWeight: 500 }}>We unified them by using the phrase "logging task."</strong>
           </p>
+          <PorticoLanguageVisual />
         </div>
 
         {/* ─── Section 2: Course listings solution ─── */}
