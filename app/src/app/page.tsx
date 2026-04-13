@@ -591,8 +591,10 @@ function PorticoCaseStudy() {
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             One platform used the word "<strong style={{ fontWeight: 500 }}>amount</strong>" and the other, "<strong style={{ fontWeight: 500 }}>count</strong>," for tracking student skills. <strong style={{ fontWeight: 500 }}>We unified them by using the phrase "logging task."</strong>
           </p>
-          <div style={{ marginTop: 24, marginBottom: 24 }}><PorticoLanguageVisual /></div>
         </div>
+
+        {/* ─── Language Visual ─── */}
+        <PorticoLanguageVisual />
 
         {/* ─── Section 2: Course listings solution ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
