@@ -438,8 +438,8 @@ function PorticoLanguageVisual() {
   const SC = 793 / 893;
   const s = (n: number) => n * SC;
 
-  const Chip = ({ label, bg, left, top, w, h, fs }: { label: string; bg: string; left: number; top: number; w: number; h: number; fs: number }) => (
-    <div style={{ position: "absolute", background: bg, display: "flex", alignItems: "center", justifyContent: "center", left: s(left), top: s(top), width: s(w), height: s(h), borderRadius: s(5), boxSizing: "border-box" }}>
+  const Chip = ({ label, bg, left, top, w, h, fs }: { label: string; bg: string; left: number; top: number; w?: number; h: number; fs: number }) => (
+    <div style={{ position: "absolute", background: bg, display: "flex", alignItems: "center", justifyContent: "center", left: s(left), top: s(top), width: w ? s(w) : undefined, minWidth: s(108), height: s(h), borderRadius: s(5), paddingLeft: s(24), paddingRight: s(24), boxSizing: "border-box" }}>
       <p style={{ fontFamily: "-apple-system, sans-serif", fontSize: s(fs), color: "#494949", whiteSpace: "nowrap", margin: 0 }}>{label}</p>
     </div>
   );
@@ -477,7 +477,7 @@ function PorticoLanguageVisual() {
       <Chip label="Major Study" bg="#ffe3aa" left={174} top={344} w={143} h={43} fs={20} />
       <Chip label="Skill" bg="#d9d9d9" left={348} top={341} w={143} h={43} fs={20} />
       <Chip label="Program" bg="#d9d9d9" left={0} top={438} w={143} h={43} fs={20} />
-      <Chip label="Checklist Name" bg="#ffe3aa" left={174} top={438} w={143} h={43} fs={20} />
+      <Chip label="Checklist Name" bg="#ffe3aa" left={174} top={438} h={43} fs={20} />
       <Chip label="Skill" bg="#d9d9d9" left={348} top={438} w={143} h={43} fs={20} />
       {/* Platform B chips */}
       <Chip label="Count" bg="#ffc54f" left={365} top={595} w={109} h={43} fs={16} />
