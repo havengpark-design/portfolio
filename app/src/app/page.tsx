@@ -289,7 +289,6 @@ function JamsCard({ onClick: _onClick }: { onClick: () => void }) {
         flexShrink: 0,
         position: "relative",
         overflow: "hidden",
-        cursor: "pointer",
       }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
