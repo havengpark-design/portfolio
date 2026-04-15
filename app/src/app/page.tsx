@@ -489,10 +489,11 @@ function PorticoLanguageVisual() {
         </svg>
       </div>
 
-      {/* Row 1: Program / Major Study / Skill */}
-      <div style={{ position: "absolute", left: 0, top: s(y_row1), display: "flex", gap: s(31) }}>
-        {[["Program","#e0e0e0"],["Major Study","#93afd4"],["Skill","#e0e0e0"]].map(([label, bg]) => (
-          <div key={label} style={{ ...chipStyle(bg, 43) }}>
+      {/* Rows 1 & 2 in shared grid so "Skill" aligns across both rows */}
+      <div style={{ position: "absolute", left: 0, top: s(y_row1), display: "grid", gridTemplateColumns: "auto auto auto", columnGap: s(31), rowGap: s(y_row2 - y_row1 - 43) }}>
+        {([["Program","#e0e0e0"],["Major Study","#93afd4"],["Skill","#e0e0e0"],
+           ["Program","#e0e0e0"],["Checklist Name","#93afd4"],["Skill","#e0e0e0"]] as [string,string][]).map(([label, bg], i) => (
+          <div key={i} style={{ ...chipStyle(bg, 43) }}>
             <p style={chipTxt(20)}>{label}</p>
           </div>
         ))}
@@ -500,15 +501,6 @@ function PorticoLanguageVisual() {
 
       {/* Separator */}
       <div style={{ position: "absolute", left: 0, top: s(y_sep), width: "100%", height: 1, background: "rgba(38,36,33,0.16)" }} />
-
-      {/* Row 2: Program / Checklist Name / Skill */}
-      <div style={{ position: "absolute", left: 0, top: s(y_row2), display: "flex", gap: s(31) }}>
-        {[["Program","#e0e0e0"],["Checklist Name","#93afd4"],["Skill","#e0e0e0"]].map(([label, bg]) => (
-          <div key={label} style={{ ...chipStyle(bg, 43) }}>
-            <p style={chipTxt(20)}>{label}</p>
-          </div>
-        ))}
-      </div>
 
       {/* Down arrow */}
       <div style={{ position: "absolute", left: s(404), top: s(y_arrowDown), width: s(32), height: s(ARROW_H), display: "flex", alignItems: "center", justifyContent: "center" }}>
