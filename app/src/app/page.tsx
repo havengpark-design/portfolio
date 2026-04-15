@@ -467,29 +467,29 @@ function PorticoLanguageVisual() {
   return (
     <div style={{ position: "relative", width: s(893), height: s(TOTAL_H) }}>
       {/* Dark box A */}
-      <div style={{ position: "absolute", background: "#404040", left: s(345), top: 0, width: s(548), height: s(BOX_A_H), borderRadius: s(11) }} />
+      <div style={{ position: "absolute", background: "#f0f0f0", left: s(345), top: 0, width: s(548), height: s(BOX_A_H), borderRadius: s(11) }} />
       {/* Skill Attributes + Platform A label */}
       <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(14), color: "#a2a2a2", left: s(112), top: s(80), margin: 0, whiteSpace: "nowrap" }}>Skill Attributes</p>
       <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(20), color: "#262421", left: s(112), top: s(107), margin: 0, whiteSpace: "nowrap" }}>Acquired platform A</p>
       {/* Platform A chips inside dark box */}
-      <div style={{ position: "absolute", left: s(501), top: s(46), ...chipStyle("#d9d9d9", 43) }}><p style={chipTxt(16)}>Key</p></div>
-      <Chip2 lines={["Participation", "Level"]} bg="#ffe3aa" left={634} top={20} w={109} h={56} fs={16} />
-      <div style={{ position: "absolute", left: s(368), top: s(113), ...chipStyle("#d9d9d9", 43) }}><p style={chipTxt(16)}>Total Time</p></div>
-      <div style={{ position: "absolute", left: s(501), top: s(113), ...chipStyle("#d9d9d9", 43) }}><p style={chipTxt(16)}>Pathology</p></div>
-      <Chip2 lines={["Supervising", "Employee"]} bg="#d9d9d9" left={634} top={100} w={108} h={56} fs={15} />
-      <div style={{ position: "absolute", left: s(365), top: s(180), ...chipStyle("#ffc54f", 43) }}><p style={chipTxt(16)}>Amount</p></div>
-      <div style={{ position: "absolute", left: s(498), top: s(180), ...chipStyle("#d9d9d9", 43) }}><p style={chipTxt(16)}>Date</p></div>
-      <div style={{ position: "absolute", left: s(631), top: s(180), ...chipStyle("#d9d9d9", 43) }}><p style={chipTxt(16)}>Repeats</p></div>
-      <div style={{ position: "absolute", left: s(759), top: s(180), ...chipStyle("#d9d9d9", 43) }}><p style={chipTxt(16)}>Site</p></div>
+      <div style={{ position: "absolute", left: s(501), top: s(46), ...chipStyle("#e0e0e0", 43) }}><p style={chipTxt(16)}>Key</p></div>
+      <Chip2 lines={["Participation", "Level"]} bg="#e0e0e0" left={634} top={20} w={109} h={56} fs={16} />
+      <div style={{ position: "absolute", left: s(368), top: s(113), ...chipStyle("#e0e0e0", 43) }}><p style={chipTxt(16)}>Total Time</p></div>
+      <div style={{ position: "absolute", left: s(501), top: s(113), ...chipStyle("#e0e0e0", 43) }}><p style={chipTxt(16)}>Pathology</p></div>
+      <Chip2 lines={["Supervising", "Employee"]} bg="#e0e0e0" left={634} top={100} w={108} h={56} fs={15} />
+      <div style={{ position: "absolute", left: s(365), top: s(180), ...chipStyle("#93afd4", 43) }}><p style={chipTxt(16)}>Amount</p></div>
+      <div style={{ position: "absolute", left: s(498), top: s(180), ...chipStyle("#e0e0e0", 43) }}><p style={chipTxt(16)}>Date</p></div>
+      <div style={{ position: "absolute", left: s(631), top: s(180), ...chipStyle("#e0e0e0", 43) }}><p style={chipTxt(16)}>Repeats</p></div>
+      <div style={{ position: "absolute", left: s(759), top: s(180), ...chipStyle("#e0e0e0", 43) }}><p style={chipTxt(16)}>Site</p></div>
 
       {/* Up arrow */}
       <div style={{ position: "absolute", left: s(404), top: s(y_arrowUp), width: s(32), height: s(ARROW_H), display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <svg width={s(14)} height={s(28)} viewBox="0 0 14 28" fill="none"><path d="M7 0L0 10H5V28H9V10H14L7 0Z" fill="#404040" /></svg>
+        <svg width={s(14)} height={s(28)} viewBox="0 0 14 28" fill="none"><path d="M7 0L0 10H5V28H9V10H14L7 0Z" fill="#a0a0a0" /></svg>
       </div>
 
       {/* Row 1: Program / Major Study / Skill */}
       <div style={{ position: "absolute", left: 0, top: s(y_row1), display: "flex", gap: s(31) }}>
-        {[["Program","#d9d9d9"],["Major Study","#ffe3aa"],["Skill","#d9d9d9"]].map(([label, bg]) => (
+        {[["Program","#e0e0e0"],["Major Study","#93afd4"],["Skill","#e0e0e0"]].map(([label, bg]) => (
           <div key={label} style={{ ...chipStyle(bg, 43) }}>
             <p style={chipTxt(20)}>{label}</p>
           </div>
@@ -501,7 +501,7 @@ function PorticoLanguageVisual() {
 
       {/* Row 2: Program / Checklist Name / Skill */}
       <div style={{ position: "absolute", left: 0, top: s(y_row2), display: "flex", gap: s(31) }}>
-        {[["Program","#d9d9d9"],["Checklist Name","#ffe3aa"],["Skill","#d9d9d9"]].map(([label, bg]) => (
+        {[["Program","#e0e0e0"],["Checklist Name","#93afd4"],["Skill","#e0e0e0"]].map(([label, bg]) => (
           <div key={label} style={{ ...chipStyle(bg, 43) }}>
             <p style={chipTxt(20)}>{label}</p>
           </div>
@@ -510,19 +510,19 @@ function PorticoLanguageVisual() {
 
       {/* Down arrow */}
       <div style={{ position: "absolute", left: s(404), top: s(y_arrowDown), width: s(32), height: s(ARROW_H), display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <svg width={s(14)} height={s(28)} viewBox="0 0 14 28" fill="none"><path d="M7 28L14 18H9V0H5V18H0L7 28Z" fill="#404040" /></svg>
+        <svg width={s(14)} height={s(28)} viewBox="0 0 14 28" fill="none"><path d="M7 28L14 18H9V0H5V18H0L7 28Z" fill="#a0a0a0" /></svg>
       </div>
 
       {/* Dark box B */}
-      <div style={{ position: "absolute", background: "#404040", left: s(345), top: s(y_boxB), width: s(548), height: s(BOX_B_H), borderRadius: s(11) }} />
+      <div style={{ position: "absolute", background: "#f0f0f0", left: s(345), top: s(y_boxB), width: s(548), height: s(BOX_B_H), borderRadius: s(11) }} />
       {/* Skill Attributes + Platform B label */}
       <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(14), color: "#a2a2a2", left: s(106), top: s(y_boxB - 10), margin: 0, whiteSpace: "nowrap" }}>Skill Attributes</p>
       <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(20), color: "#262421", left: s(106), top: s(y_boxB + 17), margin: 0, whiteSpace: "nowrap" }}>Acquired platform B</p>
       {/* Platform B chips inside dark box */}
-      <div style={{ position: "absolute", left: s(365), top: s(y_boxB + 20), ...chipStyle("#ffc54f", 43) }}><p style={chipTxt(16)}>Count</p></div>
-      <div style={{ position: "absolute", left: s(499), top: s(y_boxB + 20), ...chipStyle("#d9d9d9", 43) }}><p style={chipTxt(16)}>Date</p></div>
-      <Chip2 lines={["Media", "(Attachment)"]} bg="#d9d9d9" left={632} top={y_boxB + 20} w={108} h={56} fs={15} />
-      <Chip2 lines={["Supervising", "Employee"]} bg="#ffe3aa" left={765} top={y_boxB + 20} w={108} h={56} fs={15} />
+      <div style={{ position: "absolute", left: s(365), top: s(y_boxB + 20), ...chipStyle("#93afd4", 43) }}><p style={chipTxt(16)}>Count</p></div>
+      <div style={{ position: "absolute", left: s(499), top: s(y_boxB + 20), ...chipStyle("#e0e0e0", 43) }}><p style={chipTxt(16)}>Date</p></div>
+      <Chip2 lines={["Media", "(Attachment)"]} bg="#e0e0e0" left={632} top={y_boxB + 20} w={108} h={56} fs={15} />
+      <Chip2 lines={["Supervising", "Employee"]} bg="#e0e0e0" left={765} top={y_boxB + 20} w={108} h={56} fs={15} />
     </div>
   );
 }
