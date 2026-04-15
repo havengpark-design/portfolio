@@ -484,7 +484,9 @@ function PorticoLanguageVisual() {
 
       {/* Up arrow */}
       <div style={{ position: "absolute", left: s(404), top: s(y_arrowUp), width: s(32), height: s(ARROW_H), display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <svg width={s(14)} height={s(28)} viewBox="0 0 14 28" fill="none"><path d="M7 0L0 10H5V28H9V10H14L7 0Z" fill="#a0a0a0" /></svg>
+        <svg width={s(10)} height={s(28)} viewBox="0 0 10 28" fill="none">
+          <path d="M5 26 L5 2 M1 8 L5 2 L9 8" stroke="#a0a0a0" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
       </div>
 
       {/* Row 1: Program / Major Study / Skill */}
@@ -510,7 +512,9 @@ function PorticoLanguageVisual() {
 
       {/* Down arrow */}
       <div style={{ position: "absolute", left: s(404), top: s(y_arrowDown), width: s(32), height: s(ARROW_H), display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <svg width={s(14)} height={s(28)} viewBox="0 0 14 28" fill="none"><path d="M7 28L14 18H9V0H5V18H0L7 28Z" fill="#a0a0a0" /></svg>
+        <svg width={s(10)} height={s(28)} viewBox="0 0 10 28" fill="none">
+          <path d="M5 2 L5 26 M1 20 L5 26 L9 20" stroke="#a0a0a0" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
       </div>
 
       {/* Dark box B */}
