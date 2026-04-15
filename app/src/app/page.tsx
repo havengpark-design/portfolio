@@ -276,16 +276,17 @@ function MermoryCard({ onClick }: { onClick: () => void }) {
   );
 }
 
-function JamsCard({ onClick: _onClick }: { onClick: () => void }) {
+function JamsCard({ onClick }: { onClick: () => void }) {
   return (
     <div
+      onClick={onClick}
       style={{
         background: "white",
         borderRadius: 17,
         boxShadow: CARD_SHADOW,
         width: 677,
         height: 910,
-        cursor: "default",
+        cursor: "pointer",
         flexShrink: 0,
         position: "relative",
         overflow: "hidden",
@@ -419,14 +420,137 @@ function MermoryContent() {
 }
 
 function JamsContent() {
+  const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
+  const BASE = "/Design/jams/case-study";
   return (
-    <div style={{ maxWidth: 800, paddingBottom: 80 }}>
-      <p style={{ fontSize: 13, color: "rgba(38,36,33,0.4)", marginBottom: 18 }}>Product Design · Enterprise Platform</p>
-      <h1 style={{ fontSize: 64, fontWeight: 700, color: "#262421", letterSpacing: "-2px", lineHeight: 1, marginBottom: 14 }}>Jams</h1>
-      <p style={{ fontSize: 18, color: "rgba(38,36,33,0.5)", marginBottom: 40 }}>Enterprise job automation platform</p>
-      <div style={{ background: "#F0EEE8", borderRadius: 20, padding: "32px 48px", marginBottom: 48 }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/Design/jams/poster.png" alt="Jams mockup" style={{ width: "100%", borderRadius: 10, display: "block" }} />
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 120, paddingBottom: 150, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
+      <div style={{ width: "100%", maxWidth: CS_W, display: "flex", flexDirection: "column", gap: 110 }}>
+
+        {/* ─── Header ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 56 }}>
+          {/* Meta row */}
+          <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>Product Design</span>
+            <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#a2a2a2", flexShrink: 0 }} />
+            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>8 weeks (2025)</span>
+          </div>
+          {/* Title */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
+            <h1 style={{ fontFamily: "-apple-system, 'SF Pro', sans-serif", fontWeight: 590, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Jams</h1>
+            <p style={{ ...CS_BODY, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0 }}>Enterprise job automation platform.</p>
+          </div>
+          {/* Divider */}
+          <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
+          {/* Metadata */}
+          <div style={{ display: "flex", gap: 60 }}>
+            {([["Role", "Product Designer"], ["Timeline", "8 weeks (2025)"], ["Tools", "Figma"]] as const).map(([l, v]) => (
+              <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
+                <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px", whiteSpace: "nowrap" }}>{l}</span>
+                <span style={{ ...CS_BODY, fontSize: 20, lineHeight: "30px", color: "#262421", whiteSpace: "nowrap" }}>{v}</span>
+              </div>
+            ))}
+          </div>
+          {/* Hero card */}
+          <div style={{ background: "white", borderRadius: 23, boxShadow: "0px 4px 24.9px 3px rgba(0,0,0,0.09)", height: 600, overflow: "hidden", position: "relative" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="Jams hero" src="/Design/jams/Dashboard/Home - Future.png"
+              style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)", width: "80%", objectFit: "cover", pointerEvents: "none" }} />
+          </div>
+        </div>
+
+        {/* ─── Overview ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>JAMS Scheduler is an enterprise workload automation and job scheduling platform — essentially software that helps large IT organizations automate, orchestrate, and monitor critical backend processes across their entire tech stack.</p>
+          <p style={{ ...CS_BODY, margin: 0 }}>
+            Notable users of JAMS: <strong style={{ fontWeight: 500 }}>Bank of America, Coca-Cola Canada, CVS Health, Comcast.</strong>
+          </p>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            ThisWaay UX studio was brought in to <strong style={{ fontWeight: 500 }}>reduce friction in critical workflows while increasing user confidence and speed.</strong>
+          </p>
+        </div>
+
+        {/* ─── Personas frame ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 27 }}>
+          <ExpandableBlackFrame id="j1" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "center" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src={`${BASE}/3889f2af395002bf973c474dfb4990303cdcde2d.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src={`${BASE}/36ec73483a5830ef49d0eb8e182b8940d42bbdcd.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src={`${BASE}/d867a5a5b76905fc99c562dec18a68ab3a4c657e.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+          </ExpandableBlackFrame>
+          <p style={{ ...CS_BODY, margin: 0 }}>
+            <strong style={{ fontWeight: 500, color: "black" }}>We identified 3 primary user personas of JAMS.</strong>
+          </p>
+        </div>
+
+        {/* ─── Complex Systems ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Complex, Outdated Systems</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            JAMS is an enterprise workload automation platform built for complex, data-heavy operations. Despite its power, the product had accumulated <strong style={{ fontWeight: 500 }}>significant usability debt</strong>, making it especially hard for new users to get up to speed. Through collaborative sessions with JAMS's long-tenured staff, we surfaced two recurring pain points: a steep first-time user experience and interfaces that obscured rather than clarified.
+          </p>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>Here's what we did:</p>
+        </div>
+
+        {/* ─── Home dashboard frame ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+          <ExpandableBlackFrame id="j2" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "center" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src={`${BASE}/9588850c5c33fbd3fdef6c1599eddfc3bfff4cfa.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src={`${BASE}/1f12448c836a8127ec39ad3cfac674d94fa11df2.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+          </ExpandableBlackFrame>
+          <p style={{ ...CS_BODY, margin: 0 }}>
+            The original Home screen offered little beyond documentation links. <strong style={{ fontWeight: 500, color: "black" }}>We rebuilt it into a live dashboard:</strong> job status, schedule projections, quick actions, and agent health all visible on arrival.
+          </p>
+        </div>
+
+        {/* ─── Monitor view frame ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+          <ExpandableBlackFrame id="j3" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "flex-end" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src={`${BASE}/6cb1470acc7102f200a151793ddf9c3a7eff84cc.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src={`${BASE}/cf4f0fdcb941cb7edebdc4fc7b3b81528910c3c4.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+          </ExpandableBlackFrame>
+          <p style={{ ...CS_BODY, margin: 0 }}>
+            The original Monitor view had no entry point — just rows. <strong style={{ fontWeight: 500, color: "black" }}>We added a live status summary</strong> so operators could orient immediately: what's running, what failed, what's queued. Faster triage, less cognitive load, same underlying data.
+          </p>
+        </div>
+
+        {/* ─── Job creation frame ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+          <ExpandableBlackFrame id="j4" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "center" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src={`${BASE}/d7f4968da51e6798db95e3ef6c7ff36a6e246b47.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src={`${BASE}/94c9012ae8f352b669443f668109cdf65dcc2d04.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src={`${BASE}/01673452f741297cbaf8ed58458be5c9e4eb8242.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="" src={`${BASE}/08d6c53be76e1d7e8ba5e0fb8ae7f47d07b9c15a.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+          </ExpandableBlackFrame>
+          <p style={{ ...CS_BODY, margin: 0 }}>
+            Picking an execution method meant scrolling a long, context-free list with no guidance. <strong style={{ fontWeight: 500, color: "black" }}>We redesigned it with search, categorization, and descriptions</strong> — so users can choose with confidence, not guesswork.
+          </p>
+        </div>
+
+        {/* ─── Impact ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Impact</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            The redesigned job creation flow was incorporated into JAMS' roadmap for their 2026 web app release. The execution method selector, AI job creation feature, and quick-win usability fixes were all identified as priority items for the MVP — directly shaping the product direction for a platform used by enterprise clients across finance, retail, and manufacturing.
+          </p>
+        </div>
+
+        {/* ─── Footer ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+          <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>For more work samples, feel free to contact me at <a href="mailto:gaeunpark@g.ucla.edu" style={{ color: "inherit" }}>gaeunpark@g.ucla.edu</a>.</p>
+        </div>
+
       </div>
     </div>
   );
@@ -1262,7 +1386,7 @@ export default function Home() {
           <div style={{ display: "flex", flexDirection: "column", gap: 67, paddingTop: 30, marginTop: -30, paddingLeft: 30, marginLeft: -30, paddingRight: 30, marginRight: -30, paddingBottom: 150 }}>
             <PlaceholderCard scale={scale} />
             <div className="card-wrap"><MermoryCard onClick={() => openDesignProject("mermory")} /></div>
-            <div><JamsCard onClick={() => openDesignProject("jams")} /></div>
+            <div className="card-wrap"><JamsCard onClick={() => openDesignProject("jams")} /></div>
             <div className="card-wrap"><PorticoCard onClick={() => openDesignProject("portico")} /></div>
           </div>
         </div>
@@ -1280,7 +1404,7 @@ export default function Home() {
             <div style={{ display: "flex", gap: 89, width: "fit-content" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
                 <PlaceholderCard scale={scale} />
-                <div><JamsCard onClick={() => openDesignProject("jams")} /></div>
+                <div className="card-wrap"><JamsCard onClick={() => openDesignProject("jams")} /></div>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 67 }}>
                 <div className="card-wrap"><MermoryCard onClick={() => openDesignProject("mermory")} /></div>
