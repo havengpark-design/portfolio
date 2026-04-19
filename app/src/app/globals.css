@@ -92,3 +92,26 @@ body {
   0%, 100% { transform: rotate(-25deg); }
   50% { transform: rotate(30deg); }
 }
+
+@keyframes highlight-sweep {
+  0% { background-size: 0% 100%; }
+  100% { background-size: 100% 100%; }
+}
+
+.hl-green {
+  background-image: linear-gradient(to right, rgba(149, 222, 192, 0.2), rgba(149, 222, 192, 0.2));
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  animation: highlight-sweep 0.65s ease-out forwards;
+  border-radius: 4px;
+}
+
+.hl-pink {
+  background-image: linear-gradient(to right, rgba(255, 171, 171, 0.2), rgba(255, 171, 171, 0.2));
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  animation: highlight-sweep 0.65s ease-out forwards;
+  border-radius: 4px;
+}

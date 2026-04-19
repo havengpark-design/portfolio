@@ -647,6 +647,27 @@ function PorticoLanguageVisual() {
   );
 }
 
+function Highlight({ color, children, delay = 0 }: { color: "green" | "pink"; children: React.ReactNode; delay?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <span ref={ref} className={visible ? (color === "green" ? "hl-green" : "hl-pink") : ""}
+          style={delay && visible ? { animationDelay: `${delay}ms` } : undefined}>
+      {children}
+    </span>
+  );
+}
+
 function PorticoCaseStudy() {
   const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
   const [iconHovered, setIconHovered] = useState(false);
@@ -660,7 +681,7 @@ function PorticoCaseStudy() {
           <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
             <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>Product Design</span>
             <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#a2a2a2", flexShrink: 0 }} />
-            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>2 months (2025)</span>
+            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>8 weeks (2025)</span>
           </div>
           {/* Title + subtitle */}
           <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
@@ -706,10 +727,10 @@ function PorticoCaseStudy() {
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            This Waay Design Studio was brought in to <strong style={{ fontWeight: 500 }}>define the north star for a unified student mobile experience, delivering both a long-term vision and tactical design guidance for Q4 execution</strong>.
+            <strong style={{ fontWeight: 500, color: "black" }}>Portico</strong> — formed through the merger of Campus Ivy, CourseKey, and Verity IQ — <Highlight color="pink">inherited a fragmented ecosystem of tools</Highlight>. Career school students were forced to navigate 4 separate web portals and 2 mobile apps to complete basic daily tasks like logging skills, checking attendance, and making payments.
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            Portico — formed through the merger of Campus Ivy, CourseKey, and Verity IQ — <strong style={{ fontWeight: 500 }}>inherited a fragmented ecosystem of tools</strong>. Career school students were forced to navigate 4 separate web portals and 2 mobile apps to complete basic daily tasks like logging skills, checking attendance, and making payments.
+            This Waay Design Studio was brought in to <strong style={{ fontWeight: 500, color: "black" }}><Highlight color="green">define the north star for a unified student mobile experience, delivering both a long-term vision and tactical design guidance for Q4 execution</Highlight></strong>.
           </p>
         </div>
 
@@ -724,7 +745,7 @@ function PorticoCaseStudy() {
             <img alt="" src="/Design/portico/case-study/fragmented-3.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>Combining multiple platforms creates fragmented experiences. </strong>
+            <strong style={{ fontWeight: 500, color: "black" }}>Combining multiple platforms creates <Highlight color="pink">fragmented experiences</Highlight>. </strong>
             <span style={{ color: "#5c5b59" }}>Credit-based students had to use one platform and traditional students had to use another. The payments and attendance logging were all separated.</span>
           </p>
         </div>
@@ -732,9 +753,14 @@ function PorticoCaseStudy() {
         {/* ─── Fragmented Language ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Fragmented Experience</span>
-          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>For example, there was a different language used to describe the same function.</p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            One platform used the word "<strong style={{ fontWeight: 500 }}>amount</strong>" and the other, "<strong style={{ fontWeight: 500 }}>count</strong>," for tracking student skills. <strong style={{ fontWeight: 500 }}>We unified them by using the phrase "logging task."</strong>
+            <strong style={{ fontWeight: 500, color: "black" }}>Portico was built from multiple acquired platforms</strong>{" — meaning students had to "}<Highlight color="pink">navigate different apps to complete basic tasks</Highlight>{" like logging attendance, tracking skills, and making payments."}
+          </p>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            {"But the fragmentation went deeper than just the number of apps. "}<Highlight color="pink" delay={300}>Each platform had developed its own language and structure for the same underlying concepts</Highlight>{". As shown below, one platform organized skill tracking under a Major Study hierarchy and called the primary input \u201cAmount,\u201d while the other used a Checklist structure and called it \u201cCount\u201d \u2014 two different words for the same thing, in two different systems, that students were expected to use simultaneously."}
+          </p>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            {"This created a core design challenge: "}<strong style={{ fontWeight: 500 }}>before we could unify the experience visually, we had to unify it conceptually.</strong>
           </p>
         </div>
 
@@ -751,8 +777,8 @@ function PorticoCaseStudy() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/portico/case-study/course-listing-3.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
-          <p style={{ ...CS_BODY, margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>This was our solution, combining the features of all the different platforms that Portico had. </strong>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            <strong style={{ fontWeight: 500, color: "black" }}>The redesigned Courses experience unified attendance, grades, and course progression</strong>{" into a single coherent view, "}<Highlight color="green">so students could understand where they stood in their program without switching between apps.</Highlight>
           </p>
         </div>
 
@@ -766,9 +792,8 @@ function PorticoCaseStudy() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/portico/case-study/task-log-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
-          <p style={{ ...CS_BODY, margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>We designed a way students could keep track of their tasks. </strong>
-            <span style={{ color: "#5c5b59" }}>It's more straightforward and simple.</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            {"The existing experience required students to log clinical tasks through a "}<Highlight color="pink">desktop-first interface with no mobile consideration</Highlight>{". We "}<Highlight color="green" delay={200}><strong style={{ fontWeight: 500, color: "black" }}>redesigned the task logging flow as a guided mobile experience</strong>{" \u2014 step-by-step inputs, clear progress tracking, and an AI assistant on hand"}</Highlight>{" \u2014 so students could log in the moment, not after the fact."}
           </p>
         </div>
 
@@ -778,9 +803,19 @@ function PorticoCaseStudy() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/portico/case-study/messages.png" style={{ width: "40%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
-          <p style={{ ...CS_BODY, margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>We surfaced all messages and correspondence in one place </strong>
-            <span style={{ color: "#5c5b59" }}>so students can clearly see when there is an update.</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            <Highlight color="pink">Previously, messages were siloed at the course level</Highlight>{" \u2014 meaning students could miss critical updates from other parts of their program. The unified messaging center "}<Highlight color="green" delay={200}><strong style={{ fontWeight: 500, color: "black" }}>brings together communications from all departments and instructors in one place</strong>, with read status and message type filters to help students prioritize what needs their attention</Highlight>
+          </p>
+        </div>
+
+        {/* ─── Impact ─── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Impact</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            One platform used the word “<strong style={{ fontWeight: 500, color: "inherit" }}>amount</strong>” and other, “<strong style={{ fontWeight: 500, color: "inherit" }}>count</strong>,” for tracking students skills. <strong style={{ fontWeight: 500, color: "inherit" }}>We unified them by using the phrase “logging task.”</strong>
+          </p>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            This was my first time working inside a product with that much history. This was four tools, years of accumulated decisions, and a team trying to make it all feel like one thing. I learned a lot about what it means to design within constraints instead of around them.
           </p>
         </div>
 
@@ -842,15 +877,20 @@ function ExpandableBlackFrame({
   return (
     <div
       ref={ref}
-      onClick={() => { if (!expanded) setExpandedId(id); }}
+      onClick={() => {
+        if (!expanded) setExpandedId(id);
+        else setExpandedId(null);
+      }}
       style={{
         background: "black",
         borderRadius: expanded ? 0 : 12,
         padding: "10%",
-        marginLeft: expanded ? -CS_PAD : 0,
-        marginRight: expanded ? -CS_PAD : 0,
-        transition: "margin 0.45s cubic-bezier(0.25,0.46,0.45,0.94), border-radius 0.45s cubic-bezier(0.25,0.46,0.45,0.94), padding 0.45s cubic-bezier(0.25,0.46,0.45,0.94)",
-        cursor: expanded ? "default" : "pointer",
+        width: expanded ? "150%" : "100%",
+        marginLeft: expanded ? "-25%" : 0,
+        zIndex: expanded ? 50 : 1,
+        position: "relative",
+        transition: "width 0.45s cubic-bezier(0.25,0.46,0.45,0.94), margin-left 0.45s cubic-bezier(0.25,0.46,0.45,0.94), border-radius 0.45s cubic-bezier(0.25,0.46,0.45,0.94), padding 0.45s cubic-bezier(0.25,0.46,0.45,0.94)",
+        cursor: expanded ? "zoom-out" : "zoom-in",
         ...(style || {}),
       }}
     >
@@ -902,7 +942,7 @@ function MermoryCaseStudy() {
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            As<strong style={{ fontWeight: 500 }}> one of 3 product designers</strong> of Mermory, I got to design an AI-powered flashcard platform that gave students creative autonomy over how they study. Unlike Quizlet or Anki, Mermory let users personalize their cards with stickers, themes, and design elements through a Creator Studio—while maintaining industry-standard learning science through FSRS spaced repetition.
+            As <strong style={{ fontWeight: 500 }}>one of 3 product designers</strong> of Mermory, I got to design an AI-powered flashcard platform that gave students creative autonomy over how they study. Unlike Quizlet or Anki, Mermory let users personalize their cards with stickers, themes, and design elements through a Creator Studio—while maintaining industry-standard learning science through FSRS spaced repetition.
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>With the nature of the team size, I got to work on lots of different projects as you can see below:</p>
         </div>
@@ -913,9 +953,9 @@ function MermoryCaseStudy() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/importflow.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
-          <p style={{ ...CS_BODY, margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>I designed & shipped the "Create" menu pop up. </strong>
-            <span style={{ color: "#5c5b59" }}>The users can start building their flashcards using the Creator Studio, add terms & definitions, or import a file. </span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            <strong style={{ fontWeight: 500 }}>I designed & shipped the &ldquo;Create&rdquo; menu pop up. </strong>
+            Users needed a clear starting point for building flashcard decks. The modal gives them three distinct paths — Creative Mode, Quick-Add, or Upload — so they can choose the workflow that fits how they work.
           </p>
         </div>
 
@@ -931,9 +971,9 @@ function MermoryCaseStudy() {
               <img alt="" src="/Design/mermory/case-study/inviteFriends2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
             </div>
           </ExpandableBlackFrame>
-          <p style={{ ...CS_BODY, margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>I designed the promotional banners for the explore page. </strong>
-            <span style={{ color: "#5c5b59" }}>The banners served to market Mermory's latest features.</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            <strong style={{ fontWeight: 500 }}>I designed the promotional banners for the Explore page. </strong>
+            The banners surface Mermory&rsquo;s latest features like Import AI, Creator Studio, and social invites, giving users a reason to discover more every time they browse.
           </p>
         </div>
 
@@ -943,9 +983,9 @@ function MermoryCaseStudy() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/creatorStudioExitFlow.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
-          <p style={{ ...CS_BODY, margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>I designed the flow to exit out of the Creator Studio. </strong>
-            <span style={{ color: "#5c5b59" }}>The users have the choice to either go to the Library or start learning the flashcard they made.</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            <strong style={{ fontWeight: 500 }}>I designed the flow to exit out of the Creator Studio. </strong>
+            After publishing a deck, users are celebrated with a congrats moment and guided toward their next step, either heading to their Library or jumping straight into studying.
           </p>
         </div>
 
@@ -957,7 +997,10 @@ function MermoryCaseStudy() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/marketingPageAfter.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
-          <p style={{ ...CS_BODY, fontWeight: 500, color: "black", margin: 0 }}>I redesigned the hero section of the landing page to be in horizontal alignment than vertical.</p>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
+            <strong style={{ fontWeight: 500 }}>I redesigned the hero section of the landing page. </strong>
+            Shifting from a vertical to a horizontal layout gave the section more visual balance, letting the product preview and the headline share the stage and make a stronger first impression.
+          </p>
         </div>
 
         {/* ─── Design Language ─── */}
@@ -1346,7 +1389,7 @@ export default function Home() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <div style={{ width: "100%", height: 161, position: "relative", textAlign: "center", fontSize: 32, color: "#494949", fontFamily: "'SF Pro Display', -apple-system, sans-serif" }}>
         {/* Haven Park */}
-        <span ref={navLogoRef} style={{ position: "absolute", top: 0, left: 206, fontWeight: 500 }}>Haven Park</span>
+        <span ref={navLogoRef} style={{ position: "absolute", top: 0, left: 206, fontWeight: 500, color: "black" }}>Haven Park</span>
         {/* Identity labels */}
         <div style={{ position: "absolute", top: 54, left: 206, width: 307, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 6, textAlign: "left", fontSize: 17, color: "#4a70bc" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
