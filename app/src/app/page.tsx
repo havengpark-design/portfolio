@@ -954,7 +954,7 @@ function MermoryCaseStudy() {
             <img alt="" src="/Design/mermory/case-study/importflow.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            <strong style={{ fontWeight: 500 }}>I designed & shipped the &ldquo;Create&rdquo; menu pop up. </strong>
+            <strong style={{ fontWeight: 500, color: "black" }}>I designed & shipped the &ldquo;Create&rdquo; menu pop up. </strong>
             Users needed a clear starting point for building flashcard decks. The modal gives them three distinct paths — Creative Mode, Quick-Add, or Upload — so they can choose the workflow that fits how they work.
           </p>
         </div>
@@ -972,7 +972,7 @@ function MermoryCaseStudy() {
             </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            <strong style={{ fontWeight: 500 }}>I designed the promotional banners for the Explore page. </strong>
+            <strong style={{ fontWeight: 500, color: "black" }}>I designed the promotional banners for the Explore page. </strong>
             The banners surface Mermory&rsquo;s latest features like Import AI, Creator Studio, and social invites, giving users a reason to discover more every time they browse.
           </p>
         </div>
@@ -984,7 +984,7 @@ function MermoryCaseStudy() {
             <img alt="" src="/Design/mermory/case-study/creatorStudioExitFlow.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            <strong style={{ fontWeight: 500 }}>I designed the flow to exit out of the Creator Studio. </strong>
+            <strong style={{ fontWeight: 500, color: "black" }}>I designed the flow to exit out of the Creator Studio. </strong>
             After publishing a deck, users are celebrated with a congrats moment and guided toward their next step, either heading to their Library or jumping straight into studying.
           </p>
         </div>
@@ -998,7 +998,7 @@ function MermoryCaseStudy() {
             <img alt="" src="/Design/mermory/case-study/marketingPageAfter.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            <strong style={{ fontWeight: 500 }}>I redesigned the hero section of the landing page. </strong>
+            <strong style={{ fontWeight: 500, color: "black" }}>I redesigned the hero section of the landing page. </strong>
             Shifting from a vertical to a horizontal layout gave the section more visual balance, letting the product preview and the headline share the stage and make a stronger first impression.
           </p>
         </div>
