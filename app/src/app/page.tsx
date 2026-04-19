@@ -942,7 +942,7 @@ function MermoryCaseStudy() {
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            As <strong style={{ fontWeight: 500 }}>one of 3 product designers</strong> of Mermory, I got to design an AI-powered flashcard platform that gave students creative autonomy over how they study. Unlike Quizlet or Anki, Mermory let users personalize their cards with stickers, themes, and design elements through a Creator Studio—while maintaining industry-standard learning science through FSRS spaced repetition.
+            As <strong style={{ fontWeight: 500, color: "black" }}>one of 3 product designers</strong> of Mermory, I got to design an AI-powered flashcard platform that gave students creative autonomy over how they study. Unlike Quizlet or Anki, Mermory let users personalize their cards with stickers, themes, and design elements through a Creator Studio—while maintaining industry-standard learning science through FSRS spaced repetition.
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>With the nature of the team size, I got to work on lots of different projects as you can see below:</p>
         </div>
