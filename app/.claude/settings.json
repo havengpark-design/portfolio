@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"/Users/hvnpark/Library/Mobile Documents/com~apple~CloudDocs/portfolio code/app\" && git add -A && git diff --cached --quiet || git commit -m \"Auto-save changes\" && git push origin main 2>/dev/null || true",
+            "statusMessage": "Pushing to GitHub..."
+          }
+        ]
+      }
+    ]
+  }
+}
