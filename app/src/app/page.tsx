@@ -1277,10 +1277,12 @@ function BottomSheet({
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
   const [delayedChildren, setDelayedChildren] = useState<React.ReactNode>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (open) {
       setDelayedChildren(children);
+      if (scrollRef.current) scrollRef.current.scrollTo(0, 0);
     } else {
       // Allow CSS unmount translation to complete before dropping the layout nodes, automatically resetting scroll depths next mount
       const timer = setTimeout(() => {
@@ -1419,7 +1421,7 @@ function BottomSheet({
           <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(0,0,0,0.15)" }} />
         </div>
         {/* Scrollable content */}
-        <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
+        <div ref={scrollRef} style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
           {open ? children : delayedChildren}
         </div>
       </div>
