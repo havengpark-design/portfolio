@@ -1276,13 +1276,10 @@ function BottomSheet({
   const sheetRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
-
-  // Cache children so the transition doesn't abruptly flash white when closing
-  const [delayedChildren, setDelayedChildren] = useState(children);
-
-  useEffect(() => {
-    if (open) setDelayedChildren(children);
-  }, [open, children]);
+  const cachedChildrenRef = useRef(children);
+  if (open) {
+    cachedChildrenRef.current = children;
+  }
 
   // Reset to partial each time the sheet opens
   useEffect(() => {
@@ -1305,7 +1302,6 @@ function BottomSheet({
     };
   }, [open]);
 
-  // Live drag — no React state during drag (avoids re-render fights with direct DOM writes)
   const startDrag = (startClientY: number) => {
     const sheet = sheetRef.current;
     if (!sheet) return;
@@ -1411,7 +1407,7 @@ function BottomSheet({
         </div>
         {/* Scrollable content */}
         <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
-          {open ? children : delayedChildren}
+          {cachedChildrenRef.current}
         </div>
       </div>
     </>
