@@ -106,7 +106,7 @@ function LoadingSpinner() {
       >
         <circle
           cx="7" cy="7" r="4.5"
-          stroke="#4a70bc" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.4"
+          stroke="#344e84" strokeWidth="2.6" strokeLinecap="round" strokeOpacity="0.4"
           style={{ animation: "spinner-dash 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite" }}
         />
       </svg>
@@ -333,7 +333,9 @@ function PorticoCard({ onClick }: { onClick: () => void }) {
       style={{
         background: "white",
         borderRadius: 17,
-        boxShadow: CARD_SHADOW,
+        boxShadow: "0px 4px 18.1px 4px rgba(0,0,0,0.1)",
+        border: "1px solid #e7e7e7",
+        boxSizing: "border-box",
         width: 677,
         height: 910,
         flexShrink: 0,
@@ -348,11 +350,12 @@ function PorticoCard({ onClick }: { onClick: () => void }) {
         alt="Portico"
         style={{
           position: "absolute",
-          left: -101,
-          top: 396,
-          width: 624,
-          height: 590,
-          objectFit: "cover",
+          top: 212,
+          left: -205,
+          width: "100%",
+          height: 749,
+          objectFit: "none",
+          objectPosition: "left top",
           pointerEvents: "none",
         }}
       />
@@ -467,7 +470,7 @@ function JamsContent() {
             Notable users of JAMS: <strong style={{ fontWeight: 500 }}>Bank of America, Coca-Cola Canada, CVS Health, Comcast.</strong>
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            ThisWaay UX studio was brought in to <strong style={{ fontWeight: 500 }}>reduce friction in critical workflows while increasing user confidence and speed.</strong>
+            ThisWaay UX studio was brought in to <Highlight color="green"><strong style={{ fontWeight: 500, color: "black" }}>reduce friction in critical workflows while increasing user confidence and speed.</strong></Highlight>
           </p>
         </div>
 
@@ -475,11 +478,11 @@ function JamsContent() {
         <div style={{ display: "flex", flexDirection: "column", gap: 27 }}>
           <ExpandableBlackFrame id="j1" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "center" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src={`${BASE}/3889f2af395002bf973c474dfb4990303cdcde2d.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            <img alt="" src={`${BASE}/persona-1.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src={`${BASE}/36ec73483a5830ef49d0eb8e182b8940d42bbdcd.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            <img alt="" src={`${BASE}/persona-2.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src={`${BASE}/d867a5a5b76905fc99c562dec18a68ab3a4c657e.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            <img alt="" src={`${BASE}/persona-3.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
             <strong style={{ fontWeight: 500, color: "black" }}>We identified 3 primary user personas of JAMS.</strong>
@@ -490,7 +493,7 @@ function JamsContent() {
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Complex, Outdated Systems</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            JAMS is an enterprise workload automation platform built for complex, data-heavy operations. Despite its power, the product had accumulated <strong style={{ fontWeight: 500 }}>significant usability debt</strong>, making it especially hard for new users to get up to speed. Through collaborative sessions with JAMS's long-tenured staff, we surfaced two recurring pain points: a steep first-time user experience and interfaces that obscured rather than clarified.
+            JAMS is an enterprise workload automation platform built for complex, data-heavy operations. Despite its power, the product had accumulated <Highlight color="pink"><strong style={{ fontWeight: 500, color: "black" }}>significant usability debt</strong></Highlight>, making it especially hard for new users to get up to speed. Through collaborative sessions with JAMS's long-tenured staff, we surfaced <strong style={{ fontWeight: 500, color: "black" }}>two recurring pain points</strong>: <Highlight color="pink"><strong style={{ fontWeight: 300, color: "black" }}>a steep first-time user experience</strong></Highlight>{" and "}<Highlight color="pink" delay={150}><strong style={{ fontWeight: 300, color: "black" }}>interfaces that obscured</strong></Highlight>{" rather than clarified."}
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>Here's what we did:</p>
         </div>
@@ -559,7 +562,19 @@ function JamsContent() {
 
 
 function PorticoLanguageVisual() {
-  const SC = 793 / 893;
+  // Track viewport width so the diagram rescales on resize.
+  const [windowW, setWindowW] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 9999
+  );
+  useEffect(() => {
+    const handler = () => setWindowW(window.innerWidth);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+
+  // Available content width = case-study column width capped by viewport minus padding.
+  const availW = Math.min(CS_W, windowW - 2 * CS_PAD);
+  const SC = availW / 893;
   const s = (n: number) => n * SC;
 
   // Uniform gap between every element
@@ -669,9 +684,16 @@ function Highlight({ color, children, delay = 0 }: { color: "green" | "pink"; ch
   );
 }
 
+const PORTICO_TEAM_TEXT = "PM, In-house Designer, Engineers, Stakeholders & CEO";
+
 function PorticoCaseStudy() {
   const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
   const [iconHovered, setIconHovered] = useState(false);
+  const [porticoTeamPos, setPorticoTeamPos] = useState<{ x: number; y: number } | null>(null);
+  const porticoPillLeft = porticoTeamPos ? Math.max(40, porticoTeamPos.x - 180) : 0;
+  const porticoPillMaxWidth = typeof window !== "undefined" && porticoTeamPos
+    ? Math.max(120, window.innerWidth - 40 - porticoPillLeft)
+    : 0;
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 120, paddingBottom: 150, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
       <div style={{ width: "100%", maxWidth: CS_W, display: "flex", flexDirection: "column", gap: 110 }}>
@@ -707,7 +729,7 @@ function PorticoCaseStudy() {
           </div>
           {/* Divider */}
           <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
-          {/* Metadata 3-col */}
+          {/* Metadata 4-col */}
           <div style={{ display: "flex", gap: 60 }}>
             {([["Role", "Product Designer"], ["Timeline", "8 weeks (2025)"], ["Tools", "Figma"]] as const).map(([l, v]) => (
               <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
@@ -715,7 +737,39 @@ function PorticoCaseStudy() {
                 <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>{v}</span>
               </div>
             ))}
+            {/* Team — pill on hover */}
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1, cursor: "none" }}
+              onMouseEnter={(e) => setPorticoTeamPos({ x: e.clientX, y: e.clientY })}
+              onMouseMove={(e) => setPorticoTeamPos({ x: e.clientX, y: e.clientY })}
+              onMouseLeave={() => setPorticoTeamPos(null)}
+            >
+              <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px" }}>Team</span>
+              <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>Cross-functional</span>
+            </div>
           </div>
+          {porticoTeamPos && typeof document !== "undefined" && createPortal(
+            <div style={{
+              position: "fixed",
+              left: porticoPillLeft,
+              top: porticoTeamPos.y,
+              transform: "translateY(-50%)",
+              maxWidth: porticoPillMaxWidth,
+              borderRadius: 16,
+              background: "#f3f3f3",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "40px 50px",
+              pointerEvents: "none",
+              zIndex: 9999,
+            }}>
+              <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
+                {PORTICO_TEAM_TEXT}<span className="blink-cursor">|</span>
+              </span>
+            </div>,
+            document.body
+          )}
           {/* Hero card */}
           <div style={{ background: "white", borderRadius: 23, boxShadow: "0px 4px 24.9px 3px rgba(0,0,0,0.09)", height: 600, overflow: "hidden", position: "relative" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -737,13 +791,16 @@ function PorticoCaseStudy() {
 
         {/* ─── Section 1: Fragmented platforms ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 27 }}>
-          <ExpandableBlackFrame id="p1" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "center" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/portico/case-study/fragmented-wide.png" style={{ flex: 3, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/portico/case-study/fragmented-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/portico/case-study/fragmented-3.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+          <ExpandableBlackFrame id="p1" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
+            <div style={{ position: "relative", display: "flex", gap: "3%", alignItems: "center" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/portico/case-study/fragmented-wide.png" style={{ flex: 3, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/portico/case-study/fragmented-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/portico/case-study/fragmented-3.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
+            </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
             <strong style={{ fontWeight: 500, color: "black" }}>Combining multiple platforms creates <Highlight color="pink">fragmented experiences</Highlight>. </strong>
@@ -761,7 +818,7 @@ function PorticoCaseStudy() {
             {"But the fragmentation went deeper than just the number of apps. "}<Highlight color="pink" delay={300}>Each platform had developed its own language and structure for the same underlying concepts</Highlight>{". As shown below, one platform organized skill tracking under a Major Study hierarchy and called the primary input \u201cAmount,\u201d while the other used a Checklist structure and called it \u201cCount\u201d \u2014 two different words for the same thing, in two different systems, that students were expected to use simultaneously."}
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            {"This created a core design challenge: "}<strong style={{ fontWeight: 500 }}>before we could unify the experience visually, we had to unify it conceptually.</strong>
+            {"This created a core design challenge: "}<strong style={{ fontWeight: 500, color: "black" }}>before we could unify the experience visually, we had to unify it conceptually.</strong>
           </p>
         </div>
 
@@ -770,13 +827,16 @@ function PorticoCaseStudy() {
 
         {/* ─── Section 2: Course listings solution ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <ExpandableBlackFrame id="p2" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "flex-end" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/portico/case-study/course-listing-1.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/portico/case-study/course-listing-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/portico/case-study/course-listing-3.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+          <ExpandableBlackFrame id="p2" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
+            <div style={{ position: "relative", display: "flex", gap: "3%", alignItems: "flex-end" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/portico/case-study/course-listing-1.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/portico/case-study/course-listing-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/portico/case-study/course-listing-3.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+            </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             <strong style={{ fontWeight: 500, color: "black" }}>The redesigned Courses experience unified attendance, grades, and course progression</strong>{" into a single coherent view, "}<Highlight color="green">so students could understand where they stood in their program without switching between apps.</Highlight>
@@ -786,12 +846,20 @@ function PorticoCaseStudy() {
         {/* ─── Section 3: Task tracking ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
           <ExpandableBlackFrame id="p3" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "center" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/portico/case-study/fragmented-wide.png" style={{ flex: 1.5, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/portico/case-study/task-log-1.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/portico/case-study/task-log-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            {/* Image 1 — Before */}
+            <div style={{ flex: 1.5, width: 0, position: "relative" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/portico/case-study/fragmented-wide.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)" }}>Before</span>
+            </div>
+            {/* Images 2 & 3 — single After label centred below both */}
+            <div style={{ flex: 2, width: 0, position: "relative", display: "flex", gap: "5%" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/portico/case-study/task-log-1.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/portico/case-study/task-log-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+            </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             {"The existing experience required students to log clinical tasks through a "}<Highlight color="pink">desktop-first interface with no mobile consideration</Highlight>{". We "}<Highlight color="green" delay={200}><strong style={{ fontWeight: 500, color: "black" }}>redesigned the task logging flow as a guided mobile experience</strong>{" \u2014 step-by-step inputs, clear progress tracking, and an AI assistant on hand"}</Highlight>{" \u2014 so students could log in the moment, not after the fact."}
@@ -801,8 +869,11 @@ function PorticoCaseStudy() {
         {/* ─── Section 4: Messages ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
           <ExpandableBlackFrame id="p4" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", justifyContent: "center" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/portico/case-study/messages.png" style={{ width: "40%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            <div style={{ position: "relative", width: "40%" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/portico/case-study/messages.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+            </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             <Highlight color="pink">Previously, messages were siloed at the course level</Highlight>{" \u2014 meaning students could miss critical updates from other parts of their program. The unified messaging center "}<Highlight color="green" delay={200}><strong style={{ fontWeight: 500, color: "black" }}>brings together communications from all departments and instructors in one place</strong>, with read status and message type filters to help students prioritize what needs their attention</Highlight>
@@ -813,10 +884,7 @@ function PorticoCaseStudy() {
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Impact</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            One platform used the word “<strong style={{ fontWeight: 500, color: "inherit" }}>amount</strong>” and other, “<strong style={{ fontWeight: 500, color: "inherit" }}>count</strong>,” for tracking students skills. <strong style={{ fontWeight: 500, color: "inherit" }}>We unified them by using the phrase “logging task.”</strong>
-          </p>
-          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            This was my first time working inside a product with that much history. This was four tools, years of accumulated decisions, and a team trying to make it all feel like one thing. I learned a lot about what it means to design within constraints instead of around them.
+            {"Students were bouncing between four portals and two apps to do basic things like check grades or log a skill. In 8 weeks, we gave Portico a north star for "}<strong style={{ fontWeight: 600, color: "black" }}>one unified experience</strong>{", plus the tactical design work to start closing the gap this quarter."}
           </p>
         </div>
 
@@ -856,6 +924,25 @@ function ExpandableBlackFrame({
   const ref = useRef<HTMLDivElement>(null);
   const expanded = expandedId === id;
 
+  // Track natural (un-expanded) width so we can compute the clamped expansion.
+  const natWRef = useRef(0);
+  useEffect(() => {
+    if (ref.current && !expanded) {
+      natWRef.current = ref.current.offsetWidth;
+    }
+  }); // intentionally no dep-array — runs after every render
+
+  // Track viewport width so expansion re-clamps on resize.
+  const [windowW, setWindowW] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 9999
+  );
+  useEffect(() => {
+    const handler = () => setWindowW(window.innerWidth);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+
+  // Collapse when scrolled out of view.
   useEffect(() => {
     if (!expanded) return;
     const observer = new IntersectionObserver(
@@ -866,6 +953,7 @@ function ExpandableBlackFrame({
     return () => observer.disconnect();
   }, [expanded, setExpandedId]);
 
+  // Collapse on outside click.
   useEffect(() => {
     if (!expanded) return;
     const handler = (e: MouseEvent) => {
@@ -874,6 +962,12 @@ function ExpandableBlackFrame({
     const t = setTimeout(() => document.addEventListener("click", handler), 80);
     return () => { clearTimeout(t); document.removeEventListener("click", handler); };
   }, [expanded, setExpandedId]);
+
+  // Expand to full viewport minus the home-screen edge padding (CS_PAD each side).
+  const natW = natWRef.current || CS_W;
+  const maxExpandedPx = Math.max(natW, windowW - 2 * CS_PAD);
+  const expandedWidthPct  = `${(maxExpandedPx / natW) * 100}%`;
+  const expandedMLPct     = `-${((maxExpandedPx - natW) / 2 / natW) * 100}%`;
 
   return (
     <div
@@ -886,8 +980,8 @@ function ExpandableBlackFrame({
         background: "black",
         borderRadius: expanded ? 0 : 12,
         padding: "10%",
-        width: expanded ? "150%" : "100%",
-        marginLeft: expanded ? "-25%" : 0,
+        width: expanded ? expandedWidthPct : "100%",
+        marginLeft: expanded ? expandedMLPct : 0,
         zIndex: expanded ? 50 : 1,
         position: "relative",
         transition: "width 0.45s cubic-bezier(0.25,0.46,0.45,0.94), margin-left 0.45s cubic-bezier(0.25,0.46,0.45,0.94), border-radius 0.45s cubic-bezier(0.25,0.46,0.45,0.94), padding 0.45s cubic-bezier(0.25,0.46,0.45,0.94)",
@@ -905,6 +999,10 @@ const MERMORY_TEAM_TEXT = "3 Designers, 3 Engineers, 1 ML Engineer, 1 Graphic De
 function MermoryCaseStudy() {
   const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
   const [teamPos, setTeamPos] = useState<{ x: number; y: number } | null>(null);
+  const mermoryPillLeft = teamPos ? Math.max(40, teamPos.x - 180) : 0;
+  const mermoryPillMaxWidth = typeof window !== "undefined" && teamPos
+    ? Math.max(120, window.innerWidth - 40 - mermoryPillLeft)
+    : 0;
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 120, paddingBottom: 150, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
@@ -945,35 +1043,25 @@ function MermoryCaseStudy() {
             </div>
           </div>
           {teamPos && typeof document !== "undefined" && createPortal(
-            (() => {
-              // Anchor left edge 50 px behind cursor so the cursor is always
-              // inside the left padding — keeps the left side consistent.
-              const pillLeft = Math.max(40, teamPos.x - 180);
-              // Right boundary = viewport minus case-study right padding (40 px).
-              const rightBound = window.innerWidth - 40;
-              const pillMaxWidth = Math.max(120, rightBound - pillLeft);
-              return (
-                <div style={{
-                  position: "fixed",
-                  left: pillLeft,
-                  top: teamPos.y,
-                  transform: "translateY(-50%)",
-                  maxWidth: pillMaxWidth,
-                  borderRadius: 16,
-                  background: "#f3f3f3",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "40px 50px",
-                  pointerEvents: "none",
-                  zIndex: 9999,
-                }}>
-                  <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
-                    {MERMORY_TEAM_TEXT}<span className="blink-cursor">|</span>
-                  </span>
-                </div>
-              );
-            })(),
+            <div style={{
+              position: "fixed",
+              left: mermoryPillLeft,
+              top: teamPos.y,
+              transform: "translateY(-50%)",
+              maxWidth: mermoryPillMaxWidth,
+              borderRadius: 16,
+              background: "#f3f3f3",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "40px 50px",
+              pointerEvents: "none",
+              zIndex: 9999,
+            }}>
+              <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
+                {MERMORY_TEAM_TEXT}<span className="blink-cursor">|</span>
+              </span>
+            </div>,
             document.body
           )}
           {/* Hero card */}
@@ -989,7 +1077,7 @@ function MermoryCaseStudy() {
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            As <strong style={{ fontWeight: 500, color: "black" }}>one of 3 product designers</strong> of Mermory, I got to design an AI-powered flashcard platform that gave students creative autonomy over how they study. Unlike Quizlet or Anki, Mermory let users personalize their cards with stickers, themes, and design elements through a Creator Studio—while maintaining industry-standard learning science through FSRS spaced repetition.
+            As <strong style={{ fontWeight: 500, color: "black" }}>one of 3 product designers</strong> of Mermory, I got to design an <Highlight color="green">AI-powered flashcard platform that gave students creative autonomy over how they study.</Highlight> Unlike Quizlet or Anki, Mermory let users personalize their cards with stickers, themes, and design elements through a Creator Studio—while maintaining industry-standard learning science through FSRS spaced repetition.
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>With the nature of the team size, I got to work on lots of different projects as you can see below:</p>
         </div>
@@ -1002,7 +1090,7 @@ function MermoryCaseStudy() {
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             <strong style={{ fontWeight: 500, color: "black" }}>I designed & shipped the &ldquo;Create&rdquo; menu pop up. </strong>
-            Users needed a clear starting point for building flashcard decks. The modal gives them three distinct paths — Creative Mode, Quick-Add, or Upload — so they can choose the workflow that fits how they work.
+            Users <Highlight color="green">needed a clear starting point for building flashcard decks.</Highlight> The modal gives them three distinct paths — Creative Mode, Quick-Add, or Upload — so they can choose the workflow that fits how they work.
           </p>
         </div>
 
@@ -1046,14 +1134,14 @@ function MermoryCaseStudy() {
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             <strong style={{ fontWeight: 500, color: "black" }}>I redesigned the hero section of the landing page. </strong>
-            Shifting from a vertical to a horizontal layout gave the section more visual balance, letting the product preview and the headline share the stage and make a stronger first impression.
+            <Highlight color="green">Shifting from a vertical to a horizontal layout gave the section more visual balance,</Highlight> letting the product preview and the headline share the stage and make a stronger first impression.
           </p>
         </div>
 
         {/* ─── Design Language ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
           <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#494949" }}>Design Language:</span>
-          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>My vision for Mermory was to support users' creative autonomy. The design language was built around warmth and comfort, a space where creativity could thrive.</p>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>My vision for Mermory was to support users' creative autonomy. The design language was built around <Highlight color="green">warmth</Highlight> and <Highlight color="green">comfort</Highlight>, a <Highlight color="green">space where creativity could thrive.</Highlight></p>
         </div>
 
         {/* ─── Design collage ─── */}
@@ -1451,7 +1539,7 @@ export default function Home() {
         </div>
         {/* Profile image */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img alt="" src="/logmo2.png" style={{ position: "absolute", top: 0, left: 0, width: 158, height: 161, objectFit: "cover", filter: "grayscale(100%)", borderRadius: 12 }} />
+        <img alt="" src="/logmo2.png" style={{ position: "absolute", top: 0, left: 0, width: 158, height: 161, objectFit: "cover", filter: "grayscale(100%)", borderRadius: "50%" }} />
         {/* Social icons group */}
         <div style={{ position: "absolute", top: 132, left: 206, display: "flex", alignItems: "center", gap: 12 }}>
           {[
