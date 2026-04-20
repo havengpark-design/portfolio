@@ -346,16 +346,15 @@ function PorticoCard({ onClick }: { onClick: () => void }) {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/Design/portico/porticovisual.png"
+        src="/Design/portico/porticothumbnila.png"
         alt="Portico"
         style={{
           position: "absolute",
-          top: 212,
-          left: -205,
+          top: 0,
+          left: 0,
           width: "100%",
-          height: 749,
-          objectFit: "none",
-          objectPosition: "left top",
+          height: "100%",
+          objectFit: "cover",
           pointerEvents: "none",
         }}
       />
