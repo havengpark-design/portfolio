@@ -425,8 +425,7 @@ function MermoryContent() {
 function JamsContent() {
   const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
   const [jamsTeamPos, setJamsTeamPos] = useState<{ x: number; y: number } | null>(null);
-  const jamsPillLeft = jamsTeamPos ? Math.max(40, jamsTeamPos.x - 180) : 0;
-  const jamsPillMaxWidth = typeof window !== "undefined" && jamsTeamPos ? Math.min(320, window.innerWidth - jamsTeamPos.x - 40) : 320;
+  const jamsPillLeft = jamsTeamPos ? jamsTeamPos.x : 0;
   const BASE = "/Design/jams/case-study";
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 120, paddingBottom: 150, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
@@ -471,8 +470,8 @@ function JamsContent() {
               position: "fixed",
               left: jamsPillLeft,
               top: jamsTeamPos.y,
-              transform: "translateY(-50%)",
-              maxWidth: jamsPillMaxWidth,
+              transform: "translate(-50%, -50%)",
+              maxWidth: 320,
               borderRadius: 16,
               background: "#f3f3f3",
               display: "inline-flex",
@@ -749,10 +748,7 @@ function PorticoCaseStudy() {
   const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
   const [iconHovered, setIconHovered] = useState(false);
   const [porticoTeamPos, setPorticoTeamPos] = useState<{ x: number; y: number } | null>(null);
-  const porticoPillLeft = porticoTeamPos ? Math.max(40, porticoTeamPos.x - 180) : 0;
-  const porticoPillMaxWidth = typeof window !== "undefined" && porticoTeamPos
-    ? Math.max(120, window.innerWidth - 40 - porticoPillLeft)
-    : 0;
+  const porticoPillLeft = porticoTeamPos ? porticoTeamPos.x : 0;
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 120, paddingBottom: 150, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
       <div style={{ width: "100%", maxWidth: CS_W, display: "flex", flexDirection: "column", gap: 110 }}>
@@ -812,8 +808,8 @@ function PorticoCaseStudy() {
               position: "fixed",
               left: porticoPillLeft,
               top: porticoTeamPos.y,
-              transform: "translateY(-50%)",
-              maxWidth: porticoPillMaxWidth,
+              transform: "translate(-50%, -50%)",
+              maxWidth: 320,
               borderRadius: 16,
               background: "#f3f3f3",
               display: "inline-flex",
@@ -1058,10 +1054,7 @@ const MERMORY_TEAM_TEXT = "3 Designers, 3 Engineers, 1 ML Engineer, 1 Graphic De
 function MermoryCaseStudy() {
   const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
   const [teamPos, setTeamPos] = useState<{ x: number; y: number } | null>(null);
-  const mermoryPillLeft = teamPos ? Math.max(40, teamPos.x - 180) : 0;
-  const mermoryPillMaxWidth = typeof window !== "undefined" && teamPos
-    ? Math.max(120, window.innerWidth - 40 - mermoryPillLeft)
-    : 0;
+  const mermoryPillLeft = teamPos ? teamPos.x : 0;
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 120, paddingBottom: 150, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
@@ -1106,8 +1099,8 @@ function MermoryCaseStudy() {
               position: "fixed",
               left: mermoryPillLeft,
               top: teamPos.y,
-              transform: "translateY(-50%)",
-              maxWidth: mermoryPillMaxWidth,
+              transform: "translate(-50%, -50%)",
+              maxWidth: 320,
               borderRadius: 16,
               background: "#f3f3f3",
               display: "inline-flex",
