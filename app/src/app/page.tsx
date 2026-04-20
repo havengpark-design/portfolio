@@ -1332,9 +1332,12 @@ function BottomSheet({
       if (hasMoved) {
         // Prevent the mouseup from being treated as a click by the click-outside handler
         e.stopPropagation();
-        if (frac > 0.89)      setSnap("full");
-        else if (frac > 0.35) setSnap("partial");
-        else                  onCloseRef.current();
+        if (finalH > startH) {
+          setSnap("full");
+        } else {
+          if (frac > 0.35) setSnap("partial");
+          else onCloseRef.current();
+        }
       }
 
       document.removeEventListener("mousemove", onMove);
