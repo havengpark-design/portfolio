@@ -916,7 +916,7 @@ function MermoryCaseStudy() {
           {/* Title + subtitle */}
           <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
             <h1 style={{ fontFamily: "-apple-system, 'SF Pro', sans-serif", fontWeight: 590, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Mermory</h1>
-            <p style={{ ...CS_BODY, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0, whiteSpace: "nowrap" }}>Flashcards made for creativity.</p>
+            <p style={{ ...CS_BODY, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0, whiteSpace: "nowrap" }}>Where studying gets a creative identity.</p>
           </div>
           {/* Divider */}
           <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
