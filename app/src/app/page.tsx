@@ -1010,29 +1010,31 @@ function MermoryCaseStudy() {
         </div>
 
         {/* ─── Design collage ─── */}
-        <div style={{ width: 780, height: 748, position: "relative", flexShrink: 0, alignSelf: "center" }}>
-          <div style={{ position: "absolute", background: "black", borderRadius: 29, inset: 0 }} />
-          <div style={{ position: "absolute", left: 25.5, top: 60.2, width: 244, height: 304 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/mermory/case-study/group427319104.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
+        <ExpandableBlackFrame id="s5" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
+          {/* aspect-ratio container: 748/780 = 95.9% */}
+          <div style={{ position: "relative", width: "100%", paddingTop: "95.9%" }}>
+            <div style={{ position: "absolute", left: "3.27%", top: "8.05%", width: "31.28%", height: "40.64%" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/mermory/case-study/group427319104.png" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none" }} />
+            </div>
+            <div style={{ position: "absolute", left: "37.37%", top: "3.37%", width: "59.36%", height: "29.14%" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/mermory/case-study/importContainer.png" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none" }} />
+            </div>
+            <div style={{ position: "absolute", left: "37.88%", top: "36.26%", width: "58.85%", height: "37.43%", borderRadius: 18, overflow: "hidden" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/mermory/case-study/justKmeepStudying.png" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none" }} />
+            </div>
+            <div style={{ position: "absolute", left: "37.88%", top: "77.43%", width: "58.85%", height: "18.32%" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/mermory/case-study/inviteFriends1_collage.png" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none" }} />
+            </div>
+            <div style={{ position: "absolute", left: "3.27%", top: "54.57%", width: "31.67%", height: "32.09%" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src="/Design/mermory/case-study/createFNew.png" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none" }} />
+            </div>
           </div>
-          <div style={{ position: "absolute", left: 291.5, top: 25.2, width: 463, height: 218 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/mermory/case-study/importContainer.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
-          </div>
-          <div style={{ position: "absolute", left: 295.5, top: 271.2, width: 459, height: 280, borderRadius: 18, overflow: "hidden" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/mermory/case-study/justKmeepStudying.png" style={{ position: "absolute", height: "100%", left: "-0.1%", top: 0, width: "100.2%", maxWidth: "none", pointerEvents: "none" }} />
-          </div>
-          <div style={{ position: "absolute", left: 295.5, top: 579.2, width: 459, height: 137 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/mermory/case-study/inviteFriends1_collage.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
-          </div>
-          <div style={{ position: "absolute", left: 25.5, top: 408.2, width: 247, height: 240 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/mermory/case-study/createFNew.png" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
-          </div>
-        </div>
+        </ExpandableBlackFrame>
 
         {/* ─── Footer ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
