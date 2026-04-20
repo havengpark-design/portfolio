@@ -1419,7 +1419,13 @@ function BottomSheet({
           <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(0,0,0,0.15)" }} />
         </div>
         {/* Scrollable content */}
-        <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
+        <div style={{
+          flex: 1,
+          overflowY: "auto",
+          overflowX: "hidden",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0px, black 40px)",
+          maskImage: "linear-gradient(to bottom, transparent 0px, black 40px)",
+        }}>
           {open ? children : delayedChildren}
         </div>
       </div>
