@@ -1305,6 +1305,7 @@ function BottomSheet({
 
     const startH = sheet.getBoundingClientRect().height;
     let hasMoved = false;
+    let lastDelta = 0;
 
     // Kill CSS transition so height tracks the finger immediately
     sheet.style.transition = "none";
@@ -1315,15 +1316,13 @@ function BottomSheet({
           ? (e as TouchEvent).touches[0].clientY
           : (e as MouseEvent).clientY;
       const delta = startClientY - currentY; // positive = pulled up
+      lastDelta = delta;
       if (Math.abs(delta) > 4) hasMoved = true;
       const newH = Math.max(0, Math.min(window.innerHeight, startH + delta));
       sheet.style.height = `${newH}px`;
     };
 
     const onUp = (e: MouseEvent | TouchEvent) => {
-      const finalH = sheet.getBoundingClientRect().height;
-      const frac = finalH / window.innerHeight;
-
       // Clear inline height, explicitly restore transition so snap animates
       sheet.style.height = "";
       sheet.style.transition = SHEET_TRANSITION;
@@ -1332,7 +1331,7 @@ function BottomSheet({
       if (hasMoved) {
         // Prevent the mouseup from being treated as a click by the click-outside handler
         e.stopPropagation();
-        if (finalH > startH) {
+        if (lastDelta > 0) {
           setSnap("full");
         } else {
           onCloseRef.current();
