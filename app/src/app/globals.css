@@ -1,5 +1,42 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'SFPro';
+  src: local('SF Pro Display Thin'), local('.SFNSDisplay-Thin');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SFPro';
+  src: local('SF Pro Display Light'), local('.SFNSDisplay-Light');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SFPro';
+  src: local('SF Pro Display'), local('.SFNSDisplay-Regular');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SFPro';
+  src: local('SF Pro Display Medium'), local('.SFNSDisplay-Medium');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SFPro';
+  src: local('SF Pro Display Semibold'), local('.SFNSDisplay-Semibold');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SFPro';
+  src: local('SF Pro Display Bold'), local('.SFNSDisplay-Bold');
+  font-weight: 700;
+  font-style: normal;
+}
+
 html {
   overflow-x: hidden;
 }
@@ -7,7 +44,7 @@ html {
 body {
   background: #FFFFFF;
   color: #262421;
-  font-family: -apple-system, "SF Pro Display", BlinkMacSystemFont, sans-serif;
+  font-synthesis: none;
 }
 
 .scroll-x {

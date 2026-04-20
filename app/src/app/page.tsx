@@ -46,7 +46,7 @@ function CheckboxRow({ checked, label, color }: { checked: boolean; label: strin
           </svg>
         )}
       </div>
-      <span style={{ fontFamily: "'SF Pro Display', sans-serif", fontSize: 17, color, lineHeight: 1.196, whiteSpace: "nowrap" }}>
+      <span style={{ fontSize: 17, color, lineHeight: 1.196, whiteSpace: "nowrap" }}>
         {label}
       </span>
     </div>
@@ -233,7 +233,7 @@ function PlaceholderCard({ scale = 1 }: { scale?: number }) {
           pointerEvents: "none",
           zIndex: 9999,
         }}>
-          <span style={{ fontSize: 15 / scale, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
+          <span style={{ fontSize: 15 / scale, color: "#494949", lineHeight: "119.62%" }}>
             {PILL_TEXT.slice(0, visibleChars)}<span className="blink-cursor" style={{ opacity: phase === "interactive" ? undefined : 0 }}>|</span>
           </span>
         </div>
@@ -424,6 +424,7 @@ function MermoryContent() {
 
 function JamsContent() {
   const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
+  const [iconHovered, setIconHovered] = useState(false);
   const [jamsTeamPos, setJamsTeamPos] = useState<{ x: number; y: number } | null>(null);
   const jamsPillLeft = jamsTeamPos ? jamsTeamPos.x : 0;
   const BASE = "/Design/jams/case-study";
@@ -435,14 +436,30 @@ function JamsContent() {
         <div style={{ display: "flex", flexDirection: "column", gap: 56 }}>
           {/* Meta row */}
           <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>Product Design</span>
+            <span style={{ ...CS_BODY, fontWeight: 200, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>Product Design</span>
             <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#a2a2a2", flexShrink: 0 }} />
-            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>8 weeks (2025)</span>
+            <span style={{ ...CS_BODY, fontWeight: 200, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>8 weeks (2025)</span>
           </div>
           {/* Title */}
           <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
-            <h1 style={{ fontFamily: "-apple-system, 'SF Pro', sans-serif", fontWeight: 590, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Jams</h1>
-            <p style={{ ...CS_BODY, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0 }}>Enterprise job automation platform.</p>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <h1 style={{ fontWeight: 400, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Jams</h1>
+              <a
+                href="https://www.jamsscheduler.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onMouseEnter={() => setIconHovered(true)}
+                onMouseLeave={() => setIconHovered(false)}
+                style={{ position: "relative", flexShrink: 0, marginTop: 8, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", textDecoration: "none" }}
+              >
+                <div style={{ position: "absolute", top: -8, right: -8, bottom: -8, left: -8, background: "#f3f3f3", borderRadius: 10, opacity: iconHovered ? 1 : 0, transition: "opacity 0.3s ease", pointerEvents: "none" }} />
+                <svg width="19" height="19" viewBox="0 0 19 19" fill="none" style={{ position: "relative", zIndex: 1 }}>
+                  <path d="M9.75 3.75H4.75C2.54086 3.75 0.75 5.54086 0.75 7.75V13.75C0.75 15.9591 2.54086 17.75 4.75 17.75H10.75C12.9591 17.75 14.75 15.9591 14.75 13.75V8.75" stroke="#A2A2A2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M8.21967 9.21967C7.92678 9.51256 7.92678 9.98744 8.21967 10.2803C8.51256 10.5732 8.98744 10.5732 9.28033 10.2803L8.75 9.75L8.21967 9.21967ZM18.5 0.75C18.5 0.335786 18.1642 3.87003e-08 17.75 1.86214e-07L11 -2.35254e-07C10.5858 -2.35254e-07 10.25 0.335786 10.25 0.75C10.25 1.16421 10.5858 1.5 11 1.5H17V7.5C17 7.91421 17.3358 8.25 17.75 8.25C18.1642 8.25 18.5 7.91421 18.5 7.5L18.5 0.75ZM8.75 9.75L9.28033 10.2803L18.2803 1.28033L17.75 0.75L17.2197 0.21967L8.21967 9.21967L8.75 9.75Z" fill="#A2A2A2" />
+                </svg>
+              </a>
+            </div>
+            <p style={{ ...CS_BODY, fontWeight: 200, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0 }}>Enterprise job automation platform.</p>
           </div>
           {/* Divider */}
           <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
@@ -450,8 +467,8 @@ function JamsContent() {
           <div style={{ display: "flex", gap: 60 }}>
             {([["Role", "Product Designer"], ["Timeline", "8 weeks (2025)"], ["Tools", "Figma"]] as const).map(([l, v]) => (
               <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
-                <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px" }}>{l}</span>
-                <span style={{ ...CS_BODY, fontSize: 20, lineHeight: "30px", color: "#262421" }}>{v}</span>
+                <span style={{ ...CS_LABEL, fontWeight: 300, color: "#a2a2a2", lineHeight: "27px" }}>{l}</span>
+                <span style={{ ...CS_BODY, fontWeight: 200, fontSize: 18, lineHeight: "27px", color: "#262421" }}>{v}</span>
               </div>
             ))}
             {/* Team — pill on hover */}
@@ -461,8 +478,8 @@ function JamsContent() {
               onMouseMove={(e) => setJamsTeamPos({ x: e.clientX, y: e.clientY })}
               onMouseLeave={() => setJamsTeamPos(null)}
             >
-              <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px" }}>Team</span>
-              <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>Cross-Functional</span>
+              <span style={{ ...CS_LABEL, fontWeight: 300, color: "#a2a2a2", lineHeight: "27px" }}>Team</span>
+              <span style={{ ...CS_BODY, fontWeight: 200, fontSize: 18, lineHeight: "27px", color: "#262421" }}>Cross-Functional</span>
             </div>
           </div>
           {jamsTeamPos && typeof document !== "undefined" && createPortal(
@@ -481,7 +498,7 @@ function JamsContent() {
               pointerEvents: "none",
               zIndex: 9999,
             }}>
-              <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
+              <span style={{ fontSize: 15, color: "#494949", lineHeight: "119.62%" }}>
                 PM, 2 designers, 4 In-house engineers<span className="blink-cursor">|</span>
               </span>
             </div>,
@@ -500,13 +517,13 @@ function JamsContent() {
 
         {/* ─── Overview ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
+          <span style={{ fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>JAMS Scheduler is an enterprise workload automation and job scheduling platform — essentially software that helps large IT organizations automate, orchestrate, and monitor critical backend processes across their entire tech stack.</p>
           <p style={{ ...CS_BODY, margin: 0 }}>
-            Notable users of JAMS: <strong style={{ fontWeight: 500 }}>Bank of America, Coca-Cola Canada, CVS Health, Comcast.</strong>
+            Notable users of JAMS: <strong style={{ fontWeight: 400 }}>Bank of America, Coca-Cola Canada, CVS Health, Comcast.</strong>
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            ThisWaay UX studio was brought in to <Highlight color="green"><strong style={{ fontWeight: 500, color: "black" }}>reduce friction in critical workflows while increasing user confidence and speed.</strong></Highlight>
+            ThisWaay UX studio was brought in to <Highlight color="green"><strong style={{ fontWeight: 400, color: "black" }}>reduce friction in critical workflows while increasing user confidence and speed.</strong></Highlight>
           </p>
         </div>
 
@@ -521,15 +538,15 @@ function JamsContent() {
             <img alt="" src={`${BASE}/persona-3.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>We identified 3 primary user personas of JAMS.</strong>
+            <strong style={{ fontWeight: 400, color: "black" }}>We identified 3 primary user personas of JAMS.</strong>
           </p>
         </div>
 
         {/* ─── Complex Systems ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Complex, Outdated Systems</span>
+          <span style={{ fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Complex, Outdated Systems</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            JAMS is an enterprise workload automation platform built for complex, data-heavy operations. Despite its power, the product had accumulated <Highlight color="pink"><strong style={{ fontWeight: 500, color: "black" }}>significant usability debt</strong></Highlight>, making it especially hard for new users to get up to speed. Through collaborative sessions with JAMS's long-tenured staff, we surfaced <strong style={{ fontWeight: 500, color: "black" }}>two recurring pain points</strong>: <Highlight color="pink"><strong style={{ fontWeight: 300, color: "black" }}>a steep first-time user experience</strong></Highlight>{" and "}<Highlight color="pink" delay={150}><strong style={{ fontWeight: 300, color: "black" }}>interfaces that obscured</strong></Highlight>{" rather than clarified."}
+            JAMS is an enterprise workload automation platform built for complex, data-heavy operations. Despite its power, the product had accumulated <Highlight color="pink"><strong style={{ fontWeight: 400, color: "black" }}>significant usability debt</strong></Highlight>, making it especially hard for new users to get up to speed. Through collaborative sessions with JAMS's long-tenured staff, we surfaced <strong style={{ fontWeight: 400, color: "black" }}>two recurring pain points</strong>: <Highlight color="pink"><strong style={{ fontWeight: 300, color: "black" }}>a steep first-time user experience</strong></Highlight>{" and "}<Highlight color="pink" delay={150}><strong style={{ fontWeight: 300, color: "black" }}>interfaces that obscured</strong></Highlight>{" rather than clarified."}
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>Here's what we did:</p>
         </div>
@@ -540,16 +557,16 @@ function JamsContent() {
             <div style={{ flex: 1, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src={`${BASE}/9588850c5c33fbd3fdef6c1599eddfc3bfff4cfa.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
             </div>
             <div style={{ flex: 1, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src={`${BASE}/1f12448c836a8127ec39ad3cfac674d94fa11df2.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
             </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
-            The original Home screen offered little beyond documentation links. <strong style={{ fontWeight: 500, color: "black" }}>We rebuilt it into a live dashboard:</strong> job status, schedule projections, quick actions, and agent health all visible on arrival.
+            The original Home screen offered little beyond documentation links. <strong style={{ fontWeight: 400, color: "black" }}>We rebuilt it into a live dashboard:</strong> job status, schedule projections, quick actions, and agent health all visible on arrival.
           </p>
         </div>
 
@@ -559,16 +576,16 @@ function JamsContent() {
             <div style={{ width: "100%", position: "relative", marginBottom: 32 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src={`${BASE}/jams-monitor-before.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
             </div>
             <div style={{ width: "100%", position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src={`${BASE}/jams-monitor-after.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
             </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
-            The original Monitor view had no entry point — just rows. <strong style={{ fontWeight: 500, color: "black" }}>We added a live status summary</strong> so operators could orient immediately: what's running, what failed, what's queued. Faster triage, less cognitive load, same underlying data.
+            The original Monitor view had no entry point — just rows. <strong style={{ fontWeight: 400, color: "black" }}>We added a live status summary</strong> so operators could orient immediately: what's running, what failed, what's queued. Faster triage, less cognitive load, same underlying data.
           </p>
         </div>
 
@@ -578,7 +595,7 @@ function JamsContent() {
             <div style={{ flex: 1, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src={`${BASE}/d7f4968da51e6798db95e3ef6c7ff36a6e246b47.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
             </div>
             <div style={{ flex: 1, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -587,7 +604,7 @@ function JamsContent() {
             <div style={{ flex: 1, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src={`${BASE}/01673452f741297cbaf8ed58458be5c9e4eb8242.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
             </div>
             <div style={{ flex: 1, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -595,13 +612,13 @@ function JamsContent() {
             </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
-            Picking an execution method meant scrolling a long, context-free list with no guidance. <strong style={{ fontWeight: 500, color: "black" }}>We redesigned it with search, categorization, and descriptions</strong> — so users can choose with confidence, not guesswork.
+            Picking an execution method meant scrolling a long, context-free list with no guidance. <strong style={{ fontWeight: 400, color: "black" }}>We redesigned it with search, categorization, and descriptions</strong> — so users can choose with confidence, not guesswork.
           </p>
         </div>
 
         {/* ─── Impact ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Impact</span>
+          <span style={{ fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Impact</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             The redesigned job creation flow was incorporated into JAMS' roadmap for their 2026 web app release. The execution method selector, AI job creation feature, and quick-win usability fixes were all identified as priority items for the MVP — directly shaping the product direction for a platform used by enterprise clients across finance, retail, and manufacturing.
           </p>
@@ -648,7 +665,7 @@ function PorticoLanguageVisual() {
 
   const Chip2 = ({ lines, bg, left, top, w, h, fs }: { lines: string[]; bg: string; left: number; top: number; w: number; h: number; fs: number }) => (
     <div style={{ position: "absolute", background: bg, display: "flex", alignItems: "center", justifyContent: "center", left: s(left), top: s(top), width: s(w), height: s(h), borderRadius: s(5) }}>
-      <div style={{ fontFamily: "-apple-system, sans-serif", fontSize: s(fs), color: "#494949", textAlign: "center", lineHeight: `${s(20)}px` }}>
+      <div style={{ fontSize: s(fs), color: "#494949", textAlign: "center", lineHeight: `${s(20)}px` }}>
         {lines.map((l, i) => <p key={i} style={{ margin: 0 }}>{l}</p>)}
       </div>
     </div>
@@ -659,7 +676,7 @@ function PorticoLanguageVisual() {
     height: s(h), borderRadius: s(5), paddingLeft: s(24), paddingRight: s(24),
   } as React.CSSProperties);
   const chipTxt = (fs: number) => ({
-    fontFamily: "-apple-system, sans-serif", fontSize: s(fs), color: "#494949", whiteSpace: "nowrap" as const, margin: 0,
+    fontSize: s(fs), color: "#494949", whiteSpace: "nowrap" as const, margin: 0,
   });
 
   return (
@@ -667,8 +684,8 @@ function PorticoLanguageVisual() {
       {/* Dark box A */}
       <div style={{ position: "absolute", background: "#f0f0f0", left: s(345), top: 0, width: s(548), height: s(BOX_A_H), borderRadius: s(11) }} />
       {/* Skill Attributes + Platform A label */}
-      <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(14), color: "#a2a2a2", left: s(112), top: s(80), margin: 0, whiteSpace: "nowrap" }}>Skill Attributes</p>
-      <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(20), color: "#262421", left: s(112), top: s(107), margin: 0, whiteSpace: "nowrap" }}>Acquired platform A</p>
+      <p style={{ position: "absolute", fontSize: s(14), color: "#a2a2a2", left: s(112), top: s(80), margin: 0, whiteSpace: "nowrap" }}>Skill Attributes</p>
+      <p style={{ position: "absolute", fontSize: s(20), color: "#262421", left: s(112), top: s(107), margin: 0, whiteSpace: "nowrap" }}>Acquired platform A</p>
       {/* Platform A chips inside dark box */}
       <div style={{ position: "absolute", left: s(501), top: s(46), ...chipStyle("#e0e0e0", 43) }}><p style={chipTxt(16)}>Key</p></div>
       <Chip2 lines={["Participation", "Level"]} bg="#e0e0e0" left={634} top={20} w={109} h={56} fs={16} />
@@ -710,8 +727,8 @@ function PorticoLanguageVisual() {
       {/* Dark box B */}
       <div style={{ position: "absolute", background: "#f0f0f0", left: s(345), top: s(y_boxB), width: s(548), height: s(BOX_B_H), borderRadius: s(11) }} />
       {/* Skill Attributes + Platform B label */}
-      <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(14), color: "#a2a2a2", left: s(106), top: s(y_boxB - 10), margin: 0, whiteSpace: "nowrap" }}>Skill Attributes</p>
-      <p style={{ position: "absolute", fontFamily: "-apple-system, sans-serif", fontSize: s(20), color: "#262421", left: s(106), top: s(y_boxB + 17), margin: 0, whiteSpace: "nowrap" }}>Acquired platform B</p>
+      <p style={{ position: "absolute", fontSize: s(14), color: "#a2a2a2", left: s(106), top: s(y_boxB - 10), margin: 0, whiteSpace: "nowrap" }}>Skill Attributes</p>
+      <p style={{ position: "absolute", fontSize: s(20), color: "#262421", left: s(106), top: s(y_boxB + 17), margin: 0, whiteSpace: "nowrap" }}>Acquired platform B</p>
       {/* Platform B chips inside dark box */}
       <div style={{ position: "absolute", left: s(365), top: s(y_boxB + 20), ...chipStyle("#93afd4", 43) }}><p style={chipTxt(16)}>Count</p></div>
       <div style={{ position: "absolute", left: s(499), top: s(y_boxB + 20), ...chipStyle("#e0e0e0", 43) }}><p style={chipTxt(16)}>Date</p></div>
@@ -757,14 +774,14 @@ function PorticoCaseStudy() {
         <div style={{ display: "flex", flexDirection: "column", gap: 56 }}>
           {/* Meta row */}
           <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>Product Design</span>
+            <span style={{ ...CS_BODY, fontWeight: 200, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>Product Design</span>
             <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#a2a2a2", flexShrink: 0 }} />
-            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>8 weeks (2025)</span>
+            <span style={{ ...CS_BODY, fontWeight: 200, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>8 weeks (2025)</span>
           </div>
           {/* Title + subtitle */}
           <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <h1 style={{ fontFamily: "-apple-system, 'SF Pro', sans-serif", fontWeight: 590, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Portico</h1>
+              <h1 style={{ fontWeight: 400, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Portico</h1>
               <a
                 href="https://porticoedu.com"
                 target="_blank"
@@ -780,7 +797,7 @@ function PorticoCaseStudy() {
                 </svg>
               </a>
             </div>
-            <p style={{ ...CS_BODY, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0 }}>Unifying the fragmented student experience.</p>
+            <p style={{ ...CS_BODY, fontWeight: 200, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0 }}>Unifying the fragmented student experience.</p>
           </div>
           {/* Divider */}
           <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
@@ -788,8 +805,8 @@ function PorticoCaseStudy() {
           <div style={{ display: "flex", gap: 60 }}>
             {([["Role", "Product Designer"], ["Timeline", "8 weeks (2025)"], ["Tools", "Figma"]] as const).map(([l, v]) => (
               <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
-                <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px" }}>{l}</span>
-                <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>{v}</span>
+                <span style={{ ...CS_LABEL, fontWeight: 300, color: "#a2a2a2", lineHeight: "27px" }}>{l}</span>
+                <span style={{ ...CS_BODY, fontWeight: 200, fontSize: 18, lineHeight: "27px", color: "#262421" }}>{v}</span>
               </div>
             ))}
             {/* Team — pill on hover */}
@@ -799,8 +816,8 @@ function PorticoCaseStudy() {
               onMouseMove={(e) => setPorticoTeamPos({ x: e.clientX, y: e.clientY })}
               onMouseLeave={() => setPorticoTeamPos(null)}
             >
-              <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px" }}>Team</span>
-              <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>Cross-functional</span>
+              <span style={{ ...CS_LABEL, fontWeight: 300, color: "#a2a2a2", lineHeight: "27px" }}>Team</span>
+              <span style={{ ...CS_BODY, fontWeight: 200, fontSize: 18, lineHeight: "27px", color: "#262421" }}>Cross-functional</span>
             </div>
           </div>
           {porticoTeamPos && typeof document !== "undefined" && createPortal(
@@ -819,7 +836,7 @@ function PorticoCaseStudy() {
               pointerEvents: "none",
               zIndex: 9999,
             }}>
-              <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
+              <span style={{ fontSize: 15, color: "#494949", lineHeight: "119.62%" }}>
                 {PORTICO_TEAM_TEXT}<span className="blink-cursor">|</span>
               </span>
             </div>,
@@ -835,12 +852,12 @@ function PorticoCaseStudy() {
 
         {/* ─── Overview ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
+          <span style={{ fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>Portico</strong> — formed through the merger of Campus Ivy, CourseKey, and Verity IQ — <Highlight color="pink">inherited a fragmented ecosystem of tools</Highlight>. Career school students were forced to navigate 4 separate web portals and 2 mobile apps to complete basic daily tasks like logging skills, checking attendance, and making payments.
+            <strong style={{ fontWeight: 400, color: "black" }}>Portico</strong> — formed through the merger of Campus Ivy, CourseKey, and Verity IQ — <Highlight color="pink">inherited a fragmented ecosystem of tools</Highlight>. Career school students were forced to navigate 4 separate web portals and 2 mobile apps to complete basic daily tasks like logging skills, checking attendance, and making payments.
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            This Waay Design Studio was brought in to <strong style={{ fontWeight: 500, color: "black" }}><Highlight color="green">define the north star for a unified student mobile experience, delivering both a long-term vision and tactical design guidance for Q4 execution</Highlight></strong>.
+            This Waay Design Studio was brought in to <strong style={{ fontWeight: 400, color: "black" }}><Highlight color="green">define the north star for a unified student mobile experience, delivering both a long-term vision and tactical design guidance for Q4 execution</Highlight></strong>.
           </p>
         </div>
 
@@ -854,26 +871,26 @@ function PorticoCaseStudy() {
               <img alt="" src="/Design/portico/case-study/fragmented-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/portico/case-study/fragmented-3.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
             </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>Combining multiple platforms creates <Highlight color="pink">fragmented experiences</Highlight>. </strong>
+            <strong style={{ fontWeight: 400, color: "black" }}>Combining multiple platforms creates <Highlight color="pink">fragmented experiences</Highlight>. </strong>
             <span style={{ color: "#5c5b59" }}>Credit-based students had to use one platform and traditional students had to use another. The payments and attendance logging were all separated.</span>
           </p>
         </div>
 
         {/* ─── Fragmented Language ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Fragmented Experience</span>
+          <span style={{ fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Fragmented Experience</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>Portico was built from multiple acquired platforms</strong>{" — meaning students had to "}<Highlight color="pink">navigate different apps to complete basic tasks</Highlight>{" like logging attendance, tracking skills, and making payments."}
+            <strong style={{ fontWeight: 400, color: "black" }}>Portico was built from multiple acquired platforms</strong>{" — meaning students had to "}<Highlight color="pink">navigate different apps to complete basic tasks</Highlight>{" like logging attendance, tracking skills, and making payments."}
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             {"But the fragmentation went deeper than just the number of apps. "}<Highlight color="pink" delay={300}>Each platform had developed its own language and structure for the same underlying concepts</Highlight>{". As shown below, one platform organized skill tracking under a Major Study hierarchy and called the primary input \u201cAmount,\u201d while the other used a Checklist structure and called it \u201cCount\u201d \u2014 two different words for the same thing, in two different systems, that students were expected to use simultaneously."}
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            {"This created a core design challenge: "}<strong style={{ fontWeight: 500, color: "black" }}>before we could unify the experience visually, we had to unify it conceptually.</strong>
+            {"This created a core design challenge: "}<strong style={{ fontWeight: 400, color: "black" }}>before we could unify the experience visually, we had to unify it conceptually.</strong>
           </p>
         </div>
 
@@ -890,11 +907,11 @@ function PorticoCaseStudy() {
               <img alt="" src="/Design/portico/case-study/course-listing-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/portico/case-study/course-listing-3.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
             </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>The redesigned Courses experience unified attendance, grades, and course progression</strong>{" into a single coherent view, "}<Highlight color="green">so students could understand where they stood in their program without switching between apps.</Highlight>
+            <strong style={{ fontWeight: 400, color: "black" }}>The redesigned Courses experience unified attendance, grades, and course progression</strong>{" into a single coherent view, "}<Highlight color="green">so students could understand where they stood in their program without switching between apps.</Highlight>
           </p>
         </div>
 
@@ -905,7 +922,7 @@ function PorticoCaseStudy() {
             <div style={{ flex: 1.5, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/portico/case-study/fragmented-wide.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)" }}>Before</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)" }}>Before</span>
             </div>
             {/* Images 2 & 3 — single After label centred below both */}
             <div style={{ flex: 2, width: 0, position: "relative", display: "flex", gap: "5%" }}>
@@ -913,11 +930,11 @@ function PorticoCaseStudy() {
               <img alt="" src="/Design/portico/case-study/task-log-1.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/portico/case-study/task-log-2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
             </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            {"The existing experience required students to log clinical tasks through a "}<Highlight color="pink">desktop-first interface with no mobile consideration</Highlight>{". We "}<Highlight color="green" delay={200}><strong style={{ fontWeight: 500, color: "black" }}>redesigned the task logging flow as a guided mobile experience</strong>{" \u2014 step-by-step inputs, clear progress tracking, and an AI assistant on hand"}</Highlight>{" \u2014 so students could log in the moment, not after the fact."}
+            {"The existing experience required students to log clinical tasks through a "}<Highlight color="pink">desktop-first interface with no mobile consideration</Highlight>{". We "}<Highlight color="green" delay={200}><strong style={{ fontWeight: 400, color: "black" }}>redesigned the task logging flow as a guided mobile experience</strong>{" \u2014 step-by-step inputs, clear progress tracking, and an AI assistant on hand"}</Highlight>{" \u2014 so students could log in the moment, not after the fact."}
           </p>
         </div>
 
@@ -927,19 +944,19 @@ function PorticoCaseStudy() {
             <div style={{ position: "relative", width: "40%" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/portico/case-study/messages.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
             </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            <Highlight color="pink">Previously, messages were siloed at the course level</Highlight>{" \u2014 meaning students could miss critical updates from other parts of their program. The unified messaging center "}<Highlight color="green" delay={200}><strong style={{ fontWeight: 500, color: "black" }}>brings together communications from all departments and instructors in one place</strong>, with read status and message type filters to help students prioritize what needs their attention</Highlight>
+            <Highlight color="pink">Previously, messages were siloed at the course level</Highlight>{" \u2014 meaning students could miss critical updates from other parts of their program. The unified messaging center "}<Highlight color="green" delay={200}><strong style={{ fontWeight: 400, color: "black" }}>brings together communications from all departments and instructors in one place</strong>, with read status and message type filters to help students prioritize what needs their attention</Highlight>
           </p>
         </div>
 
         {/* ─── Impact ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Impact</span>
+          <span style={{ fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Impact</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            {"Students were bouncing between four portals and two apps to do basic things like check grades or log a skill. In 8 weeks, we gave Portico a north star for "}<strong style={{ fontWeight: 600, color: "black" }}>one unified experience</strong>{", plus the tactical design work to start closing the gap this quarter."}
+            {"Students were bouncing between four portals and two apps to do basic things like check grades or log a skill. In 8 weeks, we gave Portico a north star for "}<strong style={{ fontWeight: 400, color: "black" }}>one unified experience</strong>{", plus the tactical design work to start closing the gap this quarter."}
           </p>
         </div>
 
@@ -957,13 +974,11 @@ function PorticoCaseStudy() {
 /* ── Mermory Case Study (Figma export, ported to inline styles) ── */
 
 const CS_BODY: React.CSSProperties = {
-  fontFamily: "-apple-system, 'SF Pro Rounded', sans-serif",
-  fontWeight: 300,
+  fontWeight: 200,
   fontSize: 20,
   lineHeight: "32px",
 };
 const CS_LABEL: React.CSSProperties = {
-  fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
   fontWeight: 400,
   fontSize: 16,
 };
@@ -1064,14 +1079,14 @@ function MermoryCaseStudy() {
         <div style={{ display: "flex", flexDirection: "column", gap: 56 }}>
           {/* Meta row */}
           <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>Product Design</span>
+            <span style={{ ...CS_BODY, fontWeight: 200, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>Product Design</span>
             <div style={{ width: 3, height: 3, borderRadius: "50%", background: "#a2a2a2", flexShrink: 0 }} />
-            <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>12 months (2025)</span>
+            <span style={{ ...CS_BODY, fontWeight: 200, fontSize: 18, lineHeight: "27px", color: "#a2a2a2", whiteSpace: "nowrap" }}>12 months (2025)</span>
           </div>
           {/* Title + subtitle */}
           <div style={{ display: "flex", flexDirection: "column", gap: 13 }}>
-            <h1 style={{ fontFamily: "-apple-system, 'SF Pro', sans-serif", fontWeight: 590, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Mermory</h1>
-            <p style={{ ...CS_BODY, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0, whiteSpace: "nowrap" }}>Where studying gets a creative identity.</p>
+            <h1 style={{ fontWeight: 400, fontSize: 64, letterSpacing: "-0.64px", lineHeight: "76.8px", color: "#262421", margin: 0 }}>Mermory</h1>
+            <p style={{ ...CS_BODY, fontWeight: 200, fontSize: 24, lineHeight: "36px", color: "#494949", margin: 0, whiteSpace: "nowrap" }}>Where studying gets a creative identity.</p>
           </div>
           {/* Divider */}
           <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
@@ -1079,8 +1094,8 @@ function MermoryCaseStudy() {
           <div style={{ display: "flex", gap: 60 }}>
             {([["Role", "Product Designer"], ["Timeline", "12 months (2025)"], ["Tools", "Figma"]] as const).map(([l, v]) => (
               <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
-                <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px", whiteSpace: "nowrap" }}>{l}</span>
-                <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>{v}</span>
+                <span style={{ ...CS_LABEL, fontWeight: 300, color: "#a2a2a2", lineHeight: "27px", whiteSpace: "nowrap" }}>{l}</span>
+                <span style={{ ...CS_BODY, fontWeight: 200, fontSize: 18, lineHeight: "27px", color: "#262421" }}>{v}</span>
               </div>
             ))}
             {/* Team — pill on hover, full text + blinking cursor only */}
@@ -1090,8 +1105,8 @@ function MermoryCaseStudy() {
               onMouseMove={(e) => setTeamPos({ x: e.clientX, y: e.clientY })}
               onMouseLeave={() => setTeamPos(null)}
             >
-              <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px", whiteSpace: "nowrap" }}>Team</span>
-              <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>Design, Engineering & ML</span>
+              <span style={{ ...CS_LABEL, fontWeight: 300, color: "#a2a2a2", lineHeight: "27px", whiteSpace: "nowrap" }}>Team</span>
+              <span style={{ ...CS_BODY, fontWeight: 200, fontSize: 18, lineHeight: "27px", color: "#262421" }}>Design, Engineering & ML</span>
             </div>
           </div>
           {teamPos && typeof document !== "undefined" && createPortal(
@@ -1110,7 +1125,7 @@ function MermoryCaseStudy() {
               pointerEvents: "none",
               zIndex: 9999,
             }}>
-              <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
+              <span style={{ fontSize: 15, color: "#494949", lineHeight: "119.62%" }}>
                 {MERMORY_TEAM_TEXT}<span className="blink-cursor">|</span>
               </span>
             </div>,
@@ -1127,9 +1142,9 @@ function MermoryCaseStudy() {
 
         {/* ─── Overview ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
+          <span style={{ fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Overview</span>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            As <strong style={{ fontWeight: 500, color: "black" }}>one of 3 product designers</strong> of Mermory, I got to design an <Highlight color="green">AI-powered flashcard platform that gave students creative autonomy over how they study.</Highlight> Unlike Quizlet or Anki, Mermory let users personalize their cards with stickers, themes, and design elements through a Creator Studio—while maintaining industry-standard learning science through FSRS spaced repetition.
+            As <strong style={{ fontWeight: 400, color: "black" }}>one of 3 product designers</strong> of Mermory, I got to design an <Highlight color="green">AI-powered flashcard platform that gave students creative autonomy over how they study.</Highlight> Unlike Quizlet or Anki, Mermory let users personalize their cards with stickers, themes, and design elements through a Creator Studio—while maintaining industry-standard learning science through FSRS spaced repetition.
           </p>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>With the nature of the team size, I got to work on lots of different projects as you can see below:</p>
         </div>
@@ -1141,7 +1156,7 @@ function MermoryCaseStudy() {
             <img alt="" src="/Design/mermory/case-study/importflow.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>I designed & shipped the &ldquo;Create&rdquo; menu pop up. </strong>
+            <strong style={{ fontWeight: 400, color: "black" }}>I designed & shipped the &ldquo;Create&rdquo; menu pop up. </strong>
             Users <Highlight color="green">needed a clear starting point for building flashcard decks.</Highlight> The modal gives them three distinct paths — Creative Mode, Quick-Add, or Upload — so they can choose the workflow that fits how they work.
           </p>
         </div>
@@ -1159,7 +1174,7 @@ function MermoryCaseStudy() {
             </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>I designed the promotional banners for the Explore page. </strong>
+            <strong style={{ fontWeight: 400, color: "black" }}>I designed the promotional banners for the Explore page. </strong>
             The banners surface Mermory&rsquo;s latest features like Import AI, Creator Studio, and social invites, giving users a reason to discover more every time they browse.
           </p>
         </div>
@@ -1171,7 +1186,7 @@ function MermoryCaseStudy() {
             <img alt="" src="/Design/mermory/case-study/creatorStudioExitFlow.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>I designed the flow to exit out of the Creator Studio. </strong>
+            <strong style={{ fontWeight: 400, color: "black" }}>I designed the flow to exit out of the Creator Studio. </strong>
             After publishing a deck, users are celebrated with a congrats moment and guided toward their next step, either heading to their Library or jumping straight into studying.
           </p>
         </div>
@@ -1182,24 +1197,24 @@ function MermoryCaseStudy() {
             <div style={{ flex: 1, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/mermory/case-study/marketingPageBefore.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
             </div>
             <div style={{ flex: 1, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/mermory/case-study/marketingPageAfter.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
             </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
-            <strong style={{ fontWeight: 500, color: "black" }}>I redesigned the hero section of the landing page. </strong>
+            <strong style={{ fontWeight: 400, color: "black" }}>I redesigned the hero section of the landing page. </strong>
             <Highlight color="green">Shifting from a vertical to a horizontal layout gave the section more visual balance,</Highlight> letting the product preview and the headline share the stage and make a stronger first impression.
           </p>
         </div>
 
         {/* ─── Design Language ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-          <span style={{ fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 24, lineHeight: "48px", color: "#494949" }}>Design Language:</span>
-          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>My vision for Mermory was to support users' creative autonomy. The design language was built around <Highlight color="green">warmth</Highlight> and <Highlight color="green">comfort</Highlight>, a <Highlight color="green">space where creativity could thrive.</Highlight></p>
+          <span style={{ fontSize: 24, lineHeight: "48px", color: "#a2a2a2" }}>Design Language</span>
+          <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>My vision for Mermory was to support users' creative autonomy. The design language was built around warmth and comfort, a space where creativity could thrive.</p>
         </div>
 
         {/* ─── Design collage ─── */}
@@ -1579,14 +1594,16 @@ export default function Home() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
+  const isSafari = typeof navigator !== "undefined" && /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
   const identitySection = (
     <div style={{ paddingTop: 150, paddingBottom: 150 }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <div style={{ width: "100%", height: 161, position: "relative", textAlign: "center", fontSize: 32, color: "#494949", fontFamily: "'SF Pro Display', -apple-system, sans-serif" }}>
+      <div style={{ width: "100%", height: 161, position: "relative", textAlign: "center", fontSize: 32, color: "#494949" }}>
         {/* Haven Park */}
         <span ref={navLogoRef} style={{ position: "absolute", top: 0, left: 206, fontWeight: 500, color: "black" }}>Haven Park</span>
         {/* Identity labels */}
-        <div style={{ position: "absolute", top: 54, left: 206, width: 307, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 6, textAlign: "left", fontSize: 17, color: "#4a70bc" }}>
+        <div style={{ position: "absolute", top: 54, left: 206, width: 307, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 6, textAlign: "left", fontSize: 17, color: "#4a70bc", fontWeight: 300 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <div style={{ position: "relative", lineHeight: "119.62%", display: "inline-block", flexShrink: 0 }}>Currently designing Folio</div>
             <LoadingSpinner />
