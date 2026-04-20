@@ -1281,18 +1281,28 @@ function BottomSheet({
 
   useEffect(() => {
     if (open) {
+      // Purge residual inline CSS strings from any previous manual drag-to-close drops to free React's execution flow
+      if (sheetRef.current) {
+        sheetRef.current.style.transition = "";
+        sheetRef.current.style.height = "";
+      }
       setDelayedChildren(children);
-      setTimeout(() => {
-        if (scrollRef.current) scrollRef.current.scrollTo(0, 0);
-      }, 10);
     } else {
-      // Allow CSS unmount translation to complete before dropping the layout nodes, automatically resetting scroll depths next mount
+      // Allow CSS unmount translation to complete before dropping the layout nodes
       const timer = setTimeout(() => {
         setDelayedChildren(null);
       }, 450);
       return () => clearTimeout(timer);
     }
   }, [open, children]);
+
+  // Synchronously purge the browser's scroll cache immediately when the internal layout tree repaints
+  useEffect(() => {
+    if (delayedChildren && scrollRef.current) {
+      scrollRef.current.scrollTo(0, 0);
+      scrollRef.current.scrollTop = 0;
+    }
+  }, [delayedChildren]);
 
   // Reset to partial each time the sheet opens
   useEffect(() => {
