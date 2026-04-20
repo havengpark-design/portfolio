@@ -1343,16 +1343,21 @@ function BottomSheet({
       if (hasMoved) {
         // Prevent the mouseup from being treated as a click by the click-outside handler
         e.stopPropagation();
-        if (lastDelta > 0) {
-          // Clear inline height, explicitly restore transition so snap animates
+        if (lastDelta > 30) {
+          // Definitively pulled up
           sheet.style.height = "";
           sheet.style.transition = SHEET_TRANSITION;
           setSnap("full");
-        } else {
-          // Pulled down -> Closing! Keep height frozen during drop to prevent scroll explosions
+        } else if (lastDelta < -30) {
+          // Definitively pulled down -> Closing! Keep height frozen during drop
           sheet.style.transition = "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
           onCloseRef.current();
           setTimeout(() => { if (sheetRef.current) sheetRef.current.style.height = ""; }, 450);
+        } else {
+          // Accidental trackpad movement / micro-drag — treat as a deliberate tap
+          sheet.style.height = "";
+          sheet.style.transition = SHEET_TRANSITION;
+          setSnap(s => s === "full" ? "partial" : "full");
         }
       } else {
         // If they didn't drag, it was just a tap. Toggle the snap state.
