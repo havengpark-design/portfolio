@@ -117,6 +117,6 @@ body {
   border-radius: 4px;
 }
 
-a, button, [role="button"], input, select, textarea {
-  cursor: url('data:image/svg+xml;utf8,<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="15" height="15" rx="7.5" fill="%23bd0000"/></svg>') 7.5 7.5, pointer;
+a, button, [role="button"], input, select, textarea, .card-wrap {
+  cursor: url('data:image/svg+xml;utf8,<svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="31" height="31" rx="15.5" fill="%23bd0000" fill-opacity="0.53"/></svg>') 15.5 15.5, pointer;
 }
