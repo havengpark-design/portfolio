@@ -463,7 +463,7 @@ function JamsContent() {
               onMouseLeave={() => setJamsTeamPos(null)}
             >
               <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px" }}>Team</span>
-              <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>Design, Engineering</span>
+              <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>Cross-Functional</span>
             </div>
           </div>
           {jamsTeamPos && typeof document !== "undefined" && createPortal(
