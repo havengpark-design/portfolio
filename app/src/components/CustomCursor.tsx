@@ -29,7 +29,7 @@ export default function CustomCursor() {
       setIsVisible(true);
 
       // Check if interactive
-      const interactive = target.closest("a, button, [role='button'], input, select, textarea, .card-wrap, [style*='cursor: pointer'], [style*='cursor:pointer']");
+      const interactive = target.closest("a, button, [role='button'], input, select, textarea, .card-wrap, .thumbnail, [style*='cursor: pointer'], [style*='cursor:pointer']");
       setIsHovering(!!interactive);
     };
 
