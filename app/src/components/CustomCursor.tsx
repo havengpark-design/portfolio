@@ -16,10 +16,7 @@ export default function CustomCursor() {
 
     const onMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
-    };
-
-    const updateHoverState = (e: MouseEvent) => {
+      
       const target = e.target as HTMLElement;
       
       const isZoom = target.closest("[style*='cursor: zoom'], [style*='cursor:zoom']");
@@ -29,33 +26,20 @@ export default function CustomCursor() {
         return;
       }
       
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
 
+      // Check if interactive
       const interactive = target.closest("a, button, [role='button'], input, select, textarea, .card-wrap, [style*='cursor: pointer'], [style*='cursor:pointer']");
       setIsHovering(!!interactive);
-    };
-
-    const onMouseOver = (e: MouseEvent) => {
-      updateHoverState(e);
-    };
-
-    const onMouseOut = (e: MouseEvent) => {
-      setTimeout(() => {
-        setIsHovering(false);
-      }, 50);
     };
 
     const onMouseLeave = () => setIsVisible(false);
 
     window.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseover", onMouseOver);
-    document.addEventListener("mouseout", onMouseOut);
     document.addEventListener("mouseleave", onMouseLeave);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseover", onMouseOver);
-      document.removeEventListener("mouseout", onMouseOut);
       document.removeEventListener("mouseleave", onMouseLeave);
     };
   }, [isVisible]);
