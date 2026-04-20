@@ -56,7 +56,7 @@ export default function CustomCursor() {
         width: isHovering ? 31 : 15,
         height: isHovering ? 31 : 15,
         borderRadius: isHovering ? 15.5 : 7.5,
-        backgroundColor: isHovering ? "rgba(189,0,0,0.53)" : "rgba(189,0,0,1)",
+        backgroundColor: isHovering ? "rgba(189,0,0,0.33)" : "rgba(189,0,0,1)",
       }}
       transition={{
         // Define Spring for super smooth following tracking and animation
