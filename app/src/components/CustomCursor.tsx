@@ -19,17 +19,10 @@ export default function CustomCursor() {
       
       const target = e.target as HTMLElement;
       
-      const isZoom = target.closest("[style*='cursor: zoom'], [style*='cursor:zoom']");
-      if (isZoom) {
-        setIsVisible(false);
-        setIsHovering(false);
-        return;
-      }
-      
       setIsVisible(true);
 
       // Check if interactive
-      const interactive = target.closest("a, button, [role='button'], input, select, textarea, .card-wrap, .thumbnail, [style*='cursor: pointer'], [style*='cursor:pointer']");
+      const interactive = target.closest("a, button, [role='button'], input, select, textarea, .card-wrap, .thumbnail, [style*='cursor: pointer'], [style*='cursor:pointer'], [style*='cursor: zoom'], [style*='cursor:zoom']");
       setIsHovering(!!interactive);
     };
 

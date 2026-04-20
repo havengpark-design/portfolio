@@ -120,11 +120,3 @@ body {
   animation: highlight-sweep 0.65s ease-out forwards;
   border-radius: 4px;
 }
-
-[style*="cursor: zoom-in"], [style*="cursor:zoom-in"] {
-  cursor: zoom-in !important;
-}
-
-[style*="cursor: zoom-out"], [style*="cursor:zoom-out"] {
-  cursor: zoom-out !important;
-}
