@@ -1336,6 +1336,9 @@ function BottomSheet({
         } else {
           onCloseRef.current();
         }
+      } else {
+        // If they didn't drag, it was just a tap. Toggle the snap state.
+        setSnap(s => s === "full" ? "partial" : "full");
       }
 
       document.removeEventListener("mousemove", onMove);
@@ -1387,7 +1390,6 @@ function BottomSheet({
         <div
           onMouseDown={(e) => { e.preventDefault(); startDrag(e.clientY); }}
           onTouchStart={(e) => startDrag(e.touches[0].clientY)}
-          onClick={() => setSnap(s => s === "full" ? "partial" : "full")}
           style={{
             flexShrink: 0,
             display: "flex",
