@@ -527,7 +527,7 @@ function JamsContent() {
               <img alt="" src={`${BASE}/jams-monitor-before.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
               <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
             </div>
-            <div style={{ width: "100%", position: "relative", marginBottom: 32 }}>
+            <div style={{ width: "100%", position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src={`${BASE}/jams-monitor-after.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
               <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
