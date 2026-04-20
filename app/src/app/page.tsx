@@ -1276,10 +1276,19 @@ function BottomSheet({
   const sheetRef = useRef<HTMLDivElement>(null);
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
-  const cachedChildrenRef = useRef(children);
-  if (open) {
-    cachedChildrenRef.current = children;
-  }
+  const [delayedChildren, setDelayedChildren] = useState<React.ReactNode>(null);
+
+  useEffect(() => {
+    if (open) {
+      setDelayedChildren(children);
+    } else {
+      // Allow CSS unmount translation to complete before dropping the layout nodes, automatically resetting scroll depths next mount
+      const timer = setTimeout(() => {
+        setDelayedChildren(null);
+      }, 450);
+      return () => clearTimeout(timer);
+    }
+  }, [open, children]);
 
   // Reset to partial each time the sheet opens
   useEffect(() => {
@@ -1326,21 +1335,25 @@ function BottomSheet({
     };
 
     const onUp = (e: MouseEvent | TouchEvent) => {
-      // Clear inline height, explicitly restore transition so snap animates
-      sheet.style.height = "";
-      sheet.style.transition = SHEET_TRANSITION;
-
       // Only snap/close if the user actually dragged; plain clicks do nothing
       if (hasMoved) {
         // Prevent the mouseup from being treated as a click by the click-outside handler
         e.stopPropagation();
         if (lastDelta > 0) {
+          // Clear inline height, explicitly restore transition so snap animates
+          sheet.style.height = "";
+          sheet.style.transition = SHEET_TRANSITION;
           setSnap("full");
         } else {
+          // Pulled down -> Closing! Keep height frozen during drop to prevent scroll explosions
+          sheet.style.transition = "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
           onCloseRef.current();
+          setTimeout(() => { if (sheetRef.current) sheetRef.current.style.height = ""; }, 450);
         }
       } else {
         // If they didn't drag, it was just a tap. Toggle the snap state.
+        sheet.style.height = "";
+        sheet.style.transition = SHEET_TRANSITION;
         setSnap(s => s === "full" ? "partial" : "full");
       }
 
@@ -1407,7 +1420,7 @@ function BottomSheet({
         </div>
         {/* Scrollable content */}
         <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
-          {cachedChildrenRef.current}
+          {open ? children : delayedChildren}
         </div>
       </div>
     </>
