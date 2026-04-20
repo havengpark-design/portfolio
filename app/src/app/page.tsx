@@ -541,14 +541,24 @@ function JamsContent() {
         {/* ─── Job creation frame ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
           <ExpandableBlackFrame id="j4" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "center" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src={`${BASE}/d7f4968da51e6798db95e3ef6c7ff36a6e246b47.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src={`${BASE}/94c9012ae8f352b669443f668109cdf65dcc2d04.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src={`${BASE}/01673452f741297cbaf8ed58458be5c9e4eb8242.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src={`${BASE}/08d6c53be76e1d7e8ba5e0fb8ae7f47d07b9c15a.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            <div style={{ flex: 1, width: 0, position: "relative" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src={`${BASE}/d7f4968da51e6798db95e3ef6c7ff36a6e246b47.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
+            </div>
+            <div style={{ flex: 1, width: 0, position: "relative" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src={`${BASE}/94c9012ae8f352b669443f668109cdf65dcc2d04.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            </div>
+            <div style={{ flex: 1, width: 0, position: "relative" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src={`${BASE}/01673452f741297cbaf8ed58458be5c9e4eb8242.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+            </div>
+            <div style={{ flex: 1, width: 0, position: "relative" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src={`${BASE}/08d6c53be76e1d7e8ba5e0fb8ae7f47d07b9c15a.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
             Picking an execution method meant scrolling a long, context-free list with no guidance. <strong style={{ fontWeight: 500, color: "black" }}>We redesigned it with search, categorization, and descriptions</strong> — so users can choose with confidence, not guesswork.
