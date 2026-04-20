@@ -1402,29 +1402,45 @@ function BottomSheet({
           boxShadow: "0 -4px 40px rgba(0,0,0,0.1)",
         }}
       >
-        {/* Drag handle — click toggles partial/full, drag adjusts freely */}
+        {/* Drag handle — floating over the content with a white blurred backdrop */}
         <div
           onMouseDown={(e) => { e.preventDefault(); startDrag(e.clientY); }}
           onTouchStart={(e) => startDrag(e.touches[0].clientY)}
           style={{
-            flexShrink: 0,
+            position: "absolute",
+            top: 0, left: 0, right: 0,
+            zIndex: 10,
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-start",
             justifyContent: "center",
-            height: 44,
+            paddingTop: 16,
+            height: 80,
             cursor: "pointer",
             userSelect: "none",
           }}
         >
-          <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(0,0,0,0.15)" }} />
+          <div style={{
+            width: 72,
+            height: 24,
+            background: "rgba(255,255,255,0.85)",
+            backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
+            borderRadius: 12,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.06)"
+          }}>
+            <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(0,0,0,0.18)" }} />
+          </div>
         </div>
         {/* Scrollable content */}
         <div style={{
           flex: 1,
           overflowY: "auto",
           overflowX: "hidden",
-          WebkitMaskImage: "linear-gradient(to bottom, transparent 0px, black 40px)",
-          maskImage: "linear-gradient(to bottom, transparent 0px, black 40px)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0px, black 120px)",
+          maskImage: "linear-gradient(to bottom, transparent 0px, black 120px)",
         }}>
           {open ? children : delayedChildren}
         </div>
