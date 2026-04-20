@@ -1396,8 +1396,6 @@ function BottomSheet({
           zIndex: 201,
           transform: open ? "translateY(0)" : "translateY(105%)",
           transition: SHEET_TRANSITION,
-          display: "flex",
-          flexDirection: "column",
           overflow: "hidden",
           boxShadow: "0 -4px 40px rgba(0,0,0,0.1)",
         }}
@@ -1407,11 +1405,15 @@ function BottomSheet({
           onMouseDown={(e) => { e.preventDefault(); startDrag(e.clientY); }}
           onTouchStart={(e) => startDrag(e.touches[0].clientY)}
           style={{
-            flexShrink: 0,
+            position: "absolute",
+            top: 0, left: 0, right: 0,
+            zIndex: 10,
+            background: "linear-gradient(to bottom, rgba(255,255,255,1) 20%, rgba(255,255,255,0))",
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-start",
+            paddingTop: 20,
             justifyContent: "center",
-            height: 44,
+            height: 120,
             cursor: "pointer",
             userSelect: "none",
           }}
@@ -1419,7 +1421,7 @@ function BottomSheet({
           <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(0,0,0,0.15)" }} />
         </div>
         {/* Scrollable content */}
-        <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, overflowY: "auto", overflowX: "hidden" }}>
           {open ? children : delayedChildren}
         </div>
       </div>
