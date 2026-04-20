@@ -47,12 +47,10 @@ export default function CustomCursor() {
         left: 0,
         pointerEvents: "none",
         zIndex: 9999,
-        translateX: "-50%",
-        translateY: "-50%",
       }}
       animate={{
-        x: position.x,
-        y: position.y,
+        x: position.x - (isHovering ? 15.5 : 7.5),
+        y: position.y - (isHovering ? 15.5 : 7.5),
         width: isHovering ? 31 : 15,
         height: isHovering ? 31 : 15,
         borderRadius: isHovering ? 15.5 : 7.5,
