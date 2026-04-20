@@ -450,8 +450,8 @@ function JamsContent() {
           <div style={{ display: "flex", gap: 60 }}>
             {([["Role", "Product Designer"], ["Timeline", "8 weeks (2025)"], ["Tools", "Figma"]] as const).map(([l, v]) => (
               <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
-                <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px", whiteSpace: "nowrap" }}>{l}</span>
-                <span style={{ ...CS_BODY, fontSize: 20, lineHeight: "30px", color: "#262421", whiteSpace: "nowrap" }}>{v}</span>
+                <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px" }}>{l}</span>
+                <span style={{ ...CS_BODY, fontSize: 20, lineHeight: "30px", color: "#262421" }}>{v}</span>
               </div>
             ))}
             {/* Team — pill on hover */}
