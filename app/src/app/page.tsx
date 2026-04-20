@@ -1277,6 +1277,13 @@ function BottomSheet({
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
 
+  // Cache children so the transition doesn't abruptly flash white when closing
+  const [delayedChildren, setDelayedChildren] = useState(children);
+
+  useEffect(() => {
+    if (open) setDelayedChildren(children);
+  }, [open, children]);
+
   // Reset to partial each time the sheet opens
   useEffect(() => {
     if (open) setSnap("partial");
@@ -1404,7 +1411,7 @@ function BottomSheet({
         </div>
         {/* Scrollable content */}
         <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }}>
-          {children}
+          {open ? children : delayedChildren}
         </div>
       </div>
     </>
