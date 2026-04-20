@@ -503,10 +503,16 @@ function JamsContent() {
         {/* ─── Home dashboard frame ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
           <ExpandableBlackFrame id="j2" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "center" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src={`${BASE}/9588850c5c33fbd3fdef6c1599eddfc3bfff4cfa.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src={`${BASE}/1f12448c836a8127ec39ad3cfac674d94fa11df2.png`} style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+            <div style={{ flex: 1, width: 0, position: "relative" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src={`${BASE}/9588850c5c33fbd3fdef6c1599eddfc3bfff4cfa.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
+            </div>
+            <div style={{ flex: 1, width: 0, position: "relative" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img alt="" src={`${BASE}/1f12448c836a8127ec39ad3cfac674d94fa11df2.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+            </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, margin: 0 }}>
             The original Home screen offered little beyond documentation links. <strong style={{ fontWeight: 500, color: "black" }}>We rebuilt it into a live dashboard:</strong> job status, schedule projections, quick actions, and agent health all visible on arrival.
