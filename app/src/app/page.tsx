@@ -1335,8 +1335,7 @@ function BottomSheet({
         if (finalH > startH) {
           setSnap("full");
         } else {
-          if (frac > 0.35) setSnap("partial");
-          else onCloseRef.current();
+          onCloseRef.current();
         }
       }
 
