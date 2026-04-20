@@ -1282,7 +1282,9 @@ function BottomSheet({
   useEffect(() => {
     if (open) {
       setDelayedChildren(children);
-      if (scrollRef.current) scrollRef.current.scrollTo(0, 0);
+      setTimeout(() => {
+        if (scrollRef.current) scrollRef.current.scrollTo(0, 0);
+      }, 10);
     } else {
       // Allow CSS unmount translation to complete before dropping the layout nodes, automatically resetting scroll depths next mount
       const timer = setTimeout(() => {
@@ -1392,7 +1394,7 @@ function BottomSheet({
           bottom: 0,
           left: 0,
           right: 0,
-          height: snap === "full" ? "100vh" : "78vh",
+          height: snap === "full" ? "100%" : "78%",
           background: "#FFFFFF",
           borderRadius: snap === "full" ? 0 : "20px 20px 0 0",
           zIndex: 201,
