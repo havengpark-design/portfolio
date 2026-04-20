@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 const artPieces = [
   { src: "/Art/01-gray-cut-blood.png", title: "Gray Cut Blood", year: "2024", medium: "Graphite on paper" },
@@ -899,8 +900,12 @@ function ExpandableBlackFrame({
   );
 }
 
+const MERMORY_TEAM_TEXT = "3 Designers, 3 Engineers, 1 ML Engineer, 1 Graphic Designer, 1 Animator";
+
 function MermoryCaseStudy() {
   const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
+  const [teamPos, setTeamPos] = useState<{ x: number; y: number } | null>(null);
+
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 120, paddingBottom: 150, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
       <div style={{ width: "100%", maxWidth: CS_W, display: "flex", flexDirection: "column", gap: 110 }}>
@@ -922,13 +927,55 @@ function MermoryCaseStudy() {
           <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
           {/* Metadata 4-col */}
           <div style={{ display: "flex", gap: 60 }}>
-            {([["Role", "Product Designer"], ["Timeline", "12 months (2025)"], ["Tools", "Figma"], ["Team", "Designers & Engineers"]] as const).map(([l, v]) => (
+            {([["Role", "Product Designer"], ["Timeline", "12 months (2025)"], ["Tools", "Figma"]] as const).map(([l, v]) => (
               <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
                 <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px", whiteSpace: "nowrap" }}>{l}</span>
                 <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>{v}</span>
               </div>
             ))}
+            {/* Team — pill on hover, full text + blinking cursor only */}
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1, cursor: "none" }}
+              onMouseEnter={(e) => setTeamPos({ x: e.clientX, y: e.clientY })}
+              onMouseMove={(e) => setTeamPos({ x: e.clientX, y: e.clientY })}
+              onMouseLeave={() => setTeamPos(null)}
+            >
+              <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px", whiteSpace: "nowrap" }}>Team</span>
+              <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>Design, Engineering & ML</span>
+            </div>
           </div>
+          {teamPos && typeof document !== "undefined" && createPortal(
+            (() => {
+              // Anchor left edge 50 px behind cursor so the cursor is always
+              // inside the left padding — keeps the left side consistent.
+              const pillLeft = Math.max(40, teamPos.x - 180);
+              // Right boundary = viewport minus case-study right padding (40 px).
+              const rightBound = window.innerWidth - 40;
+              const pillMaxWidth = Math.max(120, rightBound - pillLeft);
+              return (
+                <div style={{
+                  position: "fixed",
+                  left: pillLeft,
+                  top: teamPos.y,
+                  transform: "translateY(-50%)",
+                  maxWidth: pillMaxWidth,
+                  borderRadius: 16,
+                  background: "#f3f3f3",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "40px 50px",
+                  pointerEvents: "none",
+                  zIndex: 9999,
+                }}>
+                  <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
+                    {MERMORY_TEAM_TEXT}<span className="blink-cursor">|</span>
+                  </span>
+                </div>
+              );
+            })(),
+            document.body
+          )}
           {/* Hero card */}
           <div style={{ background: "white", borderRadius: 23, boxShadow: "0px 4px 24.9px 3px rgba(0,0,0,0.09)", height: 600, overflow: "hidden", position: "relative" }}>
             <div style={{ position: "absolute", left: 0, top: 71, width: 974, height: 609 }}>
