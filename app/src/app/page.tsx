@@ -424,6 +424,9 @@ function MermoryContent() {
 
 function JamsContent() {
   const [expandedFrame, setExpandedFrame] = useState<string | null>(null);
+  const [jamsTeamPos, setJamsTeamPos] = useState<{ x: number; y: number } | null>(null);
+  const jamsPillLeft = jamsTeamPos ? Math.max(40, jamsTeamPos.x - 180) : 0;
+  const jamsPillMaxWidth = typeof window !== "undefined" && jamsTeamPos ? Math.min(320, window.innerWidth - jamsTeamPos.x - 40) : 320;
   const BASE = "/Design/jams/case-study";
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 120, paddingBottom: 150, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
@@ -452,7 +455,39 @@ function JamsContent() {
                 <span style={{ ...CS_BODY, fontSize: 20, lineHeight: "30px", color: "#262421", whiteSpace: "nowrap" }}>{v}</span>
               </div>
             ))}
+            {/* Team — pill on hover */}
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1, cursor: "none" }}
+              onMouseEnter={(e) => setJamsTeamPos({ x: e.clientX, y: e.clientY })}
+              onMouseMove={(e) => setJamsTeamPos({ x: e.clientX, y: e.clientY })}
+              onMouseLeave={() => setJamsTeamPos(null)}
+            >
+              <span style={{ ...CS_LABEL, color: "#a2a2a2", lineHeight: "27px" }}>Team</span>
+              <span style={{ ...CS_BODY, fontSize: 18, lineHeight: "27px", color: "#262421" }}>Design, Engineering</span>
+            </div>
           </div>
+          {jamsTeamPos && typeof document !== "undefined" && createPortal(
+            <div style={{
+              position: "fixed",
+              left: jamsPillLeft,
+              top: jamsTeamPos.y,
+              transform: "translateY(-50%)",
+              maxWidth: jamsPillMaxWidth,
+              borderRadius: 16,
+              background: "#f3f3f3",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "40px 50px",
+              pointerEvents: "none",
+              zIndex: 9999,
+            }}>
+              <span style={{ fontSize: 15, color: "#494949", fontFamily: "'SF Pro Display', sans-serif", lineHeight: "119.62%" }}>
+                PM, 2 designers, 4 In-house engineers<span className="blink-cursor">|</span>
+              </span>
+            </div>,
+            document.body
+          )}
           {/* Hero card */}
           <div style={{ width: "100%", height: 600, position: "relative", boxShadow: "0px 4px 24.9px 3px rgba(0, 0, 0, 0.09)", borderRadius: 23, backgroundColor: "#fff", overflow: "hidden", flexShrink: 0, display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
             <div style={{ alignSelf: "stretch", height: 600, position: "relative", overflow: "hidden", flexShrink: 0 }}>
