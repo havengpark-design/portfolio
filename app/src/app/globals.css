@@ -144,10 +144,6 @@ body {
   border-radius: 4px;
 }
 
-/* Hide native cursors globally, replacing with CustomCursor.tsx */
-*, *::before, *::after {
-  cursor: none !important;
-}
 
 .hl-pink {
   background-image: linear-gradient(to right, rgba(255, 171, 171, 0.2), rgba(255, 171, 171, 0.2));
