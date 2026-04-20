@@ -1281,10 +1281,10 @@ function BottomSheet({
 
   useEffect(() => {
     if (open) {
-      // Purge residual inline CSS strings from any previous manual drag-to-close drops to free React's execution flow
+      // Resynchronize manual DOM properties directly with React's virtual model, bypassing vDOM diff omissions
       if (sheetRef.current) {
-        sheetRef.current.style.transition = "";
-        sheetRef.current.style.height = "";
+        sheetRef.current.style.transition = SHEET_TRANSITION;
+        sheetRef.current.style.height = snap === "full" ? "100%" : "78%";
       }
       setDelayedChildren(children);
     } else {
