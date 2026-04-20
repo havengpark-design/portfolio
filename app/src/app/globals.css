@@ -117,6 +117,6 @@ body {
   border-radius: 4px;
 }
 
-a, button, [role="button"], input, select, textarea, .card-wrap {
-  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzEiIGhlaWdodD0iMzEiIHZpZXdCb3g9IjAgMCAzMSAzMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzEiIGhlaWdodD0iMzEiIHJ4PSIxNS41IiBmaWxsPSIjYmQwMDAwIiBmaWxsLW9wYWNpdHk9IjAuNTMiLz48L3N2Zz4=') 15 15, pointer;
+a, button, [role="button"], input, select, textarea, .card-wrap, [style*="cursor: pointer"], [style*="cursor:pointer"] {
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzEiIGhlaWdodD0iMzEiIHZpZXdCb3g9IjAgMCAzMSAzMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzEiIGhlaWdodD0iMzEiIHJ4PSIxNS41IiBmaWxsPSIjYmQwMDAwIiBmaWxsLW9wYWNpdHk9IjAuNTMiLz48L3N2Zz4=') 15 15, pointer !important;
 }
