@@ -8,6 +8,10 @@ const geist = Geist({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Haven Park",
   description: "Product designer. Storyteller. Artist.",
+  icons: {
+    icon: "/favicon-circle.png",
+    apple: "/favicon-circle.png",
+  },
 };
 
 export default function RootLayout({
