@@ -145,7 +145,7 @@ body {
 }
 
 /* Hide native cursors globally, replacing with CustomCursor.tsx */
-* {
+*, *::before, *::after {
   cursor: none !important;
 }
 
