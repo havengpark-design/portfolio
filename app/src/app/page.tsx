@@ -521,15 +521,15 @@ function JamsContent() {
 
         {/* ─── Monitor view frame ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <ExpandableBlackFrame id="j3" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: "3%", alignItems: "center" }}>
-            <div style={{ flex: 1, width: 0, position: "relative" }}>
+          <ExpandableBlackFrame id="j3" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", flexDirection: "column", gap: 40, alignItems: "center" }}>
+            <div style={{ width: "100%", position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src={`${BASE}/6cb1470acc7102f200a151793ddf9c3a7eff84cc.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              <img alt="" src={`${BASE}/jams-monitor-before.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
               <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
             </div>
-            <div style={{ flex: 1, width: 0, position: "relative" }}>
+            <div style={{ width: "100%", position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src={`${BASE}/cf4f0fdcb941cb7edebdc4fc7b3b81528910c3c4.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
+              <img alt="" src={`${BASE}/jams-monitor-after.png`} style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
               <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontFamily: "-apple-system, 'SF Pro Display', sans-serif", fontSize: 16, fontWeight: 500, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
             </div>
           </ExpandableBlackFrame>
