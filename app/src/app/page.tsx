@@ -1592,7 +1592,6 @@ export default function Home() {
   const [openSheet, setOpenSheet] = useState<string | null>(null);
   const navLogoRef = useRef<HTMLSpanElement>(null);
   const [panelLeft, setPanelLeft] = useState(210);
-  const [nameOffset, setNameOffset] = useState({ x: 0, y: 0 });
   const [openProject, setOpenProject] = useState<string | null>(null);
   const [scale, setScale] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
@@ -1633,21 +1632,7 @@ export default function Home() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
-  // Mouse parallax for "Haven Park" name (±5px)
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      const cx = window.innerWidth  / 2;
-      const cy = window.innerHeight / 2;
-      setNameOffset({
-        x: ((e.clientX - cx) / cx) * 5,
-        y: ((e.clientY - cy) / cy) * 5,
-      });
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-
-  const isSafari = typeof navigator !== "undefined" && /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+const isSafari = typeof navigator !== "undefined" && /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
   const identitySection = (
     <div style={{ paddingTop: 150, paddingBottom: 150 }}>
@@ -1664,9 +1649,6 @@ export default function Home() {
             objectFit: "cover", objectPosition: "center top",
             filter: "grayscale(100%)",
             borderRadius: "50%",
-            transform: `translate(${nameOffset.x.toFixed(2)}px, ${nameOffset.y.toFixed(2)}px)`,
-            transition: "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-            willChange: "transform",
           }}
         />
 
