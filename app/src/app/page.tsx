@@ -1656,6 +1656,7 @@ export default function Home() {
         {/* navLogoRef here → panelLeft tracks right edge of the identity column */}
         <span
           ref={navLogoRef}
+          className="draw-down"
           style={{
             position: "absolute", top: 0, left: 142,
             width: 13, height: 134,
