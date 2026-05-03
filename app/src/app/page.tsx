@@ -1636,16 +1636,12 @@ const isSafari = typeof navigator !== "undefined" && /^((?!chrome|android).)*saf
 
   const identitySection = (
     <div style={{ paddingTop: 150, paddingBottom: 150 }}>
-      <div style={{
-        display: "flex", alignItems: "center", gap: 70,
-        paddingTop: 35, paddingBottom: 35, paddingRight: 60,
-        borderRadius: 115,
-      }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 70 }}>
 
         {/* Profile photo — navLogoRef here so panelLeft tracks its right edge */}
         <div
           ref={navLogoRef}
-          style={{ width: 95, height: 96, flexShrink: 0, borderRadius: "50%", overflow: "hidden", position: "relative" }}
+          style={{ width: 95, height: 96, flexShrink: 0, borderRadius: "50%", overflow: "hidden" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -1659,7 +1655,7 @@ const isSafari = typeof navigator !== "undefined" && /^((?!chrome|android).)*saf
         <div style={{ display: "flex", flexDirection: "column", gap: 22, flexShrink: 0 }}>
 
           {/* Name */}
-          <div style={{ fontSize: 24, fontWeight: 300, color: "#494949", lineHeight: "48px" }}>
+          <div style={{ fontSize: 24, fontWeight: 300, color: "#494949", lineHeight: 1 }}>
             Haven Park
           </div>
 
