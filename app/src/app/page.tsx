@@ -1664,6 +1664,9 @@ export default function Home() {
             objectFit: "cover", objectPosition: "center top",
             filter: "grayscale(100%)",
             borderRadius: "50%",
+            transform: `translate(${nameOffset.x.toFixed(2)}px, ${nameOffset.y.toFixed(2)}px)`,
+            transition: "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            willChange: "transform",
           }}
         />
 
@@ -1681,15 +1684,13 @@ export default function Home() {
           }}
         />
 
-        {/* "Haven Park" — 48px, light gray, follows mouse ±5px */}
+        {/* "Haven Park" — 48px, light gray */}
         <div style={{
           position: "absolute",
           top: 24, left: 176,
           fontSize: 48, fontWeight: 600, color: "#cbcbcb",
           lineHeight: "48px", whiteSpace: "nowrap",
-          transform: `translateY(-50%) translate(${nameOffset.x.toFixed(2)}px, ${nameOffset.y.toFixed(2)}px)`,
-          transition: "transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          willChange: "transform",
+          transform: "translateY(-50%)",
         }}>
           Haven Park
         </div>
