@@ -69,7 +69,7 @@ function SocialIcon({ src, w, h, href }: { src: string; w: number; h: number; hr
         opacity: hovered ? 1 : 0, transition: "opacity 0.3s ease", pointerEvents: "none",
       }} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img alt="" src={src} style={{ width: w, height: h, position: "relative", zIndex: 1 }} />
+      <img alt="" src={src} style={{ width: w, height: h, position: "relative", zIndex: 1, opacity: 0.5 }} />
     </>
   );
   if (href) return (
