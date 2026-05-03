@@ -1590,7 +1590,7 @@ const MOBILE_BREAKPOINT = 768;
 export default function Home() {
   const [openSection, setOpenSection] = useState<Section>(null);
   const [openSheet, setOpenSheet] = useState<string | null>(null);
-  const navLogoRef = useRef<HTMLSpanElement>(null);
+  const navLogoRef = useRef<HTMLDivElement>(null);
   const [panelLeft, setPanelLeft] = useState(210);
   const [openProject, setOpenProject] = useState<string | null>(null);
   const [scale, setScale] = useState(1);
@@ -1636,71 +1636,56 @@ const isSafari = typeof navigator !== "undefined" && /^((?!chrome|android).)*saf
 
   const identitySection = (
     <div style={{ paddingTop: 150, paddingBottom: 150 }}>
-      <div style={{ position: "relative", height: 134 }}>
+      <div style={{
+        display: "flex", alignItems: "center", gap: 70,
+        paddingTop: 35, paddingBottom: 35, paddingRight: 60,
+        borderRadius: 115,
+      }}>
 
-        {/* Profile photo — circle, grayscale */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          alt=""
-          src="/logmo2.png"
-          style={{
-            position: "absolute", top: 17, left: 0,
-            width: 92, height: 94,
-            objectFit: "cover", objectPosition: "center top",
-            filter: "grayscale(100%)",
-            borderRadius: "50%",
-          }}
-        />
-
-        {/* Vertical pill divider */}
-        {/* navLogoRef here → panelLeft tracks right edge of the identity column */}
-        <span
+        {/* Profile photo — navLogoRef here so panelLeft tracks its right edge */}
+        <div
           ref={navLogoRef}
-          className="draw-down"
-          style={{
-            position: "absolute", top: 0, left: 142,
-            width: 13, height: 134,
-            background: "#f0f0f0",
-            borderRadius: 26,
-            display: "block",
-          }}
-        />
-
-        {/* "Haven Park" — 48px, light gray */}
-        <div style={{
-          position: "absolute",
-          top: 24, left: 176,
-          fontSize: 48, fontWeight: 600, color: "#cbcbcb",
-          lineHeight: "48px", whiteSpace: "nowrap",
-          transform: "translateY(-50%)",
-        }}>
-          Haven Park
+          style={{ width: 95, height: 96, flexShrink: 0, borderRadius: "50%", overflow: "hidden", position: "relative" }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt=""
+            src="/logmo2.png"
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom", filter: "grayscale(100%)" }}
+          />
         </div>
 
-        {/* Status line */}
-        <div style={{
-          position: "absolute",
-          top: 74, transform: "translateY(-50%)",
-          left: 176,
-          display: "flex", alignItems: "center", gap: 8,
-          fontSize: 17, fontWeight: 300, lineHeight: "119.62%",
-          whiteSpace: "nowrap",
-        }}>
-          <span style={{ color: "#4a70bc" }}>Currently designing Folio</span>
-          <LoadingSpinner />
-          <span style={{ color: "#d9d9d9" }}>/</span>
-          <span style={{ color: "#494949" }}>{`Previously @ EdTech & Enterprise`}</span>
-        </div>
+        {/* Content column */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 22, flexShrink: 0 }}>
 
-        {/* Social icons — aligned under the name */}
-        <div style={{ position: "absolute", top: 104, left: 176, display: "flex", alignItems: "center", gap: 12 }}>
-          {[
-            { src: "/email_icon.svg",    w: 27, h: 24, href: "mailto:gaeunpark@g.ucla.edu" },
-            { src: "/mdi_instagram.svg", w: 24, h: 24, href: "https://instagram.com/hvnpark" },
-            { src: "/uil_linkedin.svg",  w: 24, h: 24, href: "https://www.linkedin.com/in/havenpark/" },
-          ].map(({ src, w, h, href }) => (
-            <SocialIcon key={src} src={src} w={w} h={h} href={href} />
-          ))}
+          {/* Name */}
+          <div style={{ fontSize: 24, fontWeight: 300, color: "#494949", lineHeight: "48px" }}>
+            Haven Park
+          </div>
+
+          {/* Status + icons */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 15 }}>
+
+            {/* Status row */}
+            <div style={{ display: "flex", alignItems: "center", gap: 13, fontSize: 17, fontWeight: 300, lineHeight: "119.62%", whiteSpace: "nowrap" }}>
+              <span style={{ color: "#4a70bc" }}>Currently designing Folio</span>
+              <LoadingSpinner />
+              <span style={{ color: "#d9d9d9" }}>/</span>
+              <span style={{ color: "#494949" }}>{`Previously @ EdTech & Enterprise`}</span>
+            </div>
+
+            {/* Social icons */}
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              {[
+                { src: "/email_icon.svg",    w: 27, h: 24, href: "mailto:gaeunpark@g.ucla.edu" },
+                { src: "/mdi_instagram.svg", w: 24, h: 24, href: "https://instagram.com/hvnpark" },
+                { src: "/uil_linkedin.svg",  w: 24, h: 24, href: "https://www.linkedin.com/in/havenpark/" },
+              ].map(({ src, w, h, href }) => (
+                <SocialIcon key={src} src={src} w={w} h={h} href={href} />
+              ))}
+            </div>
+
+          </div>
         </div>
 
       </div>
