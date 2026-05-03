@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Geist } from "next/font/google";
 
-const geist = Geist({ subsets: ["latin"] });
+const geist = Geist({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Haven Park",
