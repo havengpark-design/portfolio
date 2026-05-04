@@ -1649,8 +1649,6 @@ const isSafari = typeof navigator !== "undefined" && /^((?!chrome|android).)*saf
             src="/logmo2.png"
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom", filter: "grayscale(100%)" }}
           />
-          {/* Inner shadow overlay */}
-          <div style={{ position: "absolute", inset: 0, borderRadius: "50%", boxShadow: "inset 0px 4px 4px 0px rgba(0,0,0,0.15)", pointerEvents: "none" }} />
         </div>
 
         {/* Content column */}
