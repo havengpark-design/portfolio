@@ -1665,7 +1665,7 @@ const isSafari = typeof navigator !== "undefined" && /^((?!chrome|android).)*saf
           <div style={{ display: "flex", flexDirection: "column", gap: 17 }}>
 
             {/* Status row */}
-            <div style={{ display: "flex", alignItems: "center", gap: 13, fontSize: 17, fontWeight: 300, lineHeight: "119.62%", whiteSpace: "nowrap" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 13, fontSize: 17, fontWeight: 200, lineHeight: "119.62%", whiteSpace: "nowrap" }}>
               <span style={{ color: "#4a70bc" }}>Currently designing Folio</span>
               <LoadingSpinner />
               <span style={{ color: "#d9d9d9" }}>|</span>
