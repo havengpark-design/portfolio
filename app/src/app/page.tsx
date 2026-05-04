@@ -1641,7 +1641,7 @@ const isSafari = typeof navigator !== "undefined" && /^((?!chrome|android).)*saf
         {/* Profile photo — navLogoRef here so panelLeft tracks its right edge */}
         <div
           ref={navLogoRef}
-          style={{ width: 95, height: 96, flexShrink: 0, borderRadius: "50%", overflow: "hidden" }}
+          style={{ width: 95, height: 96, flexShrink: 0, borderRadius: "50%", overflow: "hidden", position: "relative" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -1649,25 +1649,27 @@ const isSafari = typeof navigator !== "undefined" && /^((?!chrome|android).)*saf
             src="/logmo2.png"
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom", filter: "grayscale(100%)" }}
           />
+          {/* Inner shadow overlay */}
+          <div style={{ position: "absolute", inset: 0, borderRadius: "50%", boxShadow: "inset 0px 4px 4px 0px rgba(0,0,0,0.15)", pointerEvents: "none" }} />
         </div>
 
         {/* Content column */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 22, flexShrink: 0 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 7, flexShrink: 0 }}>
 
           {/* Name */}
-          <div style={{ fontSize: 24, fontWeight: 300, color: "#494949", lineHeight: 1 }}>
+          <div style={{ fontSize: 36, fontWeight: 300, color: "#494949", lineHeight: "48px" }}>
             Haven Park
           </div>
 
           {/* Status + icons */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 15 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 17 }}>
 
             {/* Status row */}
             <div style={{ display: "flex", alignItems: "center", gap: 13, fontSize: 17, fontWeight: 300, lineHeight: "119.62%", whiteSpace: "nowrap" }}>
               <span style={{ color: "#4a70bc" }}>Currently designing Folio</span>
               <LoadingSpinner />
               <span style={{ color: "#d9d9d9" }}>/</span>
-              <span style={{ color: "#494949" }}>{`Previously @ EdTech & Enterprise`}</span>
+              <span style={{ color: "#9c9c9c" }}>{`Previously @ EdTech & Enterprise`}</span>
             </div>
 
             {/* Social icons */}
