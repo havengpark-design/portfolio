@@ -1151,7 +1151,7 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 1: Create menu ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 27 }}>
-          <ExpandableBlackFrame id="s1" expandedId={expandedFrame} setExpandedId={setExpandedFrame} bg="#f3f3f3">
+          <ExpandableBlackFrame id="s1" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/importflow.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
@@ -1163,7 +1163,7 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 2: Explore banners ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <ExpandableBlackFrame id="s2" expandedId={expandedFrame} setExpandedId={setExpandedFrame} bg="#f3f3f3" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          <ExpandableBlackFrame id="s2" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/explore.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
             <div style={{ display: "flex", gap: 20 }}>
@@ -1181,7 +1181,7 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 3: Creator Studio exit flow ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <ExpandableBlackFrame id="s3" expandedId={expandedFrame} setExpandedId={setExpandedFrame} bg="#f3f3f3">
+          <ExpandableBlackFrame id="s3" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img alt="" src="/Design/mermory/case-study/creatorStudioExitFlow.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
           </ExpandableBlackFrame>
@@ -1193,16 +1193,16 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 4: Marketing page ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <ExpandableBlackFrame id="s4" expandedId={expandedFrame} setExpandedId={setExpandedFrame} bg="#f3f3f3" style={{ display: "flex", gap: 20, alignItems: "center" }}>
+          <ExpandableBlackFrame id="s4" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: 20, alignItems: "center" }}>
             <div style={{ flex: 1, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/mermory/case-study/marketingPageBefore.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(0,0,0,0.35)", whiteSpace: "nowrap" }}>Before</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
             </div>
             <div style={{ flex: 1, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/mermory/case-study/marketingPageAfter.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(0,0,0,0.35)", whiteSpace: "nowrap" }}>After</span>
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
             </div>
           </ExpandableBlackFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
@@ -1218,7 +1218,7 @@ function MermoryCaseStudy() {
         </div>
 
         {/* ─── Design collage ─── */}
-        <ExpandableBlackFrame id="s5" expandedId={expandedFrame} setExpandedId={setExpandedFrame} bg="#f3f3f3">
+        <ExpandableBlackFrame id="s5" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
           {/* aspect-ratio container: 748/780 = 95.9% */}
           <div style={{ position: "relative", width: "100%", paddingTop: "95.9%" }}>
             <div style={{ position: "absolute", left: "3.27%", top: "8.05%", width: "31.28%", height: "40.64%" }}>
