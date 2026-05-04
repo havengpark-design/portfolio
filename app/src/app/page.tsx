@@ -1064,6 +1064,63 @@ function ExpandableBlackFrame({
   );
 }
 
+/* ── Frameless expand wrapper (no black background/padding) for Mermory ── */
+function MermoryFrame({
+  id, expandedId, setExpandedId, style, children,
+}: {
+  id: string; expandedId: string | null; setExpandedId: (id: string | null) => void;
+  style?: React.CSSProperties; children: React.ReactNode;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const expanded = expandedId === id;
+  const natWRef = useRef(0);
+  useEffect(() => { if (ref.current && !expanded) natWRef.current = ref.current.offsetWidth; });
+  const [windowW, setWindowW] = useState(typeof window !== "undefined" ? window.innerWidth : 9999);
+  useEffect(() => {
+    const handler = () => setWindowW(window.innerWidth);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+  useEffect(() => {
+    if (!expanded) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (!entry.isIntersecting) setExpandedId(null); },
+      { threshold: 0.05 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [expanded, setExpandedId]);
+  useEffect(() => {
+    if (!expanded) return;
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setExpandedId(null);
+    };
+    const t = setTimeout(() => document.addEventListener("click", handler), 80);
+    return () => { clearTimeout(t); document.removeEventListener("click", handler); };
+  }, [expanded, setExpandedId]);
+  const natW = natWRef.current || CS_W;
+  const maxExpandedPx = Math.max(natW, windowW - 2 * CS_PAD);
+  const expandedWidthPct = `${(maxExpandedPx / natW) * 100}%`;
+  const expandedMLPct = `-${((maxExpandedPx - natW) / 2 / natW) * 100}%`;
+  return (
+    <div
+      ref={ref}
+      onClick={() => { expanded ? setExpandedId(null) : setExpandedId(id); }}
+      style={{
+        width: expanded ? expandedWidthPct : "100%",
+        marginLeft: expanded ? expandedMLPct : 0,
+        zIndex: expanded ? 50 : 1,
+        position: "relative",
+        transition: "width 0.45s cubic-bezier(0.25,0.46,0.45,0.94), margin-left 0.45s cubic-bezier(0.25,0.46,0.45,0.94)",
+        cursor: expanded ? "zoom-out" : "zoom-in",
+        ...(style || {}),
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 const MERMORY_TEAM_TEXT = "3 Designers, 3 Engineers, 1 ML Engineer, 1 Graphic Designer, 1 Animator";
 
 function MermoryCaseStudy() {
@@ -1151,10 +1208,10 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 1: Create menu ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 27 }}>
-          <ExpandableBlackFrame id="s1" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
+          <MermoryFrame id="s1" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/mermory/case-study/importflow.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
-          </ExpandableBlackFrame>
+            <img alt="" src="/Design/mermory/case-study/importflow.png" style={{ width: "100%", display: "block", borderRadius: 12, border: "1px solid rgba(0,0,0,0.09)", pointerEvents: "none" }} />
+          </MermoryFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             <strong style={{ fontWeight: 400, color: "black" }}>I designed & shipped the &ldquo;Create&rdquo; menu pop up. </strong>
             Users <Highlight color="green">needed a clear starting point for building flashcard decks.</Highlight> The modal gives them three distinct paths — Creative Mode, Quick-Add, or Upload — so they can choose the workflow that fits how they work.
@@ -1163,16 +1220,16 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 2: Explore banners ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <ExpandableBlackFrame id="s2" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          <MermoryFrame id="s2" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/mermory/case-study/explore.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
+            <img alt="" src="/Design/mermory/case-study/explore.png" style={{ width: "100%", display: "block", borderRadius: 12, border: "1px solid rgba(0,0,0,0.09)", pointerEvents: "none" }} />
             <div style={{ display: "flex", gap: 20 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src="/Design/mermory/case-study/inviteFriends1.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
+              <img alt="" src="/Design/mermory/case-study/inviteFriends1.png" style={{ flex: 1, width: 0, display: "block", borderRadius: 12, border: "1px solid rgba(0,0,0,0.09)", pointerEvents: "none" }} />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src="/Design/mermory/case-study/inviteFriends2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
+              <img alt="" src="/Design/mermory/case-study/inviteFriends2.png" style={{ flex: 1, width: 0, display: "block", borderRadius: 12, border: "1px solid rgba(0,0,0,0.09)", pointerEvents: "none" }} />
             </div>
-          </ExpandableBlackFrame>
+          </MermoryFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             <strong style={{ fontWeight: 400, color: "black" }}>I designed the promotional banners for the Explore page. </strong>
             The banners surface Mermory&rsquo;s latest features like Import AI, Creator Studio, and social invites, giving users a reason to discover more every time they browse.
@@ -1181,10 +1238,10 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 3: Creator Studio exit flow ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <ExpandableBlackFrame id="s3" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
+          <MermoryFrame id="s3" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="" src="/Design/mermory/case-study/creatorStudioExitFlow.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
-          </ExpandableBlackFrame>
+            <img alt="" src="/Design/mermory/case-study/creatorStudioExitFlow.png" style={{ width: "100%", display: "block", borderRadius: 12, border: "1px solid rgba(0,0,0,0.09)", pointerEvents: "none" }} />
+          </MermoryFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             <strong style={{ fontWeight: 400, color: "black" }}>I designed the flow to exit out of the Creator Studio. </strong>
             After publishing a deck, users are celebrated with a congrats moment and guided toward their next step, either heading to their Library or jumping straight into studying.
@@ -1193,18 +1250,18 @@ function MermoryCaseStudy() {
 
         {/* ─── Section 4: Marketing page ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <ExpandableBlackFrame id="s4" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: 20, alignItems: "center" }}>
+          <MermoryFrame id="s4" expandedId={expandedFrame} setExpandedId={setExpandedFrame} style={{ display: "flex", gap: 20, alignItems: "center" }}>
             <div style={{ flex: 1, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src="/Design/mermory/case-study/marketingPageBefore.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", objectFit: "cover", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>Before</span>
+              <img alt="" src="/Design/mermory/case-study/marketingPageBefore.png" style={{ width: "100%", display: "block", borderRadius: 12, border: "1px solid rgba(0,0,0,0.09)", objectFit: "cover", pointerEvents: "none" }} />
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "#a2a2a2", whiteSpace: "nowrap" }}>Before</span>
             </div>
             <div style={{ flex: 1, width: 0, position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img alt="" src="/Design/mermory/case-study/marketingPageAfter.png" style={{ width: "100%", display: "block", borderRadius: "1.5%", pointerEvents: "none" }} />
-              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap" }}>After</span>
+              <img alt="" src="/Design/mermory/case-study/marketingPageAfter.png" style={{ width: "100%", display: "block", borderRadius: 12, border: "1px solid rgba(0,0,0,0.09)", pointerEvents: "none" }} />
+              <span style={{ position: "absolute", top: "calc(100% + 12px)", left: 0, fontSize: 16, fontWeight: 400, color: "#a2a2a2", whiteSpace: "nowrap" }}>After</span>
             </div>
-          </ExpandableBlackFrame>
+          </MermoryFrame>
           <p style={{ ...CS_BODY, color: "rgba(38,36,33,0.75)", margin: 0 }}>
             <strong style={{ fontWeight: 400, color: "black" }}>I redesigned the hero section of the landing page. </strong>
             <Highlight color="green">Shifting from a vertical to a horizontal layout gave the section more visual balance,</Highlight> letting the product preview and the headline share the stage and make a stronger first impression.
@@ -1218,31 +1275,31 @@ function MermoryCaseStudy() {
         </div>
 
         {/* ─── Design collage ─── */}
-        <ExpandableBlackFrame id="s5" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
+        <MermoryFrame id="s5" expandedId={expandedFrame} setExpandedId={setExpandedFrame}>
           {/* aspect-ratio container: 748/780 = 95.9% */}
           <div style={{ position: "relative", width: "100%", paddingTop: "95.9%" }}>
-            <div style={{ position: "absolute", left: "3.27%", top: "8.05%", width: "31.28%", height: "40.64%" }}>
+            <div style={{ position: "absolute", left: "3.27%", top: "8.05%", width: "31.28%", height: "40.64%", borderRadius: 10, overflow: "hidden", border: "1px solid rgba(0,0,0,0.09)" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/mermory/case-study/group427319104.png" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none" }} />
             </div>
-            <div style={{ position: "absolute", left: "37.37%", top: "3.37%", width: "59.36%", height: "29.14%" }}>
+            <div style={{ position: "absolute", left: "37.37%", top: "3.37%", width: "59.36%", height: "29.14%", borderRadius: 10, overflow: "hidden", border: "1px solid rgba(0,0,0,0.09)" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/mermory/case-study/importContainer.png" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none" }} />
             </div>
-            <div style={{ position: "absolute", left: "37.88%", top: "36.26%", width: "58.85%", height: "37.43%", borderRadius: 18, overflow: "hidden" }}>
+            <div style={{ position: "absolute", left: "37.88%", top: "36.26%", width: "58.85%", height: "37.43%", borderRadius: 18, overflow: "hidden", border: "1px solid rgba(0,0,0,0.09)" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/mermory/case-study/justKmeepStudying.png" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none" }} />
             </div>
-            <div style={{ position: "absolute", left: "37.88%", top: "77.43%", width: "58.85%", height: "18.32%" }}>
+            <div style={{ position: "absolute", left: "37.88%", top: "77.43%", width: "58.85%", height: "18.32%", borderRadius: 10, overflow: "hidden", border: "1px solid rgba(0,0,0,0.09)" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/mermory/case-study/inviteFriends1_collage.png" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none" }} />
             </div>
-            <div style={{ position: "absolute", left: "3.27%", top: "54.57%", width: "31.67%", height: "32.09%" }}>
+            <div style={{ position: "absolute", left: "3.27%", top: "54.57%", width: "31.67%", height: "32.09%", borderRadius: 10, overflow: "hidden", border: "1px solid rgba(0,0,0,0.09)" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src="/Design/mermory/case-study/createFNew.png" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", pointerEvents: "none" }} />
             </div>
           </div>
-        </ExpandableBlackFrame>
+        </MermoryFrame>
 
         {/* ─── Footer ─── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
