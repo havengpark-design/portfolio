@@ -1581,6 +1581,79 @@ function PeekPanel({
   );
 }
 
+/* ── Custom Cursor ── */
+
+function CustomCursor() {
+  const [pos, setPos] = useState({ x: -200, y: -200 });
+  const [isPointer, setIsPointer] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+
+    function checkInteractive(el: Element | null): boolean {
+      while (el && el !== document.body) {
+        const tag = el.tagName.toLowerCase();
+        if (['a', 'button', 'input', 'select', 'textarea'].includes(tag)) return true;
+        const role = el.getAttribute('role');
+        if (role === 'button' || role === 'link') return true;
+        const c = (el as HTMLElement).style?.cursor;
+        if (c === 'pointer' || c === 'zoom-in' || c === 'zoom-out') return true;
+        el = el.parentElement;
+      }
+      return false;
+    }
+
+    const onMove = (e: MouseEvent) => {
+      setPos({ x: e.clientX, y: e.clientY });
+      setVisible(true);
+      setIsPointer(checkInteractive(e.target as Element));
+    };
+    const onLeave = () => setVisible(false);
+    const onEnter = () => setVisible(true);
+
+    window.addEventListener('mousemove', onMove);
+    document.documentElement.addEventListener('mouseleave', onLeave);
+    document.documentElement.addEventListener('mouseenter', onEnter);
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      document.documentElement.removeEventListener('mouseleave', onLeave);
+      document.documentElement.removeEventListener('mouseenter', onEnter);
+    };
+  }, []);
+
+  if (!mounted) return null;
+
+  return createPortal(
+    <div
+      style={{
+        position: 'fixed',
+        left: 0,
+        top: 0,
+        transform: `translate(${pos.x}px, ${pos.y}px) translate(-50%, -50%)`,
+        width: isPointer ? 22 : 7,
+        height: isPointer ? 22 : 7,
+        borderRadius: '50%',
+        background: isPointer ? 'transparent' : '#ff3b30',
+        border: `1.5px dashed ${isPointer ? '#ff3b30' : 'transparent'}`,
+        opacity: visible ? 1 : 0,
+        pointerEvents: 'none',
+        zIndex: 99999,
+        willChange: 'transform',
+        transition: [
+          'width 0.2s cubic-bezier(0.34,1.56,0.64,1)',
+          'height 0.2s cubic-bezier(0.34,1.56,0.64,1)',
+          'background 0.15s ease',
+          'border-color 0.15s ease',
+          'opacity 0.15s ease',
+        ].join(', '),
+      }}
+    />,
+    document.body
+  );
+}
+
 /* ── Page ── */
 
 const DESIGN_WIDTH = 1723;        // 2-col: 1443px cards + 2×140px padding
@@ -1690,6 +1763,7 @@ const isSafari = typeof navigator !== "undefined" && /^((?!chrome|android).)*saf
 
   return (
     <main ref={mainRef} style={{ background: "#FFFFFF", minHeight: "100vh" }}>
+      <CustomCursor />
       {isMobile ? (
         /* ── Mobile: single column, stacked ── */
         <div style={{ width: MOBILE_DESIGN_WIDTH, margin: "0 auto", zoom: scale, paddingLeft: 40, paddingRight: 40, boxSizing: "border-box" }}>
