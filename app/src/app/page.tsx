@@ -1587,6 +1587,7 @@ function CustomCursor() {
   const [pos, setPos] = useState({ x: -200, y: -200 });
   const [isPointer, setIsPointer] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -1605,10 +1606,19 @@ function CustomCursor() {
       return false;
     }
 
+    function checkHidden(el: Element | null): boolean {
+      while (el && el !== document.body) {
+        if ((el as HTMLElement).style?.cursor === 'none') return true;
+        el = el.parentElement;
+      }
+      return false;
+    }
+
     const onMove = (e: MouseEvent) => {
       setPos({ x: e.clientX, y: e.clientY });
       setVisible(true);
       setIsPointer(checkInteractive(e.target as Element));
+      setIsHidden(checkHidden(e.target as Element));
     };
     const onLeave = () => setVisible(false);
     const onEnter = () => setVisible(true);
@@ -1637,7 +1647,7 @@ function CustomCursor() {
         borderRadius: '50%',
         background: isPointer ? 'transparent' : '#c0000a',
         border: `1.5px dashed ${isPointer ? '#c0000a' : 'transparent'}`,
-        opacity: visible ? 1 : 0,
+        opacity: (visible && !isHidden) ? 1 : 0,
         pointerEvents: 'none',
         zIndex: 99999,
         willChange: 'transform',
