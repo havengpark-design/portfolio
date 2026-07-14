@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Geist } from "next/font/google";
+import localFont from "next/font/local";
 
-const geist = Geist({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
+const havengpark = localFont({
+  src: "../../public/fonts/havengpark.woff2",
+  variable: "--font-havengpark",
+  weight: "100 900",
+  style: "normal",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Haven Park",
   description: "Product designer. Storyteller. Artist.",
-  icons: {
-    icon: "/favicon-circle.png",
-    apple: "/favicon-circle.png",
-  },
 };
 
 export default function RootLayout({
@@ -23,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`subpixel-antialiased ${geist.className}`}>
+      <body className={`subpixel-antialiased ${havengpark.variable} ${havengpark.className}`}>
         {children}
       </body>
     </html>

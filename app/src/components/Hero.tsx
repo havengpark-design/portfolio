@@ -1,103 +1,147 @@
-export default function Hero() {
-  return (
-    <section style={{ paddingLeft: 270, marginTop: 187 }}>
-      {/* Hero container — Frame 427319444: 1051 × 196 */}
-      <div style={{ position: "relative", width: 1051, height: 196 }}>
+"use client";
 
-        {/* Avatar circle — logo3: 193 × 196, left=0, top=0 */}
-        <div
+import { useState, useEffect } from "react";
+
+// Reference frame this hero was designed at (Figma "MacBook Pro 16" - 14").
+// Everything below is positioned at its exact Figma pixel coordinates and
+// scaled uniformly via `zoom`, so proportions stay exact at every screen size.
+const DESIGN_VIEWPORT_WIDTH = 1728;
+const HERO_WIDTH = 1358;
+const HERO_HEIGHT = 631;
+
+export default function Hero() {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const update = () => setScale(Math.min(1, window.innerWidth / DESIGN_VIEWPORT_WIDTH));
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return (
+    <section
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div style={{ position: "relative", width: HERO_WIDTH, height: HERO_HEIGHT, zoom: scale, flexShrink: 0 }}>
+        {/* "Haven" mark */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/haven-mark.png"
+          alt="Haven"
           style={{
             position: "absolute",
             left: 0,
-            top: -10,
-            width: 193,
-            height: 196,
-            borderRadius: "50%",
-            overflow: "hidden",
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logo.png"
-            alt="Haven Park"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center top",
-              mixBlendMode: "multiply",
-              opacity: 0.23,
-            }}
-          />
-        </div>
-
-        {/* Text row — Frame 427319439: left=27, top=50, flex, gap=35 */}
-        <div
-          style={{
-            position: "absolute",
-            left: 27,
-            top: 50,
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: 35,
-          }}
-        >
-          {/* "Haven Park" h1 title overlapping avatar */}
-          <h1
-            style={{
-              fontSize: 64,
-              fontWeight: 590,
-              color: "#262421",
-              letterSpacing: "-0.64px",
-              lineHeight: "150%",
-              margin: 0,
-              whiteSpace: "nowrap",
-            }}
-          >
-            Haven Park
-          </h1>
-
-          {/* Bio text */}
-          <div
-            style={{
-              fontFamily:
-                "ui-rounded, -apple-system, BlinkMacSystemFont, sans-serif",
-              fontSize: 18,
-              fontWeight: 400,
-              lineHeight: 1.6,
-              color: "rgba(38, 36, 33, 0.55)",
-            }}
-          >
-            <p style={{ margin: 0 }}>
-              Product designer currently consulting for{" "}
-              <span style={{ color: "#262421" }}>
-                EduTech, B2B enterprise applications.
-              </span>
-            </p>
-            <p style={{ margin: 0 }}>
-              Storyteller with over{" "}
-              <span style={{ color: "#262421" }}>300,000 followers</span>{" "}
-              across social platforms.
-            </p>
-            <p style={{ margin: 0 }}>
-              Artist from{" "}
-              <span style={{ color: "#262421" }}>@uclaarts.</span>
-            </p>
-          </div>
-        </div>
-
-        {/* Line 51 — divider: left=27, top=163, 1024 × 1 */}
-        <div
-          style={{
-            position: "absolute",
-            left: 27,
-            top: 163,
-            width: 1024,
-            height: 1,
-            background: "rgba(38, 36, 33, 0.11)",
+            top: 0,
+            width: 369,
+            height: 168,
+            objectFit: "contain",
+            objectPosition: "left top",
+            display: "block",
           }}
         />
+
+        {/* "is a product designer" */}
+        <p
+          style={{
+            position: "absolute",
+            left: 398,
+            top: 40,
+            width: 888,
+            margin: 0,
+            textAlign: "center",
+            whiteSpace: "nowrap",
+            fontWeight: 500,
+            fontSize: 88,
+            lineHeight: 1.196,
+            color: "#bdbdbd",
+          }}
+        >
+          {"is a "}
+          <span style={{ color: "#454545" }}>product designer</span>
+        </p>
+
+        {/* Sentence */}
+        <p
+          style={{
+            position: "absolute",
+            left: 37,
+            top: 168,
+            width: 1284,
+            margin: 0,
+            textAlign: "center",
+            fontWeight: 500,
+            fontSize: 64,
+            lineHeight: 1.196,
+            color: "#bdbdbd",
+          }}
+        >
+          {"who builds at the intersection of "}
+          <span style={{ color: "#ae95e1" }}>design</span>
+          {", "}
+          <span style={{ color: "#6bb0df" }}>function</span>
+          {", and "}
+          <span style={{ color: "#f2989c" }}>culture.</span>
+        </p>
+
+        {/* Bullet */}
+        <div
+          className="floating-dot"
+          style={{
+            position: "absolute",
+            left: 685,
+            top: 383,
+            width: 8,
+            height: 8,
+            borderRadius: "50%",
+            background: "#000",
+          }}
+        />
+
+        {/* Stats */}
+        <div
+          style={{
+            position: "absolute",
+            left: 415,
+            top: 452,
+            width: 540,
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+            textAlign: "center",
+            fontSize: 24,
+            fontWeight: 300,
+            lineHeight: 1.196,
+            color: "#454545",
+          }}
+        >
+          <p style={{ margin: 0 }}>
+            {"Product Designer for "}
+            <span style={{ fontWeight: 500 }}>enterprise</span>
+            {", "}
+            <span style={{ fontWeight: 500 }}>AI</span>
+            {" & "}
+            <span style={{ fontWeight: 500 }}>edu-tech</span>
+            {"."}
+          </p>
+          <p style={{ margin: 0 }}>
+            {"Trusted by "}
+            <span style={{ fontWeight: 500 }}>Samsung</span>
+            {" as a Product Ambassador."}
+          </p>
+          <p style={{ margin: 0 }}>
+            {"Seen by "}
+            <span style={{ fontWeight: 500 }}>20M</span>
+            {"+ @ TikTok ("}
+            <span style={{ fontWeight: 500 }}>300K+</span>
+            {" followers)."}
+          </p>
+        </div>
       </div>
     </section>
   );

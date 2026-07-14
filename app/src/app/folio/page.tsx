@@ -1,5 +1,5 @@
 import DesignPage from "../design/page";
 
-export default function MermoryPage() {
+export default function FolioPage() {
   return <DesignPage />;
 }

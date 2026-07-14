@@ -1,5 +1,5 @@
-import Home from "../page";
+import DesignPage from "../design/page";
 
 export default function PorticoPage() {
-  return <Home />;
+  return <DesignPage />;
 }
