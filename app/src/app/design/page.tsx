@@ -688,11 +688,11 @@ export function MermoryCaseStudy() {
             document.body
           )}
           {/* Hero card */}
-          <div style={{ width: "100%", aspectRatio: "793 / 600", position: "relative" }}>
+          <div style={{ width: "100%", aspectRatio: "793 / 600", background: "#F5F5F7", borderRadius: 23, boxShadow: "0px 4px 24.9px 3px rgba(0,0,0,0.09)", overflow: "hidden", position: "relative" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               alt="Mermory laptop mockup"
-              src="/Design/mermory/case-study/laptopmockv4.png"
+              src="/Design/mermory/case-study/laptopmockv2.png"
               style={{
                 width: "100%",
                 height: "100%",
