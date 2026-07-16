@@ -1191,7 +1191,7 @@ export default function DesignPage() {
           <div style={{ width: "100%", height: 1, background: "rgba(38,36,33,0.11)" }} />
           {/* Metadata */}
           <div style={{ display: "flex", gap: 60 }}>
-            {([["Role", "Product Designer"], ["Timeline", "Ongoing"], ["Tools", "Figma"], ["Team", "Design, Engineering"]] as const).map(([l, v]) => (
+            {([["Role", "Product Designer"], ["Timeline", "Ongoing"], ["Tools", "Figma, Claude Code"], ["Team", "Design, Engineering"]] as const).map(([l, v]) => (
               <div key={l} style={{ display: "flex", flexDirection: "column", gap: 6, flex: 1 }}>
                 <span style={{ ...CS_LABEL, fontWeight: 300, color: "#a2a2a2", lineHeight: "27px", whiteSpace: "nowrap" }}>{l}</span>
                 <span style={{ ...CS_BODY, fontWeight: 300, fontSize: 18, lineHeight: "27px", color: "#262421" }}>{v}</span>
