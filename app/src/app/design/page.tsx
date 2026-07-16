@@ -688,7 +688,7 @@ export function MermoryCaseStudy() {
             document.body
           )}
           {/* Hero card */}
-          <div style={{ width: "100%", aspectRatio: "793 / 600", background: "#F5F5F7", borderRadius: 23, boxShadow: "0px 4px 24.9px 3px rgba(0,0,0,0.09)", position: "relative" }}>
+          <div style={{ width: "100%", aspectRatio: "793 / 600", background: "#F5F5F7", borderRadius: 23, boxShadow: "0px 4px 24.9px 3px rgba(0,0,0,0.09)", position: "relative", overflow: "hidden" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               alt="Mermory laptop mockup"
@@ -697,6 +697,8 @@ export function MermoryCaseStudy() {
                 width: "100%",
                 height: "100%",
                 objectFit: "contain",
+                padding: "24px 48px 64px 48px",
+                boxSizing: "border-box",
                 filter: "drop-shadow(0px 24px 32px rgba(0, 0, 0, 0.12))",
                 pointerEvents: "none"
               }}
@@ -867,7 +869,7 @@ export function SideQuestsSection() {
         {/* Metadata */}
         <div style={{ display: "flex", gap: 60, flexWrap: "wrap" }}>
           {([
-            ["Role", "Product Designer"],
+            ["Role", "Judge"],
             ["Timeline", "April 26, 2026"],
             ["Tools", "Rubric, Red Pen"],
             ["Team", "Hot Designers"],
