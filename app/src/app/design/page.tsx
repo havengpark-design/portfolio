@@ -699,7 +699,6 @@ export function MermoryCaseStudy() {
                 objectFit: "contain",
                 padding: "24px 48px 64px 48px",
                 boxSizing: "border-box",
-                filter: "drop-shadow(0px 24px 32px rgba(0, 0, 0, 0.12))",
                 pointerEvents: "none"
               }}
             />
