@@ -89,13 +89,31 @@ export default function Hero() {
           <span style={{ color: "#f2989c" }}>culture.</span>
         </p>
 
+        {/* Previously @ ... */}
+        <p
+          style={{
+            position: "absolute",
+            left: 294,
+            top: 454,
+            width: 791,
+            margin: 0,
+            textAlign: "center",
+            fontWeight: 500,
+            fontSize: 32,
+            lineHeight: 1.196,
+            color: "#454545",
+          }}
+        >
+          {"Previously @ Enterprise, AI & Edtech."}
+        </p>
+
         {/* Bullet */}
         <div
           className="floating-dot"
           style={{
             position: "absolute",
             left: 685,
-            top: 383,
+            top: 384,
             width: 8,
             height: 8,
             borderRadius: "50%",
@@ -103,45 +121,47 @@ export default function Hero() {
           }}
         />
 
-        {/* Stats */}
-        <div
+        {/* Product Ambassador */}
+        <p
           style={{
             position: "absolute",
-            left: 415,
-            top: 452,
-            width: 540,
-            display: "flex",
-            flexDirection: "column",
-            gap: 12,
+            left: 451,
+            top: 539,
+            width: 456,
+            margin: 0,
             textAlign: "center",
+            fontWeight: 200,
             fontSize: 24,
-            fontWeight: 300,
             lineHeight: 1.196,
             color: "#454545",
           }}
         >
-          <p style={{ margin: 0 }}>
-            {"Product Designer for "}
-            <span style={{ fontWeight: 500 }}>enterprise</span>
-            {", "}
-            <span style={{ fontWeight: 500 }}>AI</span>
-            {" & "}
-            <span style={{ fontWeight: 500 }}>edu-tech</span>
-            {"."}
-          </p>
-          <p style={{ margin: 0 }}>
-            {"Trusted by "}
-            <span style={{ fontWeight: 500 }}>Samsung</span>
-            {" as a Product Ambassador."}
-          </p>
-          <p style={{ margin: 0 }}>
-            {"Seen by "}
-            <span style={{ fontWeight: 500 }}>20M</span>
-            {"+ @ TikTok ("}
-            <span style={{ fontWeight: 500 }}>300K+</span>
-            {" followers)."}
-          </p>
-        </div>
+          {"Product Ambassador @ "}
+          <span style={{ fontWeight: 400 }}>Samsung</span>
+          {". "}
+        </p>
+
+        {/* Seen by */}
+        <p
+          style={{
+            position: "absolute",
+            left: 404,
+            top: 578,
+            width: 551,
+            margin: 0,
+            textAlign: "center",
+            fontWeight: 200,
+            fontSize: 24,
+            lineHeight: 1.36,
+            color: "#454545",
+          }}
+        >
+          {"Seen by "}
+          <span style={{ fontWeight: 400 }}>20M</span>
+          {"+ @ TikTok ("}
+          <span style={{ fontWeight: 400 }}>300K+</span>
+          {" followers). "}
+        </p>
       </div>
     </section>
   );
